@@ -1,6 +1,7 @@
 package cafe94.group14a2;
 
-import User.Customer;
+//import User.Customer;
+//import User.UserController;
 import User.UserController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,19 +12,27 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Login extends Application {
+    private static Scene scene;
     private static Parent loadFXML(String fxml) throws IOException {
+        System.out.println("inside load "+fxml);
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource(fxml + ".fxml"));
+        System.out.println("fxmlloader: "+fxmlLoader);
         return fxmlLoader.load();
     }
+//    private void switchToCreateCustomer() throws IOException {
+//        Login.setRoot("createUser");
+//    }
     @Override
     public void start(Stage stage) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("login.fxml"));
-        Scene scene = new Scene(loadFXML("login"), 320, 240);
+        scene = new Scene(loadFXML("login"), 720, 480);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }
-
+    static void setRoot(String fxml) throws IOException {
+        System.out.println(fxml);
+        scene.setRoot(loadFXML(fxml));
+    }
     public static void main(String[] args) {
         int userID = 0;
         String email = "test@gmail.com";

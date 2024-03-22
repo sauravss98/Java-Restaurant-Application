@@ -12,5 +12,6 @@ module cafe94.group14a2 {
     requires com.almasb.fxgl.all;
 
     opens cafe94.group14a2 to javafx.fxml;
+    exports User;
     exports cafe94.group14a2;
 }

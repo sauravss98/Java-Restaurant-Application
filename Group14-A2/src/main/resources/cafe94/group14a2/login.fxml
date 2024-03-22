@@ -19,6 +19,6 @@
       </VBox.margin>
    </Label>
    <TextField fx:id="EmailTextField1" layoutX="30.0" layoutY="68.0" promptText="Enter Password" />
-    <Button onAction="#onHelloButtonClick" text="Login" />
-   <Button mnemonicParsing="false" text="Create Account" />
+    <Button onAction="#onLoginClick" text="Login" />
+   <Button onAction="#onSignUpClick" mnemonicParsing="false" text="Create Account" />
 </VBox>

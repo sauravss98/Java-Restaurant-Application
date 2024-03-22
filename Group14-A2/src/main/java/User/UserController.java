@@ -1,8 +1,10 @@
 package User;
 
+import javafx.fxml.FXML;
+
 import java.util.ArrayList;
 
-public final class UserController {
+public class UserController {
     private static ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Manager> managers = new ArrayList<>();
     private ArrayList<Waiter> waiters = new ArrayList<>();
@@ -21,6 +23,7 @@ public final class UserController {
 //        int chefCount = chefs.size();
 //        return customerCount + managersCount + waitersCount + driversCount + chefCount;
 //    }
+    @FXML
     public static void createCustomer(String email, String password, String firstName, String lastName, String address, boolean isCustomer){
         int userId = userCount + 1;
         System.out.println(userId);
