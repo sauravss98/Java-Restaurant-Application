@@ -91,6 +91,30 @@ public class UserController {
             errorLabel.setText("Email already exists");
         }
     }
+    public static void loadCustomersFromExcel() {
+        try (FileInputStream inputStream = new FileInputStream("src/main/java/User/CustomerDate.xlsx")) {
+            Workbook workbook = new XSSFWorkbook(inputStream);
+            Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+
+            // Iterate through rows, starting from index 1 to skip the header row
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    int userId = (int) row.getCell(0).getNumericCellValue();
+                    String email = row.getCell(1).getStringCellValue();
+                    String firstName = row.getCell(2).getStringCellValue();
+                    String lastName = row.getCell(3).getStringCellValue();
+                    String address = row.getCell(4).getStringCellValue();
+                    boolean isCustomer = true; // Assuming all loaded users are customers
+                    Customer customer = new Customer(userId, email, firstName, lastName, address, isCustomer);
+                    customers.add(customer);
+                }
+            }
+            System.out.println("Customers loaded from Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error loading customers from Excel: " + e.getMessage());
+        }
+    }
     public void saveCustomerDataToExcel(Customer customer){
         Workbook workbook;
         Sheet sheet;

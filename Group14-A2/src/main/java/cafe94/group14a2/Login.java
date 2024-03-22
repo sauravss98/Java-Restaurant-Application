@@ -29,6 +29,7 @@ public class Login extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     public static void main(String[] args) {
+        UserController.loadCustomersFromExcel();
         launch();
     }
 }
