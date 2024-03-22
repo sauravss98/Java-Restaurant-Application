@@ -18,10 +18,9 @@ public class User {
                 '}';
     }
 
-    public User(int userID,String email, String password, String firstName, String lastName) {
+    public User(int userID,String email, String firstName, String lastName) {
         this.userId = userID;
         this.email = email;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }

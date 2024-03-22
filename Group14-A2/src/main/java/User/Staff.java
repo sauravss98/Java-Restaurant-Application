@@ -6,8 +6,8 @@ public class Staff extends User{
     private int totalHours;
     private boolean isStaff = true;
 
-    public Staff(int userId, String email, String password, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff) {
-        super(userId, email, password, firstName, lastName);
+    public Staff(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff) {
+        super(userId, email, firstName, lastName);
         this.staffID = staffID;
         this.hoursWorked = hoursWorked;
         this.totalHours = totalHours;

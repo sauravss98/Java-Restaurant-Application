@@ -10,6 +10,8 @@ module cafe94.group14a2 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
 
     opens cafe94.group14a2 to javafx.fxml;
     opens  User to javafx.fxml;
