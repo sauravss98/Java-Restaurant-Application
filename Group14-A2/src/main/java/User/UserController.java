@@ -69,16 +69,22 @@ public class UserController {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String address= addressField.getText();
+        System.out.println("Entererd email: "+email);
         boolean isCustomer = true;
         if(checkEmailValidity()) {
-            Customer newCustomer = new Customer(userId, email, password, firstName, lastName, address, isCustomer);
-            System.out.println(newCustomer);
-            if(customers.add(newCustomer)) {
-                userCount++;
-                Login.setRoot("login");
-            }
-            else{
-                errorLabel.setText("Error..please try again");
+//            System.out.println(email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty());
+            if(!(email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())){
+                Customer newCustomer = new Customer(userId, email, password, firstName, lastName, address, isCustomer);
+                System.out.println(newCustomer);
+                if(customers.add(newCustomer)) {
+                    userCount++;
+                    Login.setRoot("login");
+                }
+                else{
+                    errorLabel.setText("Error..please try again");
+                }
+            } else {
+                errorLabel.setText("Enter all details");
             }
         }
         else {
