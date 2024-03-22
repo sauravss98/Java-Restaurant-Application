@@ -74,7 +74,7 @@ public class UserController {
         if(checkEmailValidity()) {
             if(!(email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())){
                 Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer);
-                saveUserDataToExcel(newCustomer);
+                saveCustomerDataToExcel(newCustomer);
                 System.out.println(newCustomer);
                 if(customers.add(newCustomer)) {
                     userCount++;
@@ -91,11 +91,11 @@ public class UserController {
             errorLabel.setText("Email already exists");
         }
     }
-    public void saveUserDataToExcel(Customer customer){
+    public void saveCustomerDataToExcel(Customer customer){
         Workbook workbook;
         Sheet sheet;
 
-        File file = new File("src/main/java/User/UserDate.xlsx");
+        File file = new File("src/main/java/User/CustomerDate.xlsx");
         if (file.exists()) {
             // If the file exists, open it and get the existing workbook and sheet
             try (FileInputStream inputStream = new FileInputStream(file)) {
@@ -131,7 +131,7 @@ public class UserController {
         for (int i = 0; i < 5; i++) {
             sheet.autoSizeColumn(i);
         }
-        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/UserDate.xlsx")) {
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/CustomerDate.xlsx")) {
             workbook.write(outputStream);
             System.out.println("User data saved to Excel file successfully.");
         } catch (IOException e) {
