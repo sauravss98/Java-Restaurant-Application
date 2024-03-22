@@ -57,14 +57,6 @@ public class UserController {
 //        boolean emailIsValid = true;
         int userId = userCount + 1;
         String email = emailField.getText();
-//        for(Customer customer:customers){
-//            System.out.println("old emails: "+customer.getEmail());
-//            System.out.println("email check: "+customer.getEmail());
-//            System.out.println("check"+Objects.equals(customer.getEmail(), emailField.getText()));
-//            if(Objects.equals(customer.getEmail(), emailField.getText())){
-//                emailIsValid = false;
-//            }
-//        }
         String password = passwordField.getText();
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
@@ -72,9 +64,9 @@ public class UserController {
         System.out.println("Entererd email: "+email);
         boolean isCustomer = true;
         if(checkEmailValidity()) {
-//            System.out.println(email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty());
             if(!(email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())){
                 Customer newCustomer = new Customer(userId, email, password, firstName, lastName, address, isCustomer);
+                saveUserDataToExcel();
                 System.out.println(newCustomer);
                 if(customers.add(newCustomer)) {
                     userCount++;
@@ -90,6 +82,8 @@ public class UserController {
         else {
             errorLabel.setText("Email already exists");
         }
+    }
+    public void saveUserDataToExcel(){
 
     }
 }
