@@ -7,8 +7,19 @@ public class User {
     private  String firstName;
     private  String lastName;
 
-    public User(int userId, String email, String password, String firstName, String lastName) {
-        this.userId = userId;
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+
+    public User(int userID,String email, String password, String firstName, String lastName) {
+        this.userId = userID;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
