@@ -62,5 +62,6 @@
             <Insets />
          </VBox.margin>
       </Button>
+      <Label fx:id="errorLabel" translateY="60.0" />
    </children>
 </VBox>

@@ -14,9 +14,7 @@ import java.io.IOException;
 public class Login extends Application {
     private static Scene scene;
     private static Parent loadFXML(String fxml) throws IOException {
-        System.out.println("inside load "+fxml);
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource(fxml + ".fxml"));
-        System.out.println("fxmlloader: "+fxmlLoader);
         return fxmlLoader.load();
     }
 //    private void switchToCreateCustomer() throws IOException {
@@ -29,8 +27,7 @@ public class Login extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    static void setRoot(String fxml) throws IOException {
-        System.out.println(fxml);
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
     public static void main(String[] args) {
