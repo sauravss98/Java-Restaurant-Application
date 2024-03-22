@@ -1,6 +1,7 @@
 package User;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
@@ -32,5 +33,26 @@ public class UserController {
         customers.add(newCustomer);
         userCount++;
         System.out.println(userCount);
+    }
+    @FXML private TextField emailField;
+    @FXML private TextField passwordField;
+    @FXML private TextField firstNameField;
+    @FXML private TextField lastNameField;
+    @FXML private TextField addressField;
+
+    @FXML
+    private void onCreateUserClick(){
+        int userId = userCount + 1;
+        System.out.println(userId);
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        String address= addressField.getText();
+        boolean isCustomer = true;
+        Customer newCustomer = new Customer(userId, email, password, firstName, lastName, address, isCustomer);
+        System.out.println(newCustomer.toString());
+        customers.add(newCustomer);
+        userCount++;
     }
 }
