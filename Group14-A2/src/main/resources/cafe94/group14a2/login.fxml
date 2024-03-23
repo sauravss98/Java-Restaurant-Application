@@ -15,4 +15,5 @@
    <TextField fx:id="EmailTextField" promptText="Enter Email" />
     <Button onAction="#onLoginClick" text="Login" />
    <Button mnemonicParsing="false" onAction="#onSignUpClick" text="Create Account" />
+   <Label fx:id="LoginErrorLabel" textFill="#ea0000" />
 </VBox>

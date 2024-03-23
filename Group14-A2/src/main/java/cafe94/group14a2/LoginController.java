@@ -12,6 +12,7 @@ import java.util.Objects;
 public class LoginController {
 
     @FXML private TextField EmailTextField;
+    @FXML private Label LoginErrorLabel;
 
     public String checkValidEmail(String email){
         String type = "";
@@ -47,13 +48,28 @@ public class LoginController {
         }
         return type;
     }
+    public static void setActiveUserEmail(String email){
+        CustomerPageController.setActiveUserEmail(email);
+    }
     @FXML
-    protected void onLoginClick() {
+    protected void onLoginClick() throws IOException {
         String email = EmailTextField.getText();
         if(!email.isEmpty()){
-            String UserType = "";
-            UserType = checkValidEmail(email);
-            System.out.println(UserType);
+            String userType = "";
+            userType = checkValidEmail(email);
+            System.out.println(userType);
+            if (userType.equals("Customer")){
+                System.out.println("in Customer");
+                try {
+                    setActiveUserEmail(email);
+                    Login.setRoot("customerMainPage");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                LoginErrorLabel.setText("Not a user. Please try again or create new user");
+            }
+
         }
     }
 
