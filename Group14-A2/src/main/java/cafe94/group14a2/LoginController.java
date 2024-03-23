@@ -13,23 +13,47 @@ public class LoginController {
 
     @FXML private TextField EmailTextField;
 
-    public boolean checkValidEmail(String email){
-        boolean flag = false;
+    public String checkValidEmail(String email){
+        String type = "";
         ArrayList<Customer> customers = UserController.getCustomers();
+        ArrayList<Manager> managers = UserController.getManagers();
+        ArrayList<Waiter> waiters = UserController.getWaiters();
+        ArrayList<Driver> drivers = UserController.getDrivers();
+        ArrayList<Chef> chefs = UserController.getChefs();
         for(Customer customer:customers){
             if(Objects.equals(customer.getEmail(), email)) {
-                return true;
+                return "Customer";
             }
         }
-        return flag;
+        for(Manager manager:managers){
+            if(Objects.equals(manager.getEmail(), email)) {
+                return "Manager";
+            }
+        }
+        for(Waiter waiter:waiters){
+            if(Objects.equals(waiter.getEmail(), email)) {
+                return "Waiter";
+            }
+        }
+        for(Driver driver:drivers){
+            if(Objects.equals(driver.getEmail(), email)) {
+                return "Driver";
+            }
+        }
+        for(Chef chef:chefs){
+            if(Objects.equals(chef.getEmail(), email)) {
+                return "Chef";
+            }
+        }
+        return type;
     }
     @FXML
     protected void onLoginClick() {
         String email = EmailTextField.getText();
         if(!email.isEmpty()){
-            boolean isValid =false;
-             isValid = checkValidEmail(email);
-            System.out.println(isValid);
+            String UserType = "";
+            UserType = checkValidEmail(email);
+            System.out.println(UserType);
         }
     }
 
