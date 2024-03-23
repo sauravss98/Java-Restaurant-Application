@@ -6,6 +6,7 @@ public class User {
     private String password;
     private  String firstName;
     private  String lastName;
+    private String userType;
 
     @Override
     public String toString() {
@@ -18,11 +19,12 @@ public class User {
                 '}';
     }
 
-    public User(int userID,String email, String firstName, String lastName) {
+    public User(int userID,String email, String firstName, String lastName,String userType) {
         this.userId = userID;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userType = userType;
     }
 
     public int getUserId() {
@@ -63,5 +65,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

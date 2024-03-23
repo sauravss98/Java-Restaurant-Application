@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 public class Login extends Application {
     private static Scene scene;
     private static Parent loadFXML(String fxml) throws IOException {

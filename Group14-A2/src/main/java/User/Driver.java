@@ -11,8 +11,8 @@ public class Driver extends Staff{
         return isDelivered;
     }
 
-    public Driver(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff, boolean isDelivered,boolean isDriver) {
-        super(userId, email, firstName, lastName, staffID, hoursWorked, totalHours, isStaff);
+    public Driver(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff, boolean isDelivered,boolean isDriver,String userType) {
+        super(userId, email, firstName, lastName, staffID, hoursWorked, totalHours, isStaff,userType);
         this.isDelivered = isDelivered;
         this.isDriver = isDriver;
     }

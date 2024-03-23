@@ -16,11 +16,31 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 
 public class UserController {
+    public static ArrayList<Customer> getCustomers() {
+        return customers;
+    }
+
+    public static ArrayList<Manager> getManagers() {
+        return managers;
+    }
+
+    public static ArrayList<Waiter> getWaiters() {
+        return waiters;
+    }
+
+    public static ArrayList<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public static ArrayList<Chef> getChefs() {
+        return chefs;
+    }
+
     private static ArrayList<Customer> customers = new ArrayList<>();
-    private ArrayList<Manager> managers = new ArrayList<>();
-    private ArrayList<Waiter> waiters = new ArrayList<>();
-    private ArrayList<Driver> drivers = new ArrayList<>();
-    private ArrayList<Chef> chefs = new ArrayList<>();
+    private static ArrayList<Manager> managers = new ArrayList<>();
+    private static ArrayList<Waiter> waiters = new ArrayList<>();
+    private static ArrayList<Driver> drivers = new ArrayList<>();
+    private static ArrayList<Chef> chefs = new ArrayList<>();
     private static int userCount = 0;
     public int getUsersCount() {
         return userCount;
@@ -49,9 +69,10 @@ public class UserController {
         String lastName = lastNameField.getText();
         String address= addressField.getText();
         boolean isCustomer = true;
+        String userType = "Customer";
         if(checkEmailValidity()) {
             if(!(email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())){
-                Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer);
+                Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer,userType);
                 saveCustomerDataToExcel(newCustomer);
                 System.out.println(newCustomer);
                 if(customers.add(newCustomer)) {
@@ -82,8 +103,9 @@ public class UserController {
                     String firstName = row.getCell(2).getStringCellValue();
                     String lastName = row.getCell(3).getStringCellValue();
                     String address = row.getCell(4).getStringCellValue();
+                    String userType = row.getCell(5).getStringCellValue();
                     boolean isCustomer = true;
-                    Customer customer = new Customer(userId, email, firstName, lastName, address, isCustomer);
+                    Customer customer = new Customer(userId, email, firstName, lastName, address, isCustomer,userType);
                     userCount++;
                     customers.add(customer);
                 }
@@ -115,6 +137,7 @@ public class UserController {
             headerRow.createCell(2).setCellValue("First Name");
             headerRow.createCell(3).setCellValue("Last Name");
             headerRow.createCell(4).setCellValue("Address");
+            headerRow.createCell(5).setCellValue("User Type");
         }
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
@@ -123,8 +146,9 @@ public class UserController {
         row.createCell(2).setCellValue(customer.getFirstName());
         row.createCell(3).setCellValue(customer.getLastName());
         row.createCell(4).setCellValue(customer.getAddress());
+        row.createCell(5).setCellValue(customer.getUserType());
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             sheet.autoSizeColumn(i);
         }
         try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/CustomerDate.xlsx")) {
