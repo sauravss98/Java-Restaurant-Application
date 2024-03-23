@@ -8,11 +8,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -28,22 +24,6 @@ public class UserController {
     private static int userCount = 0;
     public int getUsersCount() {
         return userCount;
-    }
-
-//    public static int getUsersCount(){
-//        int customerCount = customers.size();
-//        int managersCount = managers.size();
-//        int waitersCount = waiters.size();
-//        int driversCount = drivers.size();
-//        int chefCount = chefs.size();
-//        return customerCount + managersCount + waitersCount + driversCount + chefCount;
-//    }
-    @FXML
-    public static void createCustomer(String email, String firstName, String lastName, String address, boolean isCustomer){
-        int userId = userCount + 1;
-        Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer);
-        customers.add(newCustomer);
-        userCount++;
     }
     public boolean checkEmailValidity(){
         boolean emailIsValid =true;
@@ -63,13 +43,11 @@ public class UserController {
 
     @FXML
     private void onCreateUserClick() throws IOException {
-//        boolean emailIsValid = true;
         int userId = userCount + 1;
         String email = emailField.getText();
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String address= addressField.getText();
-        System.out.println("Entererd email: "+email);
         boolean isCustomer = true;
         if(checkEmailValidity()) {
             if(!(email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())){
@@ -94,9 +72,8 @@ public class UserController {
     public static void loadCustomersFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/User/CustomerDate.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
-            Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+            Sheet sheet = workbook.getSheetAt(0);
 
-            // Iterate through rows, starting from index 1 to skip the header row
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
                 if (row != null) {
@@ -105,8 +82,9 @@ public class UserController {
                     String firstName = row.getCell(2).getStringCellValue();
                     String lastName = row.getCell(3).getStringCellValue();
                     String address = row.getCell(4).getStringCellValue();
-                    boolean isCustomer = true; // Assuming all loaded users are customers
+                    boolean isCustomer = true;
                     Customer customer = new Customer(userId, email, firstName, lastName, address, isCustomer);
+                    userCount++;
                     customers.add(customer);
                 }
             }
@@ -121,16 +99,14 @@ public class UserController {
 
         File file = new File("src/main/java/User/CustomerDate.xlsx");
         if (file.exists()) {
-            // If the file exists, open it and get the existing workbook and sheet
             try (FileInputStream inputStream = new FileInputStream(file)) {
                 workbook = new XSSFWorkbook(inputStream);
-                sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
+                sheet = workbook.getSheetAt(0);
             } catch (IOException e) {
                 System.err.println("Error opening existing Excel file: " + e.getMessage());
                 return;
             }
         } else {
-            // If the file doesn't exist, create a new workbook and sheet
             workbook = new XSSFWorkbook();
             sheet = workbook.createSheet("User Data");
             Row headerRow = sheet.createRow(0);
@@ -140,11 +116,7 @@ public class UserController {
             headerRow.createCell(3).setCellValue("Last Name");
             headerRow.createCell(4).setCellValue("Address");
         }
-        // Write new user data to a new row
-        int rowNum = sheet.getLastRowNum() + 1; // Get the index for the new row
-//        if(customers.size()>0) {
-//            Customer customer = customers.getLast(); // Get the last added customer
-//        }
+        int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
         row.createCell(0).setCellValue(customer.getUserId());
         row.createCell(1).setCellValue(customer.getEmail());
@@ -164,7 +136,6 @@ public class UserController {
             try {
                 workbook.close();
             } catch (IOException e) {
-                // Handle workbook closing exception
             }
         }
     }

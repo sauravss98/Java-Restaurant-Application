@@ -15,9 +15,6 @@ public class Login extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-//    private void switchToCreateCustomer() throws IOException {
-//        Login.setRoot("createUser");
-//    }
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 720, 480);
