@@ -1,27 +1,35 @@
 package User;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public final class CustomerPageController {
+public class CustomerPageController implements Initializable {
     private static String activeUserEmail;
     private static ArrayList<Customer> customers = UserController.getCustomers();
-    private static Customer activeCustomer;
+    @FXML
+    private Label NameDisplayLabel;
 
-    public String getActiveUserEmail() {
-        return activeUserEmail;
+    public CustomerPageController() {
     }
-
-    public static void setActiveUserEmail(String activeUserEmailSent) {
-        activeUserEmail = activeUserEmailSent;
-        System.out.println("active user is "+activeUserEmail);
-        setActiveCustomer(activeUserEmail);
+    public CustomerPageController(String activeUserEmail) {
+        this.activeUserEmail = activeUserEmail;
     }
-    public static void setActiveCustomer(String email){
-        for(Customer customer:customers){
-            if(Objects.equals(customer.getEmail(), email)){
-                activeCustomer = customer;
-                System.out.println("name of the customer "+activeCustomer.getFirstName());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("activeemail is this: " + activeUserEmail);
+        for (Customer customer : customers) {
+            System.out.println("name: " + customer.getFirstName() + " status: " + customer.getIsLoggedIn());
+            System.out.println("activeemail " + activeUserEmail);
+            if (Objects.equals(customer.getEmail(), activeUserEmail)) {
+                customer.setLoggedIn(true);
+                NameDisplayLabel.setText("Hi, " + customer.getFirstName());
+                break;
             }
         }
     }

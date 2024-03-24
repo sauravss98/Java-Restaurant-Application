@@ -7,6 +7,7 @@ public class User {
     private  String firstName;
     private  String lastName;
     private String userType;
+    private  boolean isLoggedIn = false;
 
     @Override
     public String toString() {
@@ -19,14 +20,21 @@ public class User {
                 '}';
     }
 
-    public User(int userID,String email, String firstName, String lastName,String userType) {
+    public User(int userID,String email, String firstName, String lastName,String userType,boolean isLoggedIn) {
         this.userId = userID;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
+        this.isLoggedIn = false;
+    }
+    public boolean getIsLoggedIn() {
+        return isLoggedIn;
     }
 
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
     public int getUserId() {
         return userId;
     }

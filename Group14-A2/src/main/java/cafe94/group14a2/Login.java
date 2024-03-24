@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class Login extends Application {
+public class Login  extends Application {
     private static Scene scene;
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource(fxml + ".fxml"));

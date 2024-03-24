@@ -70,9 +70,10 @@ public class UserController {
         String address= addressField.getText();
         boolean isCustomer = true;
         String userType = "Customer";
+        boolean isLoggedIn = false;
         if(checkEmailValidity()) {
             if(!(email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())){
-                Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer,userType);
+                Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer,userType,isLoggedIn);
                 saveCustomerDataToExcel(newCustomer);
                 System.out.println(newCustomer);
                 if(customers.add(newCustomer)) {
@@ -105,7 +106,8 @@ public class UserController {
                     String address = row.getCell(4).getStringCellValue();
                     String userType = row.getCell(5).getStringCellValue();
                     boolean isCustomer = true;
-                    Customer customer = new Customer(userId, email, firstName, lastName, address, isCustomer,userType);
+                    boolean isLoggedIn = false;
+                    Customer customer = new Customer(userId, email, firstName, lastName, address, isCustomer,userType,isLoggedIn);
                     userCount++;
                     customers.add(customer);
                 }
