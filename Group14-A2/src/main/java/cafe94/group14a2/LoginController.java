@@ -10,18 +10,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class LoginController {
-    public String getActiveUser() {
-        return activeUser;
-    }
-
-    public void setActiveUser(String activeUser) {
-        this.activeUser = activeUser;
-    }
-
-//    private CustomerPageController customerPageController = new CustomerPageController();
     @FXML private TextField EmailTextField;
     @FXML private Label LoginErrorLabel;
-    private String activeUser;
 
 
     public String checkValidEmail(String email){
@@ -69,8 +59,7 @@ public class LoginController {
             if (userType.equals("Customer")){
                 System.out.println("in Customer");
                 try {
-                    setActiveUser(email);
-                    CustomerPageController customerPageController = new CustomerPageController(email);
+                    new CustomerPageController(email);
                     Login.setRoot("customerMainPage");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
