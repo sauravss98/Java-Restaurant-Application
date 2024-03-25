@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.CustomerPageController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.CustomerPageController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Label fx:id="NameDisplayLabel" translateY="-20.0" />
-            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="MenuItemList" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ListView fx:id="ItemsList" minWidth="200.0" prefHeight="600.0" prefWidth="600.0" />
+               </children></VBox>
+            <VBox fx:id="OrderItems" prefHeight="200.0" prefWidth="100.0" />
          </children>
          <opaqueInsets>
             <Insets />
