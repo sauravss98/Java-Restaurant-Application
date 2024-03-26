@@ -47,7 +47,29 @@ public class CustomerPageController implements Initializable {
         ItemsList.setOnMouseClicked(event -> {
             String selectedItemDescription = (String) ItemsList.getSelectionModel().getSelectedItem();
             System.out.println(selectedItemDescription);
+            String id = extractID(selectedItemDescription);
+            System.out.println("id is: "+id);
+            Item requiredItem = getItemData(id);
+            System.out.println("Name: "+requiredItem.getItemName());
         });
+    }
+
+    public Item getItemData(String idString){
+        int id = Integer.parseInt(idString);
+        for(Item item: items){
+            if(item.getItemID() == id){
+                return item;
+            }
+        }
+        return null;
+    }
+    public static String extractID(String data) {
+        int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
+        int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
+        if (endIndex == -1) {
+            endIndex = data.length(); // If no space is found, consider the end of the string
+        }
+        return data.substring(startIndex, endIndex);
     }
 
     private void refreshItemList() {
