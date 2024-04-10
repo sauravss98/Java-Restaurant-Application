@@ -2,6 +2,8 @@ package User;
 
 import Items.Item;
 import Items.ItemDataController;
+import Orders.Order;
+import Orders.OrderDataHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -17,10 +19,11 @@ public class CustomerPageController implements Initializable {
     private static String activeUserEmail;
     private static ArrayList<Customer> customers = UserController.getCustomers();
     private ArrayList<Item> items = ItemDataController.getItems();
+    private static ArrayList<Order> orders = OrderDataHandler.getOrders();
     @FXML
     private Label NameDisplayLabel;
     @FXML private ListView ItemsList;
-
+    private Order currentOrder;
     public CustomerPageController() {
     }
     public CustomerPageController(String activeUserEmail) {
@@ -51,9 +54,33 @@ public class CustomerPageController implements Initializable {
             System.out.println("id is: "+id);
             Item requiredItem = getItemData(id);
             System.out.println("Name: "+requiredItem.getItemName());
+            handleOrder(requiredItem);
         });
     }
 
+    private void handleOrder(Item selctedItem){
+        if(currentOrder == null){
+            int newOrderID =generateOrderId();
+            currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false);
+        }
+        currentOrder.setItems(selctedItem.getItemID());
+        System.out.println(currentOrder.toString());
+
+    }
+
+    public int generateOrderId() {
+        int maxOrderId = 0;
+
+        // Find the maximum order ID from the existing orders
+        for (Order order : orders) {
+            if (order.getOrderId() > maxOrderId) {
+                maxOrderId = order.getOrderId();
+            }
+        }
+
+        // Return the next available order ID
+        return maxOrderId + 1;
+    }
     public Item getItemData(String idString){
         int id = Integer.parseInt(idString);
         for(Item item: items){

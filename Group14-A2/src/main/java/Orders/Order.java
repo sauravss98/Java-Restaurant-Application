@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Order {
     private int orderId;
     private String orderType;
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Integer> items = new ArrayList<>();
     private boolean isCompleted = false;
     public int getOrderId() {
         return orderId;
@@ -25,12 +25,12 @@ public class Order {
         this.orderType = orderType;
     }
 
-    public ArrayList<Item> getItems() {
+    public ArrayList<Integer> getItems() {
         return items;
     }
 
-    public void setItems(Item item) {
-        items.add(item);
+    public void setItems(int itemId) {
+        items.add(itemId);
     }
 
     public boolean isCompleted() {
@@ -41,10 +41,20 @@ public class Order {
         isCompleted = completed;
     }
 
-    public Order(int orderId, String orderType, ArrayList<Item> items, boolean isCompleted) {
+    public Order(int orderId, String orderType, ArrayList<Integer> items, boolean isCompleted) {
         this.orderId = orderId;
         this.orderType = orderType;
         this.items = items;
         this.isCompleted = isCompleted;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", orderType='" + orderType + '\'' +
+                ", items=" + items +
+                ", isCompleted=" + isCompleted +
+                '}';
     }
 }
