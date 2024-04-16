@@ -12,4 +12,13 @@ public final class ItemDataController {
     public static void addItems(Item item){
         items.add(item);
     }
+
+    public static Item getItemById(int itemId) {
+        for (Item item : items) {
+            if (item.getItemID() == itemId) {
+                return item;
+            }
+        }
+        return null;
+    }
 }

@@ -8,7 +8,24 @@ public class Order {
     private int orderId;
     private String orderType;
     private ArrayList<Integer> items = new ArrayList<>();
+    private ArrayList<Item> itemsObjects = new ArrayList<>();
     private boolean isCompleted = false;
+
+    public void setItems(ArrayList<Integer> items) {
+        this.items = items;
+    }
+
+    public ArrayList<Item> getItemsObjects() {
+        return itemsObjects;
+    }
+
+    public void setItemsObjects(ArrayList<Item> itemsObjects) {
+        this.itemsObjects = itemsObjects;
+    }
+
+    public Order() {
+    }
+
     public int getOrderId() {
         return orderId;
     }
@@ -29,8 +46,14 @@ public class Order {
         return items;
     }
 
-    public void setItems(int itemId) {
+    public void setItems(int itemId, Item item) {
         items.add(itemId);
+        if (itemsObjects.contains(item)) {
+            int index = itemsObjects.indexOf(item);
+            itemsObjects.get(index).addQuantity();
+        } else {
+            itemsObjects.add(item);
+        }
     }
 
     public boolean isCompleted() {
@@ -48,13 +71,30 @@ public class Order {
         this.isCompleted = isCompleted;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", orderType='" + orderType + '\'' +
-                ", items=" + items +
-                ", isCompleted=" + isCompleted +
-                '}';
+//    @Override
+//    public String toString() {
+//        return "Order{" +
+//                "orderId=" + orderId +
+//                ", orderType='" + orderType + '\'' +
+//                ", items=" + items +
+//                ", items=" + itemsObjects +
+//                ", isCompleted=" + isCompleted +
+//                '}';
+//    }
+@Override
+public String toString() {
+    StringBuilder sb = new StringBuilder("Order{");
+    sb.append("orderId=").append(orderId).append(", ");
+    sb.append("orderType='").append(orderType).append("', ");
+    sb.append("items=").append(items).append(", ");
+    sb.append("itemsObjects=[");
+    for (Item item : itemsObjects) {
+        sb.append("{").append(item.getItemName()).append(", Quantity=").append(item.getQuantity()).append("}, ");
     }
+    sb.delete(sb.length() - 2, sb.length()); // Remove the trailing ", "
+    sb.append("], ");
+    sb.append("isCompleted=").append(isCompleted);
+    sb.append("}");
+    return sb.toString();
+}
 }

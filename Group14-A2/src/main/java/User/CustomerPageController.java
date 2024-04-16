@@ -8,8 +8,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.w3c.dom.events.MouseEvent;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -63,9 +71,8 @@ public class CustomerPageController implements Initializable {
             int newOrderID =generateOrderId();
             currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false);
         }
-        currentOrder.setItems(selctedItem.getItemID());
+        currentOrder.setItems(selctedItem.getItemID(),selctedItem);
         System.out.println(currentOrder.toString());
-
     }
 
     public int generateOrderId() {

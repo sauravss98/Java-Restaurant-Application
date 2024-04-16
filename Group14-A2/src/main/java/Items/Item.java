@@ -6,6 +6,17 @@ public class Item {
     private int price;
     private boolean isMade;
 
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+
     public int getItemID() {
         return itemID;
     }
@@ -43,9 +54,13 @@ public class Item {
         this.itemName = itemName;
         this.price = price;
         this.isMade = false;
+        this.quantity = 1;
     }
 
     public String getDescriptionForList() {
         return "ID: "+itemID+" Item: " + itemName + " - price: "+price;
+    }
+    public void addQuantity(){
+        this.quantity = quantity+1;
     }
 }
