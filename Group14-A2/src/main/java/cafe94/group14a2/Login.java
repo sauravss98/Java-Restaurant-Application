@@ -20,6 +20,7 @@ public class Login  extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 720, 480);
+//        scene.getStylesheets().add(getClass().getResource("src/main/resources/cafe94/group14a2/customerMainPage.fxml").toExternalForm());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
