@@ -8,16 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.w3c.dom.events.MouseEvent;
+import javafx.scene.text.Text;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -28,13 +20,16 @@ public class CustomerPageController implements Initializable {
     private static ArrayList<Customer> customers = UserController.getCustomers();
     private ArrayList<Item> items = ItemDataController.getItems();
     private static ArrayList<Order> orders = OrderDataHandler.getOrders();
-    @FXML
-    private Label NameDisplayLabel;
+    @FXML private Label NameDisplayLabel;
     @FXML private ListView ItemsList;
     @FXML private ListView OrdersList;
+    @FXML private Text OrderSectionText;
     private Order currentOrder;
+    private ArrayList<Item> orderItems;
+
     public CustomerPageController() {
     }
+
     public CustomerPageController(String activeUserEmail) {
         this.activeUserEmail = activeUserEmail;
     }
@@ -74,6 +69,7 @@ public class CustomerPageController implements Initializable {
             currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false);
         }
         currentOrder.setItems(selctedItem.getItemID(),selctedItem);
+        refreshOrderItemList();
         System.out.println(currentOrder.toString());
     }
 
@@ -113,7 +109,7 @@ public class CustomerPageController implements Initializable {
         ItemsList.getItems().clear();
 
         for (Item item : items) {
-            ItemsList.getItems().add(item.getDescriptionForList());
+            ItemsList.getItems().add(item.getDescriptionForMenuList());
         }
     }
 
@@ -121,10 +117,18 @@ public class CustomerPageController implements Initializable {
         // Clear the displayed list
         System.out.println("in order refresh");
         OrdersList.getItems().clear();
-
-        for (Item item : items) {
-            System.out.println(item.getDescriptionForList());
+        System.out.println(currentOrder);
+        if(currentOrder==null){
+            OrderSectionText.setText("Please make an order");
+            OrdersList.setVisible(false);
+        }
+        else{
+            OrderSectionText.setVisible(false);
+            OrdersList.setVisible(true);
+            orderItems = currentOrder.getItemsObjects();
+            for (Item item : orderItems) {
             OrdersList.getItems().add(item.getDescriptionForList());
+            }
         }
     }
 }

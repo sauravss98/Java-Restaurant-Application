@@ -22,7 +22,6 @@ public class Login  extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 720, 480);
-//        scene.getStylesheets().add("../resources/css/customerMainPage.css");
         stage.setTitle("Cafe 94");
         stage.setScene(scene);
         stage.show();

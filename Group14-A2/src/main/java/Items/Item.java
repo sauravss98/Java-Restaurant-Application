@@ -57,8 +57,11 @@ public class Item {
         this.quantity = 1;
     }
 
-    public String getDescriptionForList() {
+    public String getDescriptionForMenuList() {
         return "ID: "+itemID+" Item: " + itemName + " - price: "+price;
+    }
+    public String getDescriptionForList() {
+        return "ID: "+itemID+" Item: " + itemName + " - price: "+price + "- quantity: "+quantity;
     }
     public void addQuantity(){
         this.quantity = quantity+1;

@@ -1,6 +1,6 @@
-#EmailTextSection{
-    -fx-display:flex;
+#EmailTextSection {
+  -fx-display: flex;
 }
-#LoginPage{
-    -fx-background-color:red;
+#LoginPage {
+  -fx-background-color: rgba(91, 153, 111, 0.486);
 }
