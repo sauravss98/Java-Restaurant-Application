@@ -6,8 +6,10 @@ import Orders.Order;
 import Orders.OrderDataHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -24,6 +26,10 @@ public class CustomerPageController implements Initializable {
     @FXML private ListView ItemsList;
     @FXML private ListView OrdersList;
     @FXML private Text OrderSectionText;
+    @FXML private Button CompleteOrder;
+    @FXML private Text OrderTypeText;
+    @FXML private HBox OrderTypeBox;
+
     private Order currentOrder;
     private ArrayList<Item> orderItems;
 
@@ -33,7 +39,7 @@ public class CustomerPageController implements Initializable {
     public CustomerPageController(String activeUserEmail) {
         this.activeUserEmail = activeUserEmail;
     }
-//    @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("activeemail is this: " + activeUserEmail);
         for (Customer customer : customers) {
@@ -51,7 +57,6 @@ public class CustomerPageController implements Initializable {
         ItemDataController.addItems(item2);
         refreshItemList();
         refreshOrderItemList();
-
         ItemsList.setOnMouseClicked(event -> {
             String selectedItemDescription = (String) ItemsList.getSelectionModel().getSelectedItem();
             System.out.println(selectedItemDescription);
@@ -66,7 +71,7 @@ public class CustomerPageController implements Initializable {
     private void handleOrder(Item selctedItem){
         if(currentOrder == null){
             int newOrderID =generateOrderId();
-            currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false);
+            currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false,"cart");
         }
         currentOrder.setItems(selctedItem.getItemID(),selctedItem);
         refreshOrderItemList();
@@ -86,6 +91,7 @@ public class CustomerPageController implements Initializable {
         // Return the next available order ID
         return maxOrderId + 1;
     }
+
     public Item getItemData(String idString){
         int id = Integer.parseInt(idString);
         for(Item item: items){
@@ -95,6 +101,7 @@ public class CustomerPageController implements Initializable {
         }
         return null;
     }
+
     public static String extractID(String data) {
         int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
         int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
@@ -119,14 +126,29 @@ public class CustomerPageController implements Initializable {
         if(currentOrder==null){
             OrderSectionText.setText("Please make an order");
             OrdersList.setVisible(false);
+            CompleteOrder.setVisible(false);
+            OrderTypeText.setVisible(false);
+            OrderTypeBox.setVisible(false);
         }
         else{
-            OrderSectionText.setText("Order Id: "+currentOrder.getOrderId());
-            OrdersList.setVisible(true);
-            orderItems = currentOrder.getItemsObjects();
-            for (Item item : orderItems) {
-            OrdersList.getItems().add(item.getDescriptionForList());
+            CompleteOrder.setVisible(true);
+            if(Objects.equals(currentOrder.getOrderStatus(), "cart")) {
+                OrderSectionText.setText("Order Id: " + currentOrder.getOrderId());
+                OrdersList.setVisible(true);
+                orderItems = currentOrder.getItemsObjects();
+                for (Item item : orderItems) {
+                    OrdersList.getItems().add(item.getDescriptionForList());
+                }
+            }
+            else {
+                OrderSectionText.setText("Please make an order");
             }
         }
+    }
+    @FXML
+    private void onOrderConfirmClick(){
+        currentOrder.setOrderStatus("InProgress");
+        refreshOrderItemList();
+        OrderTypeBox.setVisible(true);
     }
 }

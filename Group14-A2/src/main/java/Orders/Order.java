@@ -1,15 +1,25 @@
 package Orders;
 
 import Items.Item;
+import User.Customer;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Order {
     private int orderId;
     private String orderType;
     private ArrayList<Integer> items = new ArrayList<>();
     private ArrayList<Item> itemsObjects = new ArrayList<>();
+
+    private String orderStatus;
     private boolean isCompleted = false;
+    private Customer customer;
+    private Date orderDate;
+    private Timestamp orderCreatedTime;
+    private Timestamp orderCompletedTime;
+
 
     public void setItems(ArrayList<Integer> items) {
         this.items = items;
@@ -21,6 +31,14 @@ public class Order {
 
     public void setItemsObjects(ArrayList<Item> itemsObjects) {
         this.itemsObjects = itemsObjects;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Order() {
@@ -64,11 +82,12 @@ public class Order {
         isCompleted = completed;
     }
 
-    public Order(int orderId, String orderType, ArrayList<Integer> items, boolean isCompleted) {
+    public Order(int orderId, String orderType, ArrayList<Integer> items, boolean isCompleted,String orderStatus) {
         this.orderId = orderId;
         this.orderType = orderType;
         this.items = items;
         this.isCompleted = isCompleted;
+        this.orderStatus = orderStatus;
     }
 
 //    @Override
