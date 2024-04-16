@@ -31,6 +31,7 @@ public class CustomerPageController implements Initializable {
     @FXML
     private Label NameDisplayLabel;
     @FXML private ListView ItemsList;
+    @FXML private ListView OrdersList;
     private Order currentOrder;
     public CustomerPageController() {
     }
@@ -54,6 +55,7 @@ public class CustomerPageController implements Initializable {
         Item item2 = new Item(2,"tea",10);
         ItemDataController.addItems(item2);
         refreshItemList();
+        refreshOrderItemList();
 
         ItemsList.setOnMouseClicked(event -> {
             String selectedItemDescription = (String) ItemsList.getSelectionModel().getSelectedItem();
@@ -112,6 +114,17 @@ public class CustomerPageController implements Initializable {
 
         for (Item item : items) {
             ItemsList.getItems().add(item.getDescriptionForList());
+        }
+    }
+
+    private void refreshOrderItemList() {
+        // Clear the displayed list
+        System.out.println("in order refresh");
+        OrdersList.getItems().clear();
+
+        for (Item item : items) {
+            System.out.println(item.getDescriptionForList());
+            OrdersList.getItems().add(item.getDescriptionForList());
         }
     }
 }
