@@ -115,15 +115,13 @@ public class CustomerPageController implements Initializable {
 
     private void refreshOrderItemList() {
         // Clear the displayed list
-        System.out.println("in order refresh");
         OrdersList.getItems().clear();
-        System.out.println(currentOrder);
         if(currentOrder==null){
             OrderSectionText.setText("Please make an order");
             OrdersList.setVisible(false);
         }
         else{
-            OrderSectionText.setVisible(false);
+            OrderSectionText.setText("Order Id: "+currentOrder.getOrderId());
             OrdersList.setVisible(true);
             orderItems = currentOrder.getItemsObjects();
             for (Item item : orderItems) {
