@@ -8,7 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 
 public class Login  extends Application {
@@ -20,8 +22,8 @@ public class Login  extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 720, 480);
-//        scene.getStylesheets().add(getClass().getResource("src/main/resources/cafe94/group14a2/customerMainPage.fxml").toExternalForm());
-        stage.setTitle("Hello!");
+//        scene.getStylesheets().add("../resources/css/customerMainPage.css");
+        stage.setTitle("Cafe 94");
         stage.setScene(scene);
         stage.show();
     }
