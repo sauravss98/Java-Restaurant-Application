@@ -4,7 +4,8 @@ import Items.Item;
 import Items.ItemDataController;
 import Orders.Order;
 import Orders.OrderDataHandler;
-import javafx.application.Platform;
+import Orders.OrderTypeWindowController;
+import cafe94.group14a2.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,11 +38,10 @@ public class CustomerPageController implements Initializable {
     @FXML private ListView OrdersList;
     @FXML private Text OrderSectionText;
     @FXML private Button CompleteOrder;
-    @FXML private Text OrderTypeText;
-    @FXML private HBox OrderTypeBox;
 
     private Order currentOrder;
     private ArrayList<Item> orderItems;
+    private Customer currentCustomer;
 
     public CustomerPageController() {
     }
@@ -57,6 +56,7 @@ public class CustomerPageController implements Initializable {
             System.out.println("name: " + customer.getFirstName() + " status: " + customer.getIsLoggedIn());
             System.out.println("activeemail " + activeUserEmail);
             if (Objects.equals(customer.getEmail(), activeUserEmail)) {
+                currentCustomer = customer;
                 customer.setLoggedIn(true);
                 NameDisplayLabel.setText("Hi, " + customer.getFirstName());
                 break;
@@ -82,7 +82,7 @@ public class CustomerPageController implements Initializable {
     private void handleOrder(Item selctedItem){
         if(currentOrder == null){
             int newOrderID =generateOrderId();
-            currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false,"cart");
+            currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false,"cart",currentCustomer.getUserId());
         }
         currentOrder.setItems(selctedItem.getItemID(),selctedItem);
         refreshOrderItemList();
@@ -138,8 +138,6 @@ public class CustomerPageController implements Initializable {
             OrderSectionText.setText("Please make an order");
             OrdersList.setVisible(false);
             CompleteOrder.setVisible(false);
-            OrderTypeText.setVisible(false);
-            OrderTypeBox.setVisible(false);
         }
         else{
             CompleteOrder.setVisible(true);
@@ -153,27 +151,27 @@ public class CustomerPageController implements Initializable {
             }
             else {
                 OrderSectionText.setText("Please make an order");
-                OrderTypeBox.setVisible(true);
                 OrdersList.setVisible(false);
             }
         }
     }
+
     @FXML
-    private void onOrderConfirmClick() throws IOException {
-        currentOrder.setOrderStatus("InProgress");
-        refreshOrderItemList();
-        OrderTypeBox.setVisible(true);
-        Stage newStage = new Stage();
-        newStage.setTitle("Select Order Type");
-        FXMLLoader loader = new FXMLLoader();
-        String fxmlPath = "src/main/resources/cafe94/group14a2/orderTypeWindow.fxml";
-        File fxmlFile = new File(fxmlPath);
-        if (!fxmlFile.exists()) {
-            throw new FileNotFoundException("FXML file not found: " + fxmlPath);
+    private void onOrderConfirmClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderTypeWindow.fxml"));
+            Parent root = loader.load();
+            OrderTypeWindowController controller = loader.getController();
+
+            Stage newStage = new Stage();
+            newStage.setTitle("Select Order Type");
+            newStage.setScene(new Scene(root, 600, 600));
+
+            controller.setStage(newStage);
+            controller.setCurrentOrder(currentOrder);
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Parent root = loader.load(fxmlFile.toURI().toURL());
-        OrderTypeWindowController controller = loader.getController();
-        newStage.setScene(new Scene(root, 600, 600));
-        newStage.show();
     }
 }

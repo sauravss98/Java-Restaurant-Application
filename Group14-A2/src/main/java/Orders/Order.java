@@ -15,11 +15,18 @@ public class Order {
 
     private String orderStatus;
     private boolean isCompleted = false;
-    private Customer customer;
+    private int customerId;
     private Date orderDate;
     private Timestamp orderCreatedTime;
     private Timestamp orderCompletedTime;
 
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
     public void setItems(ArrayList<Integer> items) {
         this.items = items;
@@ -82,12 +89,14 @@ public class Order {
         isCompleted = completed;
     }
 
-    public Order(int orderId, String orderType, ArrayList<Integer> items, boolean isCompleted,String orderStatus) {
+    // Customer direcly orders
+    public Order(int orderId, String orderType, ArrayList<Integer> items, boolean isCompleted,String orderStatus, int customerId) {
         this.orderId = orderId;
         this.orderType = orderType;
         this.items = items;
         this.isCompleted = isCompleted;
         this.orderStatus = orderStatus;
+        this.customerId = customerId;
     }
 
 //    @Override
@@ -113,6 +122,7 @@ public String toString() {
     sb.delete(sb.length() - 2, sb.length()); // Remove the trailing ", "
     sb.append("], ");
     sb.append("isCompleted=").append(isCompleted);
+    sb.append(" CustomerId = ").append(customerId);
     sb.append("}");
     return sb.toString();
 }
