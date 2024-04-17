@@ -5,13 +5,16 @@ import Items.ItemDataController;
 import Orders.Order;
 import Orders.OrderDataHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -142,6 +145,8 @@ public class CustomerPageController implements Initializable {
             }
             else {
                 OrderSectionText.setText("Please make an order");
+                OrderTypeBox.setVisible(true);
+                OrdersList.setVisible(false);
             }
         }
     }
@@ -150,5 +155,11 @@ public class CustomerPageController implements Initializable {
         currentOrder.setOrderStatus("InProgress");
         refreshOrderItemList();
         OrderTypeBox.setVisible(true);
+        try{
+            FXMLLoader scene = new FXMLLoader(this.getClass().getResource("../../resources/cafe94/group14a2/orderTypeWindow.fxml"));
+            BorderPane borderPane = (BorderPane)scene.load();
+            OrderTypeWindowController controller = (OrderTypeWindowController) scene.getController();
+//            controller
+        }catch (Exception exception){}
     }
 }
