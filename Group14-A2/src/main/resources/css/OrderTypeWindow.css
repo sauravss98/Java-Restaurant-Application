@@ -1,0 +1,7 @@
+#OrderSelectWindow{
+    -fx-background-color: rgba(91, 153, 111, 0.486);
+    -fx-spacing: 30px;
+}
+#OrderTypeBox {
+  -fx-spacing: 30px;
+}

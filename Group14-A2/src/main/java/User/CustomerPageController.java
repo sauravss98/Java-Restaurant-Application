@@ -4,16 +4,24 @@ import Items.Item;
 import Items.ItemDataController;
 import Orders.Order;
 import Orders.OrderDataHandler;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -151,15 +159,21 @@ public class CustomerPageController implements Initializable {
         }
     }
     @FXML
-    private void onOrderConfirmClick(){
+    private void onOrderConfirmClick() throws IOException {
         currentOrder.setOrderStatus("InProgress");
         refreshOrderItemList();
         OrderTypeBox.setVisible(true);
-        try{
-            FXMLLoader scene = new FXMLLoader(this.getClass().getResource("../../resources/cafe94/group14a2/orderTypeWindow.fxml"));
-            BorderPane borderPane = (BorderPane)scene.load();
-            OrderTypeWindowController controller = (OrderTypeWindowController) scene.getController();
-//            controller
-        }catch (Exception exception){}
+        Stage newStage = new Stage();
+        newStage.setTitle("Select Order Type");
+        FXMLLoader loader = new FXMLLoader();
+        String fxmlPath = "src/main/resources/cafe94/group14a2/orderTypeWindow.fxml";
+        File fxmlFile = new File(fxmlPath);
+        if (!fxmlFile.exists()) {
+            throw new FileNotFoundException("FXML file not found: " + fxmlPath);
+        }
+        Parent root = loader.load(fxmlFile.toURI().toURL());
+        OrderTypeWindowController controller = loader.getController();
+        newStage.setScene(new Scene(root, 600, 600));
+        newStage.show();
     }
 }
