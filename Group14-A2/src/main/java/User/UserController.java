@@ -1,6 +1,6 @@
 package User;
 
-import cafe94.group14a2.Login;
+import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -78,7 +78,7 @@ public class UserController {
                 System.out.println(newCustomer);
                 if(customers.add(newCustomer)) {
                     userCount++;
-                    Login.setRoot("login");
+                    Main.setRoot("login");
                 }
                 else{
                     errorLabel.setText("Error..please try again");

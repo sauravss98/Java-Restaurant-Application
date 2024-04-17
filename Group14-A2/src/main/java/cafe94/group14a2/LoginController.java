@@ -60,7 +60,7 @@ public class LoginController {
                 System.out.println("in Customer");
                 try {
                     new CustomerPageController(email);
-                    Login.setRoot("customerMainPage");
+                    Main.setRoot("customerMainPage");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -73,6 +73,6 @@ public class LoginController {
 
     @FXML
     protected void onSignUpClick() throws IOException {
-        Login.setRoot("createUser");
+        Main.setRoot("createUser");
     }
 }

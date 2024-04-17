@@ -1,6 +1,5 @@
 package cafe94.group14a2;
 
-import Orders.OrderDataHandler;
 import User.UserController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,15 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 
-public class Login  extends Application {
+public class Main extends Application {
     private static Scene scene;
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
     @Override
