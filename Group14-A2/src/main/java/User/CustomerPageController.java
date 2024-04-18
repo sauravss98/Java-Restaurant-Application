@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -157,13 +158,14 @@ public class CustomerPageController implements Initializable {
             Parent root = loader.load();
             OrderTypeWindowController controller = loader.getController();
 
-            Stage newStage = new Stage();
-            newStage.setTitle("Select Order Type");
-            newStage.setScene(new Scene(root, 600, 600));
+            Stage orderTypeStage = new Stage();
+            orderTypeStage.setTitle("Select Order Type");
+            orderTypeStage.setScene(new Scene(root, 600, 600));
 
-            controller.setStage(newStage);
+            controller.setStage(orderTypeStage);
             controller.setCurrentOrder(currentOrder);
-            newStage.show();
+            orderTypeStage.initModality(Modality.APPLICATION_MODAL);
+            orderTypeStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
