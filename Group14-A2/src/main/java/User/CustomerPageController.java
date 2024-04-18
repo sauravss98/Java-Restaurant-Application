@@ -76,20 +76,26 @@ public class CustomerPageController implements Initializable {
 
     /**
      *This is the funtion that is used to handle the order
+     * @param selectedItem
      * If there is no order a new order is created and the item is added to the order
      * If an order exists takes the selected item as parameter and adds the new item to the list
      * @author Saurav Suresh
      */
-    private void handleOrder(Item selctedItem){
+    private void handleOrder(Item selectedItem){
         if(currentOrder == null){
             int newOrderID =generateOrderId();
             currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false,"cart",currentCustomer.getUserId());
         }
-        currentOrder.setItems(selctedItem.getItemID(),selctedItem);
+        currentOrder.setItems(selectedItem.getItemID(),selectedItem);
         refreshOrderItemList();
         System.out.println(currentOrder.toString());
     }
 
+    /**
+     * A function to generate the order id by getting the lenght of total number of orders present excelsheet(database)
+     * @return orderId
+     * @author Saurav Suresh
+     */
     public int generateOrderId() {
         int maxOrderId = 0;
 
@@ -104,6 +110,12 @@ public class CustomerPageController implements Initializable {
         return maxOrderId + 1;
     }
 
+    /**
+     * A function to return the item corresponding to the id passed through
+     * @param idString
+     * @return item
+     * @author Saurav Suresh
+     */
     public Item getItemData(String idString){
         int id = Integer.parseInt(idString);
         for(Item item: items){
@@ -114,6 +126,12 @@ public class CustomerPageController implements Initializable {
         return null;
     }
 
+    /**
+     * A function to get the id from the String recieved based on the user input
+     * @param data
+     * @return id
+     * @author Saurav Suresh
+     */
     public static String extractID(String data) {
         int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
         int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
@@ -123,6 +141,10 @@ public class CustomerPageController implements Initializable {
         return data.substring(startIndex, endIndex);
     }
 
+    /**
+     * Function to display all the items in the menu
+     * @author Saurav Suresh
+     */
     private void refreshItemList() {
         // Clear the displayed list
         ItemsList.getItems().clear();
@@ -132,6 +154,10 @@ public class CustomerPageController implements Initializable {
         }
     }
 
+    /**
+     * Function to display all the items in the order made by the customer
+     * @author Saurav Suresh
+     */
     private void refreshOrderItemList() {
         // Clear the displayed list
         OrdersList.getItems().clear();
@@ -157,6 +183,10 @@ public class CustomerPageController implements Initializable {
         }
     }
 
+    /**
+     * This function is triggered when the button. It will launch a new window with where the customer can select order type
+     * @author Saurav Suresh
+     */
     @FXML
     private void onOrderConfirmClick() {
         try {
