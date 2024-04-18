@@ -2,6 +2,7 @@ package Orders;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class OrderTypeWindowController {
@@ -9,10 +10,15 @@ public class OrderTypeWindowController {
     @FXML private Button deliveryButton;
     @FXML private Button takeOutButton;
     @FXML private Button cancelButton;
+    @FXML private Button orderDoneButton;
+    @FXML private VBox OrderDoneBox;
+    @FXML private VBox OrderTypeBox;
     Order currentOrder;
     private Stage stage;
 
+
     public void initialize() {
+        OrderDoneBox.setVisible(false);
         dineInButton.setOnAction(e -> {
             handleConfirmButtonAction("dineIn");
         });
@@ -24,6 +30,9 @@ public class OrderTypeWindowController {
         });
         cancelButton.setOnAction(e -> {
             handleCancelButtonAction();
+        });
+        orderDoneButton.setOnAction(e -> {
+            handleOrderDoneButtonAction();
         });
     }
 
@@ -39,10 +48,17 @@ public class OrderTypeWindowController {
     private void handleConfirmButtonAction(String type){
         currentOrder.setOrderType(type);
         currentOrder.setOrderStatus("InProgress");
-        System.out.println("Order type is:"+ currentOrder.getOrderType());
+        OrderTypeBox.setVisible(false);
+        OrderDoneBox.setVisible(true);
     }
 
     private void handleCancelButtonAction(){
+        if (stage != null) {
+            stage.close();
+        }
+    }
+
+    private void handleOrderDoneButtonAction(){
         if (stage != null) {
             stage.close();
         }
