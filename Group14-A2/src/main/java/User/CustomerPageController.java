@@ -74,6 +74,12 @@ public class CustomerPageController implements Initializable {
         });
     }
 
+    /**
+     *This is the funtion that is used to handle the order
+     * If there is no order a new order is created and the item is added to the order
+     * If an order exists takes the selected item as parameter and adds the new item to the list
+     * @author Saurav Suresh
+     */
     private void handleOrder(Item selctedItem){
         if(currentOrder == null){
             int newOrderID =generateOrderId();
