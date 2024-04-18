@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Orders.OrderController">
+   <children>
+       <Text fx:id="UserText" layoutX="248.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="22.13671875" />
+   </children>
+</AnchorPane>

@@ -1,9 +1,14 @@
 package Orders;
 
+import User.Customer;
+import User.CustomerPageController;
+import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class OrderTypeWindowController {
     @FXML private Button dineInButton;
@@ -13,8 +18,10 @@ public class OrderTypeWindowController {
     @FXML private Button orderDoneButton;
     @FXML private VBox OrderDoneBox;
     @FXML private VBox OrderTypeBox;
-    Order currentOrder;
+    private Order currentOrder;
     private Stage stage;
+    private Customer activeCustomer;
+
 
 
     public void initialize() {
@@ -36,9 +43,12 @@ public class OrderTypeWindowController {
         });
     }
 
+    public void setActiveCustomer(Customer activeCustomer){
+        this.activeCustomer = activeCustomer;
+    }
+
     public void setCurrentOrder(Order currentOrder){
         this.currentOrder = currentOrder;
-        System.out.println("current order "+currentOrder.getOrderId());
     }
 
     public void setStage(Stage stage) {

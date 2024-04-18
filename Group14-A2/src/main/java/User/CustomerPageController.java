@@ -3,8 +3,10 @@ package User;
 import Items.Item;
 import Items.ItemDataController;
 import Orders.Order;
+import Orders.OrderController;
 import Orders.OrderDataHandler;
 import Orders.OrderTypeWindowController;
+import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -202,6 +204,13 @@ public class CustomerPageController implements Initializable {
             controller.setCurrentOrder(currentOrder);
             orderTypeStage.initModality(Modality.APPLICATION_MODAL);
             orderTypeStage.showAndWait();
+            OrderController orderController = new OrderController();
+            orderController.setActiveCustomer(currentCustomer);
+            try {
+                Main.setRoot("orderListPage");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
