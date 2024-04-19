@@ -39,9 +39,7 @@ public class OrderController {
         OrderListView.setOnMouseClicked(event -> {
             String selectedItemDescription = (String) OrderListView.getSelectionModel().getSelectedItem();
             String id = extractID(selectedItemDescription);
-            System.out.println("id is "+id);
             Order requiredOrder = getOrderData(id);
-            System.out.println(requiredOrder.getOrderStatus());
             try {
                 launchListPage(requiredOrder);
             } catch (IOException e) {

@@ -12,6 +12,7 @@ public class Order {
     private String orderType;
     private ArrayList<Integer> items = new ArrayList<>();
     private ArrayList<Item> itemsObjects = new ArrayList<>();
+    private int price;
 
     private String orderStatus;
     private boolean isCompleted = false;
@@ -46,6 +47,38 @@ public class Order {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Timestamp getOrderCreatedTime() {
+        return orderCreatedTime;
+    }
+
+    public void setOrderCreatedTime(Timestamp orderCreatedTime) {
+        this.orderCreatedTime = orderCreatedTime;
+    }
+
+    public Timestamp getOrderCompletedTime() {
+        return orderCompletedTime;
+    }
+
+    public void setOrderCompletedTime(Timestamp orderCompletedTime) {
+        this.orderCompletedTime = orderCompletedTime;
     }
 
     public Order() {
@@ -128,6 +161,6 @@ public class Order {
     }
 
     public String getDescriptionForOrderList() {
-        return "ID: "+orderId+" Item: " + orderStatus + " - price: "+orderType;
+        return "ID: "+orderId+" Item: " + orderStatus + " - price: "+price;
     }
 }

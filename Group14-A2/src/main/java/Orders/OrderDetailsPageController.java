@@ -45,7 +45,7 @@ public class OrderDetailsPageController {
                 OrderItemsList.getItems().add(item.getDescriptionForList());
             }
         } else {
-            System.out.println("No items Ordered");
+            OrderItemsList.getItems().add("No items Ordered");
         }
     }
 }

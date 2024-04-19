@@ -35,6 +35,7 @@ public class CustomerPageController implements Initializable {
     @FXML private ListView OrdersList;
     @FXML private Text OrderSectionText;
     @FXML private Button CompleteOrder;
+    @FXML private Text PriceText;
 
     private Order currentOrder;
     private ArrayList<Item> orderItems;
@@ -177,6 +178,7 @@ public class CustomerPageController implements Initializable {
                 for (Item item : orderItems) {
                     OrdersList.getItems().add(item.getDescriptionForList());
                 }
+                calculatePrice();
             }
             else {
                 OrderSectionText.setText("Please make an order");
@@ -184,6 +186,18 @@ public class CustomerPageController implements Initializable {
             }
         }
     }
+
+    private void calculatePrice(){
+        int price = 0;
+        ArrayList<Item> items = currentOrder.getItemsObjects();
+        for (Item item:items){
+            price+= item.getPrice()*item.getQuantity();
+        }
+        currentOrder.setPrice(price);
+        PriceText.setText("Total Cost :"+currentOrder.getPrice());
+    }
+
+
 
     /**
      * This function is triggered when the button. It will launch a new window with where the customer can select order type
