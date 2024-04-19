@@ -2,10 +2,7 @@ package User;
 
 import Items.Item;
 import Items.ItemDataController;
-import Orders.Order;
-import Orders.OrderController;
-import Orders.OrderDataHandler;
-import Orders.OrderTypeWindowController;
+import Orders.*;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,6 +72,34 @@ public class CustomerPageController implements Initializable {
             System.out.println("Name: "+requiredItem.getItemName());
             handleOrder(requiredItem);
         });
+
+        OrdersList.setOnMouseClicked(event ->{
+            String selectedItem = (String) OrdersList.getSelectionModel().getSelectedItem();
+            try {
+                editItem(selectedItem);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    private void editItem(String item) throws IOException {
+        String id = extractID(item);
+        Item requiredItem = getItemData(id);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderItemEditPage.fxml"));
+        Parent root = loader.load();
+        OrderItemEditPageController controller = loader.getController();
+        controller.setCurrentItem(requiredItem);
+        System.out.println("loader "+loader.getController());
+
+        Stage orderTypeStage = new Stage();
+        controller.setStage(orderTypeStage);
+        orderTypeStage.setTitle("Edit Item Detail");
+        orderTypeStage.setScene(new Scene(root, 600, 600));
+        orderTypeStage.initModality(Modality.APPLICATION_MODAL);
+        orderTypeStage.showAndWait();
+        refreshOrderItemList();
     }
 
     /**
