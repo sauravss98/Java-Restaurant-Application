@@ -114,6 +114,16 @@ public class Order {
         }
     }
 
+    public void removeItem(int itemId){
+        itemsObjects.removeIf(item -> item.getItemID() == itemId);
+        for (int i = items.size() - 1; i >= 0; i--) {
+            if (items.get(i) == itemId) {
+                items.remove(i);
+            }
+        }
+
+    }
+
     public boolean isCompleted() {
         return isCompleted;
     }
@@ -133,15 +143,15 @@ public class Order {
     }
 
 //    @Override
-//    public String toString() {
-//        return "Order{" +
-//                "orderId=" + orderId +
-//                ", orderType='" + orderType + '\'' +
-//                ", items=" + items +
-//                ", items=" + itemsObjects +
-//                ", isCompleted=" + isCompleted +
-//                '}';
-//    }
+    public String toStringtest() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", orderType='" + orderType + '\'' +
+                ", items=" + items +
+                ", items=" + itemsObjects +
+                ", isCompleted=" + isCompleted +
+                '}';
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Order{");

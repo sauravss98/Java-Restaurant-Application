@@ -14,7 +14,7 @@ public class OrderItemEditPageController {
     @FXML private Button removeItemButton;
     @FXML private Button confirmItemButton;
     @FXML private Button cancelButton;
-
+    private Order order;
     private Item item;
     private Stage stage;
 
@@ -22,7 +22,7 @@ public class OrderItemEditPageController {
         refreshItemText();
         refreshQuantitySpinner();
         removeItemButton.setOnAction(e -> {
-//            handleNavButtonAction("customerMainPage");
+            handleRemoveButton();
         });
         confirmItemButton.setOnAction(e -> {
             handleConfirmButton();
@@ -65,13 +65,27 @@ public class OrderItemEditPageController {
         }
     }
 
+    private void handleRemoveButton(){
+        item.setQuantity(0);
+        order.removeItem(item.getItemID());
+        if (stage != null) {
+            stage.close();
+        }
+    }
+
     public OrderItemEditPageController(){}
+
     public void setStage(Stage stage){
         this.stage = stage;
     }
+
     public void setCurrentItem(Item item){
         this.item = item;
         System.out.println("Item "+item.getItemName());
         initialize();
+    }
+
+    public void setCurrentOrder(Order order){
+        this.order = order;
     }
 }

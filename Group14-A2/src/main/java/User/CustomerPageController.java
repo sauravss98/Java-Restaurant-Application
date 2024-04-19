@@ -91,6 +91,7 @@ public class CustomerPageController implements Initializable {
         Parent root = loader.load();
         OrderItemEditPageController controller = loader.getController();
         controller.setCurrentItem(requiredItem);
+        controller.setCurrentOrder(currentOrder);
         System.out.println("loader "+loader.getController());
 
         Stage orderTypeStage = new Stage();
@@ -194,7 +195,12 @@ public class CustomerPageController implements Initializable {
             OrdersList.setVisible(false);
             CompleteOrder.setVisible(false);
         }
-        else{
+        else if(currentOrder.getItemsObjects()==null){
+            System.out.println("In the main thing");
+            OrderSectionText.setText("Please make an order");
+            OrdersList.setVisible(false);
+            CompleteOrder.setVisible(false);
+        }else{
             CompleteOrder.setVisible(true);
             if(Objects.equals(currentOrder.getOrderStatus(), "cart")) {
                 OrderSectionText.setText("Order Id: " + currentOrder.getOrderId());
