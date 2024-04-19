@@ -20,7 +20,6 @@ public class OrderTypeWindowController {
     @FXML private VBox OrderTypeBox;
     private Order currentOrder;
     private Stage stage;
-    private Customer activeCustomer;
 
 
 
@@ -41,10 +40,6 @@ public class OrderTypeWindowController {
         orderDoneButton.setOnAction(e -> {
             handleOrderDoneButtonAction();
         });
-    }
-
-    public void setActiveCustomer(Customer activeCustomer){
-        this.activeCustomer = activeCustomer;
     }
 
     public void setCurrentOrder(Order currentOrder){

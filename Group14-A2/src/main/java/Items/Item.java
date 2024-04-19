@@ -58,7 +58,7 @@ public class Item {
     }
 
     public String getDescriptionForMenuList() {
-        return "ID: "+itemID+" Item: " + itemName + " - price: "+price;
+        return "ID: " + itemID + " Item: " + itemName + " - price: " + price;
     }
     public String getDescriptionForList() {
         return "ID: "+itemID+" Item: " + itemName + " - price: "+price + "- quantity: "+quantity;

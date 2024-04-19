@@ -8,7 +8,7 @@ public class OrderDataHandler {
         return orders;
     }
 
-    public void addOrder(Order order){
+    public static void addOrder(Order order){
         orders.add(order);
     }
 }

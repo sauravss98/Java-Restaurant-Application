@@ -204,6 +204,7 @@ public class CustomerPageController implements Initializable {
             controller.setCurrentOrder(currentOrder);
             orderTypeStage.initModality(Modality.APPLICATION_MODAL);
             orderTypeStage.showAndWait();
+            OrderDataHandler.addOrder(currentOrder);
             OrderController orderController = new OrderController();
             orderController.setActiveCustomer(currentCustomer);
             try {

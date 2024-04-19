@@ -109,21 +109,25 @@ public class Order {
 //                ", isCompleted=" + isCompleted +
 //                '}';
 //    }
-@Override
-public String toString() {
-    StringBuilder sb = new StringBuilder("Order{");
-    sb.append("orderId=").append(orderId).append(", ");
-    sb.append("orderType='").append(orderType).append("', ");
-    sb.append("items=").append(items).append(", ");
-    sb.append("itemsObjects=[");
-    for (Item item : itemsObjects) {
-        sb.append("{").append(item.getItemName()).append(", Quantity=").append(item.getQuantity()).append("}, ");
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Order{");
+        sb.append("orderId=").append(orderId).append(", ");
+        sb.append("orderType='").append(orderType).append("', ");
+        sb.append("items=").append(items).append(", ");
+        sb.append("itemsObjects=[");
+        for (Item item : itemsObjects) {
+            sb.append("{").append(item.getItemName()).append(", Quantity=").append(item.getQuantity()).append("}, ");
+        }
+        sb.delete(sb.length() - 2, sb.length()); // Remove the trailing ", "
+        sb.append("], ");
+        sb.append("isCompleted=").append(isCompleted);
+        sb.append(" CustomerId = ").append(customerId);
+        sb.append("}");
+        return sb.toString();
     }
-    sb.delete(sb.length() - 2, sb.length()); // Remove the trailing ", "
-    sb.append("], ");
-    sb.append("isCompleted=").append(isCompleted);
-    sb.append(" CustomerId = ").append(customerId);
-    sb.append("}");
-    return sb.toString();
-}
+
+    public String getDescriptionForOrderList() {
+        return "ID: "+orderId+" Item: " + orderStatus + " - price: "+orderType;
+    }
 }
