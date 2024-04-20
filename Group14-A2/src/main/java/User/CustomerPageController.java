@@ -92,12 +92,26 @@ public class CustomerPageController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+
+        allOrdersViewButton.setOnAction(e ->{
+            handleOrderViewButton();
+        });
     }
 
     private void handleLogoutButtonAction() throws IOException {
         currentCustomer = null;
         activeUserEmail = "";
         Main.setRoot("login");
+    }
+
+    private void handleOrderViewButton(){
+        OrderController orderController = new OrderController();
+        orderController.setActiveCustomer(currentCustomer);
+        try {
+            Main.setRoot("orderListPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void editItem(String item) throws IOException {
