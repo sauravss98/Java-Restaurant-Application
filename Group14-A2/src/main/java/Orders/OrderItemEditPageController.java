@@ -66,7 +66,7 @@ public class OrderItemEditPageController {
     }
 
     private void handleRemoveButton(){
-        item.setQuantity(0);
+        item.setQuantity(1);
         order.removeItem(item.getItemID());
         if (stage != null) {
             stage.close();
