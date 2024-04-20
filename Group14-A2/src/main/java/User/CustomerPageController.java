@@ -3,6 +3,7 @@ package User;
 import Items.Item;
 import Items.ItemDataController;
 import Orders.*;
+import Reservation.ReservationController;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -96,6 +97,10 @@ public class CustomerPageController implements Initializable {
         allOrdersViewButton.setOnAction(e ->{
             handleOrderViewButton();
         });
+
+        reservationButton.setOnAction(e->{
+            handleReservationClick();
+        });
     }
 
     private void handleLogoutButtonAction() throws IOException {
@@ -109,6 +114,16 @@ public class CustomerPageController implements Initializable {
         orderController.setActiveCustomer(currentCustomer);
         try {
             Main.setRoot("orderListPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void handleReservationClick(){
+        ReservationController reservationController = new ReservationController();
+        reservationController.setActiveCustomer(currentCustomer);
+        try {
+            Main.setRoot("reservationMainPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
