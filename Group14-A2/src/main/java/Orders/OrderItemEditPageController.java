@@ -17,6 +17,7 @@ public class OrderItemEditPageController {
     private Order order;
     private Item item;
     private Stage stage;
+    private OrderItem currentOrderItem;
 
     public void initialize(){
         refreshItemText();
@@ -32,9 +33,9 @@ public class OrderItemEditPageController {
         });
     }
 
-    private void refreshQuantitySpinner(){
-        if(item != null) {
-            SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, item.getQuantity());
+    private void refreshQuantitySpinner() {
+        if (currentOrderItem != null) {
+            SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, currentOrderItem.getQuantity());
             quantitySpinner.setValueFactory(valueFactory);
         } else {
             SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 1);
@@ -57,16 +58,21 @@ public class OrderItemEditPageController {
         }
     }
 
-    private void handleConfirmButton(){
+
+    private void handleConfirmButton() {
         int quantity = (int) quantitySpinner.getValue();
-        item.setQuantity(quantity);
+        for (OrderItem orderItem : order.getOrderItems()) {
+            if (orderItem.getItem().getItemID() == item.getItemID()) {
+                orderItem.setQuantity(quantity);
+                break;
+            }
+        }
         if (stage != null) {
             stage.close();
         }
     }
 
-    private void handleRemoveButton(){
-        item.setQuantity(1);
+    private void handleRemoveButton() {
         order.removeItem(item.getItemID());
         if (stage != null) {
             stage.close();
@@ -79,9 +85,10 @@ public class OrderItemEditPageController {
         this.stage = stage;
     }
 
-    public void setCurrentItem(Item item){
-        this.item = item;
-        System.out.println("Item "+item.getItemName());
+    public void setCurrentItem(OrderItem orderItem) {
+        this.currentOrderItem = orderItem;
+        this.item = orderItem.getItem();
+        System.out.println("Item " + item.getItemName());
         initialize();
     }
 

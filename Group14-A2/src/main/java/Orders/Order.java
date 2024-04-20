@@ -21,6 +21,8 @@ public class Order {
     private Timestamp orderCreatedTime;
     private Timestamp orderCompletedTime;
 
+    private ArrayList<OrderItem> orderItems = new ArrayList<>();
+
     public int getCustomerId() {
         return customerId;
     }
@@ -106,23 +108,46 @@ public class Order {
 
     public void setItems(int itemId, Item item) {
         items.add(itemId);
-        if (itemsObjects.contains(item)) {
-            int index = itemsObjects.indexOf(item);
-            itemsObjects.get(index).addQuantity();
-        } else {
-            itemsObjects.add(item);
+        boolean found = false;
+        for (Item currentItem : itemsObjects) {
+            if (currentItem.getItemID() == itemId) {
+                currentItem.addQuantity(); // Increase quantity if the item is already in the order
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            itemsObjects.add(item); // Add new item if it's not in the order
         }
     }
 
-    public void removeItem(int itemId){
-        itemsObjects.removeIf(item -> item.getItemID() == itemId);
+    public void addItem(Item item, int quantity) {
+        boolean found = false;
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem.getItem().getItemID() == item.getItemID()) {
+                orderItem.setQuantity(orderItem.getQuantity() + quantity);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            orderItems.add(new OrderItem(item, quantity));
+        }
+    }
+
+    public void removeItem(int itemId) {
+        orderItems.removeIf(orderItem -> orderItem.getItem().getItemID() == itemId);
         for (int i = items.size() - 1; i >= 0; i--) {
             if (items.get(i) == itemId) {
                 items.remove(i);
             }
         }
-
     }
+
+    public ArrayList<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
 
     public boolean isCompleted() {
         return isCompleted;
@@ -137,6 +162,7 @@ public class Order {
         this.orderId = orderId;
         this.orderType = orderType;
         this.items = items;
+        this.itemsObjects = itemsObjects;
         this.isCompleted = isCompleted;
         this.orderStatus = orderStatus;
         this.customerId = customerId;

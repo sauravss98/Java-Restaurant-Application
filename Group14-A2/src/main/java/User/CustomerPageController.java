@@ -114,16 +114,17 @@ public class CustomerPageController implements Initializable {
         }
     }
 
+
     private void editItem(String item) throws IOException {
         String id = extractID(item);
-        Item requiredItem = getItemData(id);
+        OrderItem requiredOrderItem = getOrderItemData(id); // <-- Add this method
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderItemEditPage.fxml"));
         Parent root = loader.load();
         OrderItemEditPageController controller = loader.getController();
-        controller.setCurrentItem(requiredItem);
+        controller.setCurrentItem(requiredOrderItem); // <-- Pass the OrderItem object
         controller.setCurrentOrder(currentOrder);
-        System.out.println("loader "+loader.getController());
+        System.out.println("loader " + loader.getController());
 
         Stage orderTypeStage = new Stage();
         controller.setStage(orderTypeStage);
@@ -134,6 +135,17 @@ public class CustomerPageController implements Initializable {
         refreshOrderItemList();
     }
 
+    private OrderItem getOrderItemData(String idString) {
+        int id = Integer.parseInt(idString);
+        for (OrderItem orderItem : currentOrder.getOrderItems()) {
+            if (orderItem.getItem().getItemID() == id) {
+                return orderItem;
+            }
+        }
+        return null;
+    }
+
+
     /**
      *This is the funtion that is used to handle the order
      * @param selectedItem
@@ -141,12 +153,13 @@ public class CustomerPageController implements Initializable {
      * If an order exists takes the selected item as parameter and adds the new item to the list
      * @author Saurav Suresh
      */
-    private void handleOrder(Item selectedItem){
-        if(currentOrder == null){
-            int newOrderID =generateOrderId();
+
+    private void handleOrder(Item selectedItem) {
+        if (currentOrder == null) {
+            int newOrderID = generateOrderId();
             currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false,"cart",currentCustomer.getUserId());
         }
-        currentOrder.setItems(selectedItem.getItemID(),selectedItem);
+        currentOrder.addItem(selectedItem, 1); // Pass 1 as the quantity for a new item
         refreshOrderItemList();
         System.out.println(currentOrder.toString());
     }
@@ -221,42 +234,33 @@ public class CustomerPageController implements Initializable {
     private void refreshOrderItemList() {
         // Clear the displayed list
         OrdersList.getItems().clear();
-        if(currentOrder==null){
+        if (currentOrder == null || currentOrder.getOrderItems().isEmpty()) {
             OrderSectionText.setText("Please make an order");
             OrdersList.setVisible(false);
             CompleteOrder.setVisible(false);
-        }
-        else if(currentOrder.getItemsObjects()==null){
-            System.out.println("In the main thing");
-            OrderSectionText.setText("Please make an order");
-            OrdersList.setVisible(false);
-            CompleteOrder.setVisible(false);
-        }else{
+        } else {
             CompleteOrder.setVisible(true);
-            if(Objects.equals(currentOrder.getOrderStatus(), "cart")) {
+            if (Objects.equals(currentOrder.getOrderStatus(), "cart")) {
                 OrderSectionText.setText("Order Id: " + currentOrder.getOrderId());
                 OrdersList.setVisible(true);
-                orderItems = currentOrder.getItemsObjects();
-                for (Item item : orderItems) {
-                    OrdersList.getItems().add(item.getDescriptionForList());
+                for (OrderItem orderItem : currentOrder.getOrderItems()) {
+                    OrdersList.getItems().add(orderItem.getItem().getDescriptionForList()+" Quantity: " + orderItem.getQuantity());
                 }
                 calculatePrice();
-            }
-            else {
+            } else {
                 OrderSectionText.setText("Please make an order");
                 OrdersList.setVisible(false);
             }
         }
     }
 
-    private void calculatePrice(){
+    private void calculatePrice() {
         int price = 0;
-        ArrayList<Item> items = currentOrder.getItemsObjects();
-        for (Item item:items){
-            price+= item.getPrice()*item.getQuantity();
+        for (OrderItem orderItem : currentOrder.getOrderItems()) {
+            price += orderItem.getItem().getPrice() * orderItem.getQuantity();
         }
         currentOrder.setPrice(price);
-        PriceText.setText("Total Cost :"+currentOrder.getPrice());
+        PriceText.setText("Total Cost :" + currentOrder.getPrice());
     }
 
 

@@ -35,14 +35,11 @@ public class OrderDetailsPageController {
         }
     }
 
-    public void  refreshItemList(){
-        if (order != null && order.getItemsObjects() != null) { // Check for null
+    public void refreshItemList() {
+        if (order != null && order.getOrderItems() != null) {
             OrderItemsList.getItems().clear();
-            System.out.println("order "+getOrderData());
-            System.out.println("list "+getOrderData().getItemsObjects());
-            ArrayList<Item> itemList = getOrderData().getItemsObjects();
-            for (Item item : itemList) {
-                OrderItemsList.getItems().add(item.getDescriptionForList());
+            for (OrderItem orderItem : order.getOrderItems()) {
+                OrderItemsList.getItems().add(orderItem.getItem().getDescriptionForList() + " Quantity: " + orderItem.getQuantity());
             }
         } else {
             OrderItemsList.getItems().add("No items Ordered");

@@ -61,7 +61,7 @@ public class Item {
         return "ID: " + itemID + " Item: " + itemName + " - price: " + price;
     }
     public String getDescriptionForList() {
-        return "ID: "+itemID+" Item: " + itemName + " - price: "+price + "- quantity: "+quantity;
+        return "ID: "+itemID+" Item: " + itemName + " - price: "+price;
     }
     public void addQuantity(){
         this.quantity = quantity+1;
