@@ -3,13 +3,15 @@ package Reservation;
 import User.Customer;
 
 import java.security.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Reservation {
     private int reservationId;
     private int numberOfGuests;
-    private Timestamp timeOfReservation;
-    private Date dateOfReservation;
+    private LocalDateTime timeOfReservation;
+    private LocalDate dateOfReservation;
     private Customer customer;
 
     public int getReservationId() {
@@ -28,19 +30,19 @@ public class Reservation {
         this.numberOfGuests = numberOfGuests;
     }
 
-    public Timestamp getTimeOfReservation() {
+    public LocalDateTime getTimeOfReservation() {
         return timeOfReservation;
     }
 
-    public void setTimeOfReservation(Timestamp timeOfReservation) {
+    public void setTimeOfReservation(LocalDateTime timeOfReservation) {
         this.timeOfReservation = timeOfReservation;
     }
 
-    public Date getDateOfReservation() {
+    public LocalDate getDateOfReservation() {
         return dateOfReservation;
     }
 
-    public void setDateOfReservation(Date dateOfReservation) {
+    public void setDateOfReservation(LocalDate dateOfReservation) {
         this.dateOfReservation = dateOfReservation;
     }
 
@@ -52,11 +54,22 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public Reservation(int reservationId, int numberOfGuests, Timestamp timeOfReservation, Date dateOfReservation, Customer customer) {
+    public Reservation(int reservationId, int numberOfGuests, LocalDateTime timeOfReservation, LocalDate dateOfReservation, Customer customer) {
         this.reservationId = reservationId;
         this.numberOfGuests = numberOfGuests;
         this.timeOfReservation = timeOfReservation;
         this.dateOfReservation = dateOfReservation;
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "reservationId=" + reservationId +
+                ", numberOfGuests=" + numberOfGuests +
+                ", timeOfReservation=" + timeOfReservation +
+                ", dateOfReservation=" + dateOfReservation +
+                ", customer=" + customer +
+                '}';
     }
 }
