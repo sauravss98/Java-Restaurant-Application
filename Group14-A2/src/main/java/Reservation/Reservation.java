@@ -2,10 +2,8 @@ package Reservation;
 
 import User.Customer;
 
-import java.security.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Reservation {
     private int reservationId;

@@ -1,7 +1,5 @@
 package Reservation;
 
-import Orders.Order;
-import Orders.OrderDataHandler;
 import User.Customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,12 +7,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
-
-import java.security.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ReservationCreateController {
     private static ArrayList<Reservation> reservations = ReservationDataController.getReservations();

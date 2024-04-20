@@ -1,7 +1,5 @@
 package Items;
 
-import User.Chef;
-
 import java.util.ArrayList;
 
 public final class ItemDataController {

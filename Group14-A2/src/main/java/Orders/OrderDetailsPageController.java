@@ -1,11 +1,8 @@
 package Orders;
 
-import Items.Item;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-
-import java.util.ArrayList;
 
 public class OrderDetailsPageController {
     @FXML private Text orderIdText;

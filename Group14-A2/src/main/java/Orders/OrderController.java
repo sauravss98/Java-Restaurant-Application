@@ -1,6 +1,5 @@
 package Orders;
 
-import Items.Item;
 import User.Customer;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
@@ -9,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;

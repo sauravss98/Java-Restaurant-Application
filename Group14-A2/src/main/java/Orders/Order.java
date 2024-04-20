@@ -1,8 +1,6 @@
 package Orders;
 
 import Items.Item;
-import User.Customer;
-
 import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,7 +1,5 @@
 package Reservation;
 
-import Items.Item;
-import Orders.OrderTypeWindowController;
 import User.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,14 +1,9 @@
 package Orders;
 
-import User.Customer;
-import User.CustomerPageController;
-import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class OrderTypeWindowController {
     @FXML private Button dineInButton;
