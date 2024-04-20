@@ -2,33 +2,35 @@ package Reservation;
 
 import User.Customer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 
 public class ReservationController {
-    @FXML private Label ReservationText;
-    private Customer activeCustomer;
+    @FXML private Label reservationText;
+    @FXML private Button createReservationButton;
+    private static Customer activeCustomer;
 
-    public ReservationController(){
-
-    }
-
-    public void initialize(){
-//        reservationTextRefresh();
-    }
-
-    public void reservationTextRefresh(){
-        System.out.println("Active customer is in the reservation" +activeCustomer.getFirstName());
-        if(activeCustomer != null){
-            ReservationText.setText("Hi "+activeCustomer.getFirstName()+". These are your reservations");
-        } else{
-            ReservationText.setText("Invalid Id");
-        }
-    }
+    public ReservationController(){}
 
     public void setActiveCustomer(Customer activeCustomer) {
         this.activeCustomer = activeCustomer;
-        System.out.println("Active customer is in method" +activeCustomer.getFirstName());
+    }
+
+    public void initialize(){
         reservationTextRefresh();
+        createReservationButton.setOnAction(e->{
+            handlReservationButton();
+        });
+    }
+
+    private void handlReservationButton(){
+        reservationTextRefresh();
+    }
+    public void reservationTextRefresh(){
+        if(activeCustomer != null){
+            reservationText.setText("Hi "+activeCustomer.getFirstName()+". These are your reservations");
+        } else{
+            reservationText.setText("Invalid Id");
+        }
     }
 }

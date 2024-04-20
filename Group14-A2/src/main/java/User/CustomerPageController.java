@@ -119,9 +119,10 @@ public class CustomerPageController implements Initializable {
         }
     }
 
+
     private void handleReservationClick(){
-        ReservationController reservationController = new ReservationController();
-        reservationController.setActiveCustomer(currentCustomer);
+        ReservationController orderController = new ReservationController();
+        orderController.setActiveCustomer(currentCustomer);
         try {
             Main.setRoot("reservationMainPage");
         } catch (IOException e) {

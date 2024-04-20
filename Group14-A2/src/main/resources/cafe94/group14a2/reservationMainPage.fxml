@@ -18,7 +18,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="ReservationText" text="Label" />
+            <Label fx:id="reservationText" />
             <ListView fx:id="ReservationList" prefHeight="200.0" prefWidth="200.0">
                <padding>
                   <Insets left="10.0" />
