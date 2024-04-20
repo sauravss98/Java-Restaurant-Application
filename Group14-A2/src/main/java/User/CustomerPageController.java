@@ -33,6 +33,9 @@ public class CustomerPageController implements Initializable {
     @FXML private Text OrderSectionText;
     @FXML private Button CompleteOrder;
     @FXML private Text PriceText;
+    @FXML private Button reservationButton;
+    @FXML private Button logoutButton;
+    @FXML private Button allOrdersViewButton;
 
     private Order currentOrder;
     private ArrayList<Item> orderItems;
@@ -81,6 +84,20 @@ public class CustomerPageController implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+
+        logoutButton.setOnAction(e -> {
+            try {
+                handleLogoutButtonAction();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+    }
+
+    private void handleLogoutButtonAction() throws IOException {
+        currentCustomer = null;
+        activeUserEmail = "";
+        Main.setRoot("login");
     }
 
     private void editItem(String item) throws IOException {

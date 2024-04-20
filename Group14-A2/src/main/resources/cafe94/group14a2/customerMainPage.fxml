@@ -10,13 +10,24 @@
 
 <VBox id="customerLandingPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@../../css/customerMainPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.CustomerPageController">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+      <Label fx:id="NameDisplayLabel" />
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="138.0">
          <children>
-            <Label fx:id="NameDisplayLabel" translateY="-20.0" />
+            <Button fx:id="reservationButton" mnemonicParsing="false" text="Reservation" />
+            <Button fx:id="allOrdersViewButton" layoutX="40.0" layoutY="22.0" mnemonicParsing="false" text="All Orders" />
+            <Button fx:id="logoutButton" layoutX="139.0" layoutY="22.0" mnemonicParsing="false" text="Logout" />
+         </children>
+         <padding>
+            <Insets left="50.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="198.0" prefWidth="568.0" spacing="10.0">
+         <children>
             <VBox fx:id="MenuItemList" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <ListView fx:id="ItemsList" minWidth="200.0" prefHeight="600.0" prefWidth="600.0" />
-               </children></VBox>
+               </children>
+            </VBox>
             <VBox fx:id="OrderItems" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Text fx:id="OrderSectionText" strokeType="OUTSIDE" strokeWidth="0.0" />
@@ -26,14 +37,12 @@
                </children>
                <HBox.margin>
                   <Insets left="60.0" />
-               </HBox.margin></VBox>
+               </HBox.margin>
+            </VBox>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
