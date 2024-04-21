@@ -1,5 +1,8 @@
 package cafe94.group14a2;
 
+import Items.Item;
+import Items.ItemDataController;
+import Orders.OrderDataHandler;
 import User.UserController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +30,12 @@ public class Main extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     public static void main(String[] args) {
+        Item item1 = new Item(1,"coffee",10);
+        ItemDataController.addItems(item1);
+        Item item2 = new Item(2,"tea",10);
+        ItemDataController.addItems(item2);
         UserController.loadCustomersFromExcel();
+        OrderDataHandler.loadOrdersFromExcel();
         launch();
     }
 }

@@ -61,10 +61,6 @@ public class CustomerPageController implements Initializable {
                 break;
             }
         }
-        Item item1 = new Item(1,"coffee",10);
-        ItemDataController.addItems(item1);
-        Item item2 = new Item(2,"tea",10);
-        ItemDataController.addItems(item2);
         refreshItemList();
         refreshOrderItemList();
         ItemsList.setOnMouseClicked(event -> {
