@@ -129,12 +129,12 @@ public class CustomerPageController implements Initializable {
 
     private void editItem(String item) throws IOException {
         String id = extractID(item);
-        OrderItem requiredOrderItem = getOrderItemData(id); // <-- Add this method
+        OrderItem requiredOrderItem = getOrderItemData(id);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderItemEditPage.fxml"));
         Parent root = loader.load();
         OrderItemEditPageController controller = loader.getController();
-        controller.setCurrentItem(requiredOrderItem); // <-- Pass the OrderItem object
+        controller.setCurrentItem(requiredOrderItem);
         controller.setCurrentOrder(currentOrder);
         System.out.println("loader " + loader.getController());
 
