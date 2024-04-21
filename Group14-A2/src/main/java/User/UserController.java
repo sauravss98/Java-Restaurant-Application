@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 
-public class UserController {
+public class  UserController {
     public static ArrayList<Customer> getCustomers() {
         return customers;
     }
@@ -42,9 +42,7 @@ public class UserController {
     private static ArrayList<Driver> drivers = new ArrayList<>();
     private static ArrayList<Chef> chefs = new ArrayList<>();
     private static int userCount = 0;
-    public int getUsersCount() {
-        return userCount;
-    }
+    private static int staffCount = 0;
     public boolean checkEmailValidity(){
         boolean emailIsValid =true;
         for(Customer customer:customers) {
@@ -60,6 +58,22 @@ public class UserController {
     @FXML private TextField lastNameField;
     @FXML private TextField addressField;
     @FXML private Label errorLabel;
+
+    public static void setUserCount(int userCount) {
+        UserController.userCount = userCount;
+    }
+
+    public int getUsersCount() {
+        return userCount;
+    }
+
+    public static int getStaffCount() {
+        return staffCount;
+    }
+
+    public static void setStaffCount(int staffCount) {
+        UserController.staffCount = staffCount;
+    }
 
     @FXML
     private void onCreateUserClick() throws IOException {
@@ -91,6 +105,38 @@ public class UserController {
             errorLabel.setText("Email already exists");
         }
     }
+
+    public static void loadManagersFromExcel() {
+        try (FileInputStream inputStream = new FileInputStream("src/main/java/User/ManagerData.xlsx")) {
+            Workbook workbook = new XSSFWorkbook(inputStream);
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    int userId = (int) row.getCell(0).getNumericCellValue();
+                    String email = row.getCell(1).getStringCellValue();
+                    String firstName = row.getCell(2).getStringCellValue();
+                    String lastName = row.getCell(3).getStringCellValue();
+                    int staffId = (int) row.getCell(4).getNumericCellValue();
+                    String userType = row.getCell(5).getStringCellValue();
+                    int hoursWorked = (int) row.getCell(6).getNumericCellValue();
+                    int totalHours = (int) row.getCell(7).getNumericCellValue();
+                    boolean isStaff = true;
+                    boolean isManager = true;
+                    boolean isLoggedIn = false;
+                    Manager manager = new Manager(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn);
+                    userCount++;
+                    staffCount++;
+                    managers.add(manager);
+                }
+            }
+            System.out.println("Managers loaded from Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error loading managers from Excel: " + e.getMessage());
+        }
+    }
+
     public static void loadCustomersFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/User/CustomerDate.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);

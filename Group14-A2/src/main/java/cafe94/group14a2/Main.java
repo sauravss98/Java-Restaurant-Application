@@ -36,6 +36,7 @@ public class Main extends Application {
         Item item2 = new Item(2,"tea",10);
         ItemDataController.addItems(item2);
         UserController.loadCustomersFromExcel();
+        UserController.loadManagersFromExcel();
         OrderDataHandler.loadOrdersFromExcel();
         ReservationDataController.loadOrdersFromExcel();
         launch();

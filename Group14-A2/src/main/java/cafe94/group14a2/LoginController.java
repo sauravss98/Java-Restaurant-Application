@@ -57,17 +57,18 @@ public class LoginController {
             userType = checkValidEmail(email);
             System.out.println(userType);
             if (userType.equals("Customer")){
-                System.out.println("in Customer");
                 try {
                     new CustomerPageController(email);
                     Main.setRoot("customerMainPage");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            } else {
-                LoginErrorLabel.setText("Not a user. Please try again or create new user");
+            } else if(userType.equals("Manager")) {
+                    new ManagerMainPageController(email);
+                    Main.setRoot("managerMainPage");
+            }else {
+                    LoginErrorLabel.setText("Not a user. Please try again or create new user");
             }
-
         }
     }
 
