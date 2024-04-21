@@ -104,6 +104,10 @@ public class Order {
         return items;
     }
 
+    public void addToItem(Integer item){
+        items.add(item);
+    }
+
     public void setItems(int itemId, Item item) {
         items.add(itemId);
         boolean found = false;

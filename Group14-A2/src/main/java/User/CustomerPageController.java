@@ -175,6 +175,7 @@ public class CustomerPageController implements Initializable {
             int newOrderID = generateOrderId();
             currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false,"cart",currentCustomer.getUserId());
         }
+        currentOrder.addToItem(selectedItem.getItemID());
         currentOrder.addItem(selectedItem, 1); // Pass 1 as the quantity for a new item
         refreshOrderItemList();
         System.out.println(currentOrder.toString());

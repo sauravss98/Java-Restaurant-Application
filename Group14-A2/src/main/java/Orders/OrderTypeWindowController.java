@@ -50,6 +50,7 @@ public class OrderTypeWindowController {
         currentOrder.setOrderStatus("InProgress");
         OrderTypeBox.setVisible(false);
         OrderDoneBox.setVisible(true);
+        OrderDataHandler.saveOrderDataToExcel(currentOrder);
     }
 
     private void handleCancelButtonAction(){

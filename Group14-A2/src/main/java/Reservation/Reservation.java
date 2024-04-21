@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 public class Reservation {
     private int reservationId;
     private int numberOfGuests;
-    private LocalDateTime timeOfReservation;
     private LocalDate dateOfReservation;
     private Customer customer;
 
@@ -28,14 +27,6 @@ public class Reservation {
         this.numberOfGuests = numberOfGuests;
     }
 
-    public LocalDateTime getTimeOfReservation() {
-        return timeOfReservation;
-    }
-
-    public void setTimeOfReservation(LocalDateTime timeOfReservation) {
-        this.timeOfReservation = timeOfReservation;
-    }
-
     public LocalDate getDateOfReservation() {
         return dateOfReservation;
     }
@@ -52,10 +43,9 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public Reservation(int reservationId, int numberOfGuests, LocalDateTime timeOfReservation, LocalDate dateOfReservation, Customer customer) {
+    public Reservation(int reservationId, int numberOfGuests, LocalDate dateOfReservation, Customer customer) {
         this.reservationId = reservationId;
         this.numberOfGuests = numberOfGuests;
-        this.timeOfReservation = timeOfReservation;
         this.dateOfReservation = dateOfReservation;
         this.customer = customer;
     }
@@ -65,7 +55,6 @@ public class Reservation {
         return "Reservation{" +
                 "reservationId=" + reservationId +
                 ", numberOfGuests=" + numberOfGuests +
-                ", timeOfReservation=" + timeOfReservation +
                 ", dateOfReservation=" + dateOfReservation +
                 ", customer=" + customer +
                 '}';

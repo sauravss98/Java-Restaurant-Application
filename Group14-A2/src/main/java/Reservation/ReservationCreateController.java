@@ -48,8 +48,7 @@ public class ReservationCreateController {
         int reservationId = generateOrderId();
         int numberOfGuests = (int) guestSpinner.getValue();
         LocalDate reservationDate = datePickerElement.getValue();
-        LocalDateTime dateTime = LocalDateTime.now();
-        reservation = new Reservation(reservationId,numberOfGuests,dateTime,reservationDate,customer);
+        reservation = new Reservation(reservationId,numberOfGuests,reservationDate,customer);
         ReservationDataController.addReservation(reservation);
         if (stage != null) {
             stage.close();
