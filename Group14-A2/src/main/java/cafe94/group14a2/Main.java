@@ -37,6 +37,9 @@ public class Main extends Application {
         ItemDataController.addItems(item2);
         UserController.loadCustomersFromExcel();
         UserController.loadManagersFromExcel();
+        UserController.loadChefsFromExcel();
+        UserController.loadDriversFromExcel();
+        UserController.loadWaitersFromExcel();
         OrderDataHandler.loadOrdersFromExcel();
         ReservationDataController.loadOrdersFromExcel();
         launch();

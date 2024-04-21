@@ -12,9 +12,8 @@ public class Chef extends Staff{
         return foodIsPrepared;
     }
 
-    public Chef(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff, boolean foodIsPrepared, boolean isChef,String userType,boolean isLoggedIn) {
+    public Chef(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff,boolean isChef,String userType,boolean isLoggedIn) {
         super(userId, email, firstName, lastName, staffID, hoursWorked, totalHours, isStaff,userType,isLoggedIn);
-        this.foodIsPrepared = foodIsPrepared;
         this.isChef = isChef;
     }
 

@@ -14,6 +14,14 @@ public class Staff extends User{
         this.isStaff = isStaff;
     }
 
+    public int getStaffID() {
+        return staffID;
+    }
+
+    public void setStaffID(int staffID) {
+        this.staffID = staffID;
+    }
+
     public int getHoursWorked() {
         return hoursWorked;
     }
