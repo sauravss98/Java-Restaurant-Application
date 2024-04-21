@@ -9,9 +9,10 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Reservation.ReservationController">
    <left>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="createReservationButton" mnemonicParsing="false" text="Create Reservation" />
+            <Button fx:id="orderSwitchPage" mnemonicParsing="false" text="Order Page" />
          </children>
       </VBox>
    </left>

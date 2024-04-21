@@ -1,6 +1,7 @@
 package Reservation;
 
 import User.Customer;
+import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ public class ReservationController {
     @FXML private Label reservationText;
     @FXML private Button createReservationButton;
     @FXML private ListView reservationList;
+    @FXML private Button orderSwitchPage;
     private static Customer activeCustomer;
 
     public ReservationController(){}
@@ -33,6 +35,13 @@ public class ReservationController {
         createReservationButton.setOnAction(e->{
             try {
                 handlReservationButton();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        orderSwitchPage.setOnAction(e->{
+            try {
+                Main.setRoot("customerMainPage");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

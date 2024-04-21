@@ -75,21 +75,12 @@ public class OrderDataHandler {
         order.setPrice(price);
     }
 
-    public static void saveOrderDataToExcel(Order order){
+    public static void saveOrderDataToExcel(Order order) {
         Workbook workbook;
         Sheet sheet;
 
         File file = new File("src/main/java/Orders/OrderData.xlsx");
         if (!file.exists()) {
-            try {
-                FileInputStream inputStream = new FileInputStream(file);
-                workbook = new XSSFWorkbook(inputStream);
-                sheet = workbook.getSheetAt(0);
-            } catch (IOException e) {
-                System.err.println("Error opening existing Excel file: " + e.getMessage());
-                return;
-            }
-        } else {
             workbook = new XSSFWorkbook();
             sheet = workbook.createSheet("Order Data");
             Row headerRow = sheet.createRow(0);
@@ -99,7 +90,16 @@ public class OrderDataHandler {
             headerRow.createCell(3).setCellValue("Order Completed Status");
             headerRow.createCell(4).setCellValue("Order status");
             headerRow.createCell(5).setCellValue("Customer ID");
+        } else {
+            try (FileInputStream inputStream = new FileInputStream(file)) {
+                workbook = new XSSFWorkbook(inputStream);
+                sheet = workbook.getSheetAt(0);
+            } catch (IOException e) {
+                System.err.println("Error opening existing Excel file: " + e.getMessage());
+                return;
+            }
         }
+
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
         row.createCell(0).setCellValue(order.getOrderId());
@@ -113,12 +113,11 @@ public class OrderDataHandler {
             sheet.autoSizeColumn(i);
         }
 
-        try {
-            FileOutputStream outputStream = new FileOutputStream(file);
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
             workbook.write(outputStream);
-            System.out.println("User data saved to Excel file successfully.");
+            System.out.println("Order data saved to Excel file successfully.");
         } catch (IOException e) {
-            System.err.println("Error saving user data to Excel file: " + e.getMessage());
+            System.err.println("Error saving order data to Excel file: " + e.getMessage());
         } finally {
             try {
                 workbook.close();
