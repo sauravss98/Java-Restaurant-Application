@@ -1,19 +1,24 @@
 package Reservation;
 
+import Items.Item;
 import Orders.Order;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import User.Customer;
+import User.UserController;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ReservationDataController {
     private static ArrayList<Reservation> reservations = new ArrayList<>();
+    private static ArrayList<Customer> customers = UserController.getCustomers();
+    private static Customer customer;
 
     public static ArrayList<Reservation> getReservations() {
         return reservations;
@@ -23,21 +28,12 @@ public class ReservationDataController {
         reservations.add(reservation);
     }
 
-    public static void saveOrderDataToExcel(Order order){
+    public static void saveReservationDataToExcel(Reservation reservation) {
         Workbook workbook;
         Sheet sheet;
 
         File file = new File("src/main/java/Reservation/ReservationData.xlsx");
         if (!file.exists()) {
-            try {
-                FileInputStream inputStream = new FileInputStream(file);
-                workbook = new XSSFWorkbook(inputStream);
-                sheet = workbook.getSheetAt(0);
-            } catch (IOException e) {
-                System.err.println("Error opening existing Excel file: " + e.getMessage());
-                return;
-            }
-        } else {
             workbook = new XSSFWorkbook();
             sheet = workbook.createSheet("Order Data");
             Row headerRow = sheet.createRow(0);
@@ -45,32 +41,75 @@ public class ReservationDataController {
             headerRow.createCell(1).setCellValue("Number of Guests");
             headerRow.createCell(2).setCellValue("Date Of Reservation");
             headerRow.createCell(3).setCellValue("Customer ID");
+        } else {
+            try (FileInputStream inputStream = new FileInputStream(file)) {
+                workbook = new XSSFWorkbook(inputStream);
+                sheet = workbook.getSheetAt(0);
+            } catch (IOException e) {
+                System.err.println("Error opening existing Excel file: " + e.getMessage());
+                return;
+            }
         }
+
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
-        row.createCell(0).setCellValue(order.getOrderId());
-        row.createCell(1).setCellValue(order.getOrderType());
-        row.createCell(2).setCellValue(String.valueOf(order.getItems()));
-        row.createCell(3).setCellValue(order.isCompleted());
-        row.createCell(4).setCellValue(order.getOrderStatus());
-        row.createCell(5).setCellValue(order.getCustomerId());
+        row.createCell(0).setCellValue(reservation.getReservationId());
+        row.createCell(1).setCellValue(reservation.getNumberOfGuests());
+        Cell dateCell = row.createCell(2);
+        dateCell.setCellValue(reservation.getDateOfReservation());
+        CellStyle dateCellStyle = workbook.createCellStyle();
+        CreationHelper createHelper = workbook.getCreationHelper();
+        short dateFormat = createHelper.createDataFormat().getFormat("yyyy-MM-dd");
+        dateCellStyle.setDataFormat(dateFormat);
+        dateCell.setCellStyle(dateCellStyle);
+//        System.out.println("The date is "+reservation.getDateOfReservation());
+        row.createCell(3).setCellValue(reservation.getCustomer().getCustomerID());
 
         for (int i = 0; i < 6; i++) {
             sheet.autoSizeColumn(i);
         }
 
-        try {
-            FileOutputStream outputStream = new FileOutputStream(file);
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
             workbook.write(outputStream);
-            System.out.println("User data saved to Excel file successfully.");
+            System.out.println("Reservation data saved to Excel file successfully.");
         } catch (IOException e) {
-            System.err.println("Error saving user data to Excel file: " + e.getMessage());
+            System.err.println("Error saving reservation data to Excel file: " + e.getMessage());
         } finally {
             try {
                 workbook.close();
             } catch (IOException e) {
                 System.err.println("Error closing workbook: " + e.getMessage());
             }
+        }
+    }
+
+    public static void loadOrdersFromExcel() {
+        try (FileInputStream inputStream = new FileInputStream("src/main/java/Reservation/ReservationData.xlsx")) {
+            Workbook workbook = new XSSFWorkbook(inputStream);
+            Sheet sheet = workbook.getSheetAt(0);
+            DataFormatter dataFormatter = new DataFormatter();
+
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    int reservationId = (int) row.getCell(0).getNumericCellValue();
+                    int numberOfGuests = (int)row.getCell(1).getNumericCellValue();
+                    LocalDate dateOfReservation = LocalDate.parse(dataFormatter.formatCellValue(row.getCell(2)));
+                    int customerId = (int)row.getCell(3).getNumericCellValue();
+
+                    for (Customer customerToLoad : customers){
+                        if(customerId == customerToLoad.getUserId()){
+                            customer = customerToLoad;
+                        }
+                    }
+
+                    Reservation reservation = new Reservation(reservationId,numberOfGuests, dateOfReservation, customer);
+                    reservations.add(reservation);
+                }
+            }
+            System.out.println("Reservations loaded from Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error loading reservation from Excel: " + e.getMessage());
         }
     }
 }

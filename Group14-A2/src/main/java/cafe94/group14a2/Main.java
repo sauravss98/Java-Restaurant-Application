@@ -3,6 +3,7 @@ package cafe94.group14a2;
 import Items.Item;
 import Items.ItemDataController;
 import Orders.OrderDataHandler;
+import Reservation.ReservationDataController;
 import User.UserController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,7 @@ public class Main extends Application {
         ItemDataController.addItems(item2);
         UserController.loadCustomersFromExcel();
         OrderDataHandler.loadOrdersFromExcel();
+        ReservationDataController.loadOrdersFromExcel();
         launch();
     }
 }

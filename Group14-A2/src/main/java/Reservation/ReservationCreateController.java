@@ -50,6 +50,7 @@ public class ReservationCreateController {
         LocalDate reservationDate = datePickerElement.getValue();
         reservation = new Reservation(reservationId,numberOfGuests,reservationDate,customer);
         ReservationDataController.addReservation(reservation);
+        ReservationDataController.saveReservationDataToExcel(reservation);
         if (stage != null) {
             stage.close();
         }
