@@ -1,5 +1,6 @@
 package Orders;
 
+import Reservation.ReservationController;
 import User.Customer;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ public class OrderController {
     private static Customer activeCustomer;
     @FXML private ListView OrderListView;
     @FXML private Button orderNavButton;
+    @FXML private Button reservationButton;
     private static ArrayList<Order> orders = OrderDataHandler.getOrders();
 
     public OrderController() {
@@ -42,6 +44,15 @@ public class OrderController {
                 launchListPage(requiredOrder);
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+        });
+        reservationButton.setOnAction(e->{
+            ReservationController orderController = new ReservationController();
+            orderController.setActiveCustomer(activeCustomer);
+            try {
+                Main.setRoot("reservationMainPage");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
     }
