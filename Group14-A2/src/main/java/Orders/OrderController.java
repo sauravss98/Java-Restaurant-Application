@@ -103,6 +103,7 @@ public class OrderController {
      */
     public static String extractID(String data) {
         int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
+//        int startIndex = data.indexOf("Order Number: ") + 15; // Add 4 to skip "ID: "
         int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
         if (endIndex == -1) {
             endIndex = data.length(); // If no space is found, consider the end of the string

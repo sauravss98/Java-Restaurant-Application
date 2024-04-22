@@ -118,6 +118,21 @@ public class ManagerMainPageController {
     }
 
     private void handleCheckStaffClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/staffStatusPage.fxml"));
+            Parent root = loader.load();
+            ManagerStaffStatusPage controller = loader.getController();
+
+            Stage staffStage = new Stage();
+            staffStage.setTitle("Create Staff");
+            staffStage.setScene(new Scene(root, 720, 600));
+
+            controller.setStage(staffStage);
+            staffStage.initModality(Modality.APPLICATION_MODAL);
+            staffStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleCreateStaffClick() {

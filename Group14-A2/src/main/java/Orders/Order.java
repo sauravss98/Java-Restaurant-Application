@@ -199,6 +199,6 @@ public class Order {
     }
 
     public String getDescriptionForOrderList() {
-        return "ID: "+orderId+" Item: " + orderStatus + " - price: "+price;
+        return "ID: "+orderId+" Order Status : " + orderStatus + " - price: "+price;
     }
 }
