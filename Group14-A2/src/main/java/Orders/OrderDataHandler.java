@@ -17,6 +17,7 @@ public class OrderDataHandler {
     private static ArrayList<Integer> itemlist = new ArrayList<>();
     private static ArrayList<Order> orders = new ArrayList<>();
     private static ArrayList<Item> allItems = ItemDataController.getItems();
+    private static final String FILE_PATH = "src/main/java/Orders/OrderData.xlsx";
 
     public static ArrayList<Order> getOrders() {
         return orders;
@@ -24,6 +25,42 @@ public class OrderDataHandler {
 
     public static void addOrder(Order order){
         orders.add(order);
+    }
+
+    public static void editOrderExcelSheetData(Order order) {
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream(FILE_PATH);
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            // File doesn't exist or is empty, create a new workbook
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            // Workbook is empty, create a new sheet
+            sheet = workbook.createSheet("Sheet1");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int orderId = (int) row.getCell(0).getNumericCellValue();
+                if (orderId == order.getOrderId()) {
+                    row.getCell(4).setCellValue(order.getOrderStatus());
+                    break;
+                }
+            }
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream(FILE_PATH)) {
+            workbook.write(outputStream);
+            System.out.println("Order data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving items to Excel: " + e.getMessage());
+        }
     }
 
     public static void loadOrdersFromExcel() {
