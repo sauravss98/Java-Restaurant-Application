@@ -31,10 +31,6 @@ public class Main extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     public static void main(String[] args) {
-        Item item1 = new Item(1,"coffee",10);
-        ItemDataController.addItems(item1);
-        Item item2 = new Item(2,"tea",10);
-        ItemDataController.addItems(item2);
         UserController.loadCustomersFromExcel();
         UserController.loadManagersFromExcel();
         UserController.loadChefsFromExcel();
@@ -42,6 +38,7 @@ public class Main extends Application {
         UserController.loadWaitersFromExcel();
         OrderDataHandler.loadOrdersFromExcel();
         ReservationDataController.loadOrdersFromExcel();
+        ItemDataController.loadItemsFromExcel();
         launch();
     }
 }
