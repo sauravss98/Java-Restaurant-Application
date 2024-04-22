@@ -16,6 +16,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public final class ItemDataController {
     private static int itemIDCounter=0;
@@ -46,7 +47,7 @@ public final class ItemDataController {
 
     private static final String FILE_PATH = "src/main/java/Items/ItemData.xlsx";
 
-    public static void editExcelSheetData(Item item) {
+    public static void editExcelSheetData(Item item, String mode) {
         Workbook workbook;
         try {
             FileInputStream inputStream = new FileInputStream(FILE_PATH);
@@ -68,9 +69,14 @@ public final class ItemDataController {
             if (row != null) {
                 int itemId = (int) row.getCell(0).getNumericCellValue();
                 if (itemId == item.getItemID()) {
-                    row.getCell(2).setCellValue(item.getPrice());
-                    row.getCell(3).setCellValue(item.isSpecialItem());
-                    break;
+                    if(Objects.equals(mode, "edit")) {
+                        row.getCell(2).setCellValue(item.getPrice());
+                        row.getCell(3).setCellValue(item.isSpecialItem());
+                        break;
+                    } else if (Objects.equals(mode, "remove")) {
+                        row.getCell(4).setCellValue(item.isItemIsActive());
+                        break;
+                    }
                 }
             }
         }
@@ -82,31 +88,6 @@ public final class ItemDataController {
             System.err.println("Error saving items to Excel: " + e.getMessage());
         }
     }
-
-//    public static void editExcelSheetData(Item item) {
-//        try (FileInputStream inputStream = new FileInputStream("src/main/java/Items/ItemData.xlsx");
-//             FileOutputStream outputStream = new FileOutputStream("src/main/java/Items/ItemData.xlsx")) {
-//            Workbook workbook = new XSSFWorkbook(inputStream);
-//            Sheet sheet = workbook.getSheetAt(0);
-//
-//            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-//                Row row = sheet.getRow(i);
-//                if (row != null) {
-//                    int itemId = (int) row.getCell(0).getNumericCellValue();
-//                    if (itemId == item.getItemID()) {
-//                        row.getCell(2).setCellValue(item.getPrice());
-//                        row.getCell(3).setCellValue(item.isSpecialItem());
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            workbook.write(outputStream); // Write the changes to the file
-//            System.out.println("Items data saved to the Excel successfully.");
-//        } catch (IOException e) {
-//            System.err.println("Error loading or saving items from/to Excel: " + e.getMessage());
-//        }
-//    }
 
     public static void loadItemsFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/Items/ItemData.xlsx")) {

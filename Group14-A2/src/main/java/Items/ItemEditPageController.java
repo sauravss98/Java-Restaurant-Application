@@ -63,7 +63,7 @@ public class ItemEditPageController {
         System.out.println("status "+toggleButtonInput);
         currentItem.setPrice(price);
         currentItem.setSpecialItem(toggleButtonInput);
-        ItemDataController.editExcelSheetData(currentItem);
+        ItemDataController.editExcelSheetData(currentItem,"edit");
         if (stage != null) {
             stage.close();
         }
@@ -71,6 +71,7 @@ public class ItemEditPageController {
 
     private void handleRemoveButton() {
         currentItem.setItemIsActive(false);
+        ItemDataController.editExcelSheetData(currentItem,"remove");
         if (stage != null) {
             stage.close();
         }
