@@ -68,7 +68,7 @@ public final class ItemDataController {
             }
         } else {
             workbook = new XSSFWorkbook();
-            sheet = workbook.createSheet("Item Data");
+            sheet = workbook.createSheet("Item Data*");
             Row headerRow = sheet.createRow(0);
             headerRow.createCell(0).setCellValue("Item ID");
             headerRow.createCell(1).setCellValue("Item Name");

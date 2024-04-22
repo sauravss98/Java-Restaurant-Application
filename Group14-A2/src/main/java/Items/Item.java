@@ -6,6 +6,7 @@ public class Item {
     private int price;
     private boolean isMade;
 
+    private boolean itemIsActive;
     private int quantity;
 
     public int getQuantity() {
@@ -55,6 +56,7 @@ public class Item {
         this.price = price;
         this.isMade = false;
         this.quantity = 1;
+        this.itemIsActive = true;
     }
 
     public String getDescriptionForMenuList() {
@@ -65,5 +67,13 @@ public class Item {
     }
     public void addQuantity(){
         this.quantity = quantity+1;
+    }
+
+    public boolean isItemIsActive() {
+        return itemIsActive;
+    }
+
+    public void setItemIsActive(boolean itemIsActive) {
+        this.itemIsActive = itemIsActive;
     }
 }
