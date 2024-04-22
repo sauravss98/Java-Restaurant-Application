@@ -1,5 +1,6 @@
 package User;
 
+import Items.ItemMainPageController;
 import Orders.OrderController;
 import Orders.OrderDataHandler;
 import Orders.OrderTypeWindowController;
@@ -21,6 +22,8 @@ public class ManagerMainPageController {
     @FXML private Button checkStaffStatusButton;
     @FXML private Button checkOrdersButton;
     @FXML private Button checkReservationsButton;
+    @FXML private Button manageItemButton;
+    @FXML private Button logoutButton;
     @FXML private ListView activeOrdersList;
     @FXML private ListView activeStaffList;
     private static Manager manager;
@@ -53,6 +56,18 @@ public class ManagerMainPageController {
         checkReservationsButton.setOnAction(e->{
             handleCheckReservationButton();
         });
+        manageItemButton.setOnAction(e->{
+            handleItemButtonClick();
+        });
+    }
+
+    private void handleItemButtonClick() {
+        try {
+            new ItemMainPageController(manager);
+            Main.setRoot("itemMainPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void handleCheckReservationButton() {

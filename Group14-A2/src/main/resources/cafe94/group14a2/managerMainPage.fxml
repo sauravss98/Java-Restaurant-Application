@@ -15,6 +15,8 @@
             <Button fx:id="checkStaffStatusButton" layoutX="20.0" layoutY="197.0" mnemonicParsing="false" text="Check Staff Status" />
             <Button fx:id="checkOrdersButton" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" text="Check Orders" />
             <Button fx:id="checkReservationsButton" layoutX="20.0" layoutY="223.0" mnemonicParsing="false" text="Check Reservations" />
+            <Button fx:id="manageItemButton" mnemonicParsing="false" text="Manage Items" />
+            <Button fx:id="logoutButton" layoutX="49.0" layoutY="308.0" mnemonicParsing="false" text="Logout" />
          </children>
       </VBox>
    </left>

@@ -22,4 +22,6 @@ module cafe94.group14a2 {
     opens Orders to javafx.fxml;
     opens Reservation to javafx.fxml;
     exports Reservation;
+    opens Items to javafx.fxml;
+    exports Items;
 }
