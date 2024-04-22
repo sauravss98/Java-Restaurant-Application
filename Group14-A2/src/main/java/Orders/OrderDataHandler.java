@@ -42,18 +42,28 @@ public class OrderDataHandler {
                     int customerId = (int) row.getCell(5).getNumericCellValue();
 
                     // parse the string to integer
-                    String[] itemsArray = itemsString.substring(1,itemsString.length()-1).split(",");
+                    String[] itemsArray = itemsString.substring(1, itemsString.length() - 1).split(",");
                     ArrayList<Integer> items = new ArrayList<>();
                     for (String item : itemsArray) {
                         items.add(Integer.parseInt(item.trim()));
-                        itemlist.add(Integer.parseInt(item.trim()));
                     }
 
                     Order order = new Order(orderId, orderType, items, isCompleted, orderStatus, customerId);
-                    for(Integer item : itemlist){
-                        for(Item requiredItem: allItems){
-                            if(item == requiredItem.getItemID()){
-                                order.addItem(requiredItem, 1);
+                    for (Integer itemId : items) {
+                        boolean itemExists = false;
+                        for (OrderItem orderItem : order.getOrderItems()) {
+                            if (orderItem.getItem().getItemID() == itemId) {
+                                itemExists = true;
+                                orderItem.incrementQuantity();
+                                break;
+                            }
+                        }
+                        if (!itemExists) {
+                            for (Item requiredItem : allItems) {
+                                if (itemId == requiredItem.getItemID()) {
+                                    order.addItem(requiredItem, 1);
+                                    break;
+                                }
                             }
                         }
                     }

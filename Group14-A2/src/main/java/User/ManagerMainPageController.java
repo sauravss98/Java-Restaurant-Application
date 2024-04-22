@@ -1,6 +1,7 @@
 package User;
 
 import Items.ItemMainPageController;
+import Orders.ManagerOrderView;
 import Orders.OrderController;
 import Orders.OrderDataHandler;
 import Orders.OrderTypeWindowController;
@@ -59,6 +60,19 @@ public class ManagerMainPageController {
         manageItemButton.setOnAction(e->{
             handleItemButtonClick();
         });
+        logoutButton.setOnAction(e->{
+            handleLogoutButton();
+        });
+    }
+
+    private void handleLogoutButton() {
+        manager = null;
+        activeEmail = "";
+        try {
+            Main.setRoot("login");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void handleItemButtonClick() {
@@ -74,6 +88,19 @@ public class ManagerMainPageController {
     }
 
     private void handlCheckOrdersButton() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderViewManager.fxml"));
+            Parent root = loader.load();
+            ManagerOrderView controller = loader.getController();
+            Stage allOrders = new Stage();
+            allOrders.setTitle("Check Orders");
+            allOrders.setScene(new Scene(root, 600, 600));
+            controller.setStage(allOrders);
+            allOrders.initModality(Modality.APPLICATION_MODAL);
+            allOrders.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleCheckStaffClick() {
