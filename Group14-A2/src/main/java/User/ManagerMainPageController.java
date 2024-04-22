@@ -5,6 +5,7 @@ import Orders.ManagerOrderView;
 import Orders.OrderController;
 import Orders.OrderDataHandler;
 import Orders.OrderTypeWindowController;
+import Reservation.ReservationManagerPage;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,6 +86,19 @@ public class ManagerMainPageController {
     }
 
     private void handleCheckReservationButton() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/managerReservationViewPage.fxml"));
+            Parent root = loader.load();
+            ReservationManagerPage controller = loader.getController();
+            Stage reservationManagerStage = new Stage();
+            reservationManagerStage.setTitle("Check Reservations");
+            reservationManagerStage.setScene(new Scene(root, 720, 600));
+            controller.setStage(reservationManagerStage);
+            reservationManagerStage.initModality(Modality.APPLICATION_MODAL);
+            reservationManagerStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void handlCheckOrdersButton() {
@@ -94,7 +108,7 @@ public class ManagerMainPageController {
             ManagerOrderView controller = loader.getController();
             Stage allOrders = new Stage();
             allOrders.setTitle("Check Orders");
-            allOrders.setScene(new Scene(root, 600, 600));
+            allOrders.setScene(new Scene(root, 720, 600));
             controller.setStage(allOrders);
             allOrders.initModality(Modality.APPLICATION_MODAL);
             allOrders.showAndWait();
@@ -114,7 +128,7 @@ public class ManagerMainPageController {
 
             Stage staffCreateStage = new Stage();
             staffCreateStage.setTitle("Create Staff");
-            staffCreateStage.setScene(new Scene(root, 600, 600));
+            staffCreateStage.setScene(new Scene(root, 720, 600));
 
             controller.setStage(staffCreateStage);
             staffCreateStage.initModality(Modality.APPLICATION_MODAL);
