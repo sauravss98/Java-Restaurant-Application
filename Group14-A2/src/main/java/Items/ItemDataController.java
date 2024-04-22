@@ -14,13 +14,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public final class ItemDataController {
-    int itemIDCounter=0;
+    private static int itemIDCounter=0;
     private static ArrayList<Item> items = new ArrayList<>();
     public static ArrayList<Item> getItems() {
         return items;
     }
     public static void addItems(Item item){
         items.add(item);
+    }
+
+    public static int getItemIDCounter() {
+        return itemIDCounter;
+    }
+
+    public static void setItemIDCounter(int itemid) {
+        itemIDCounter = itemid;
     }
 
     public static Item getItemById(int itemId) {
@@ -45,6 +53,7 @@ public final class ItemDataController {
                     int price = (int)row.getCell(2).getNumericCellValue();
                     Item item = new Item(itemId,itemName,price);
                     items.add(item);
+                    itemIDCounter++;
                 }
             }
             System.out.println("Items loaded from Excel successfully.");
@@ -53,11 +62,11 @@ public final class ItemDataController {
         }
     }
 
-    public void saveItemDataToExcel(Item item){
+    public static void saveItemDataToExcel(Item item){
         Workbook workbook;
         Sheet sheet;
 
-        File file = new File("src/main/java/Items/ItemDate.xlsx");
+        File file = new File("src/main/java/Items/ItemData.xlsx");
         if (file.exists()) {
             try (FileInputStream inputStream = new FileInputStream(file)) {
                 workbook = new XSSFWorkbook(inputStream);
@@ -68,7 +77,7 @@ public final class ItemDataController {
             }
         } else {
             workbook = new XSSFWorkbook();
-            sheet = workbook.createSheet("Item Data*");
+            sheet = workbook.createSheet("Item Data");
             Row headerRow = sheet.createRow(0);
             headerRow.createCell(0).setCellValue("Item ID");
             headerRow.createCell(1).setCellValue("Item Name");
@@ -83,7 +92,7 @@ public final class ItemDataController {
         for (int i = 0; i < 3; i++) {
             sheet.autoSizeColumn(i);
         }
-        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/Items/ItemDate.xlsx")) {
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/Items/ItemData.xlsx")) {
             workbook.write(outputStream);
             System.out.println("Item data saved to Excel file successfully.");
         } catch (IOException e) {
