@@ -32,8 +32,15 @@ public class ManagerMainPageController {
     private static String activeEmail;
     private ArrayList<Manager> managersList = UserController.getManagers();
 
+    /**
+     * Construnctor for the controller
+     */
     public ManagerMainPageController(){}
 
+    /**
+     * Constructor to instantiate the controller
+     * @param email
+     */
     public ManagerMainPageController(String email){
         this.activeEmail = email;
         for (Manager requiredManager: managersList){
@@ -43,7 +50,9 @@ public class ManagerMainPageController {
         }
     }
 
-
+    /**
+     * Function to initialize the controller U@I
+     */
     public void initialize(){
         refreshActiveOrderList();
         createStaffButton.setOnAction(e->{
@@ -66,6 +75,9 @@ public class ManagerMainPageController {
         });
     }
 
+    /**
+     * Function to handle the logout button
+     */
     private void handleLogoutButton() {
         manager = null;
         activeEmail = "";
@@ -76,6 +88,9 @@ public class ManagerMainPageController {
         }
     }
 
+    /**
+     * Function to handle the item button click
+     */
     private void handleItemButtonClick() {
         try {
             new ItemMainPageController(manager);
@@ -85,6 +100,9 @@ public class ManagerMainPageController {
         }
     }
 
+    /**
+     * Function to handle the check reservation button
+     */
     private void handleCheckReservationButton() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/managerReservationViewPage.fxml"));
@@ -101,6 +119,9 @@ public class ManagerMainPageController {
         }
     }
 
+    /**
+     * Function to handle the check orders button
+     */
     private void handlCheckOrdersButton() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderViewManager.fxml"));
@@ -117,6 +138,9 @@ public class ManagerMainPageController {
         }
     }
 
+    /**
+     * Function to handle the check staff button
+     */
     private void handleCheckStaffClick() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/staffStatusPage.fxml"));
@@ -135,6 +159,9 @@ public class ManagerMainPageController {
         }
     }
 
+    /**
+     * Function to handle the create staff button
+     */
     private void handleCreateStaffClick() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/staffCreatePage.fxml"));

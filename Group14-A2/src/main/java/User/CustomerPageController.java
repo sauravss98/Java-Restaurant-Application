@@ -42,13 +42,25 @@ public class CustomerPageController implements Initializable {
     private ArrayList<Item> orderItems;
     private Customer currentCustomer;
 
+    /**
+     * Controller Initializer
+     */
     public CustomerPageController() {
     }
 
+    /**
+     * Constructor to instantiate the controller
+     * @param activeUserEmail
+     */
     public CustomerPageController(String activeUserEmail) {
         this.activeUserEmail = activeUserEmail;
     }
 
+    /**
+     * Function to initialize the controller UI
+     * @param url
+     * @param resourceBundle
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("activeemail is this: " + activeUserEmail);
         for (Customer customer : customers) {
@@ -99,12 +111,19 @@ public class CustomerPageController implements Initializable {
         });
     }
 
+    /**
+     *  Function to handle logout button
+     * @throws IOException
+     */
     private void handleLogoutButtonAction() throws IOException {
         currentCustomer = null;
         activeUserEmail = "";
         Main.setRoot("login");
     }
 
+    /**
+     * Function to handle the order view button
+     */
     private void handleOrderViewButton(){
         OrderController orderController = new OrderController();
         orderController.setActiveCustomer(currentCustomer);
@@ -115,7 +134,9 @@ public class CustomerPageController implements Initializable {
         }
     }
 
-
+    /**
+     * Function to handle the reservation click button
+     */
     private void handleReservationClick(){
         ReservationController orderController = new ReservationController();
         orderController.setActiveCustomer(currentCustomer);
@@ -126,7 +147,11 @@ public class CustomerPageController implements Initializable {
         }
     }
 
-
+    /**
+     * Function that is used to edit the details of the item
+     * @param item
+     * @throws IOException
+     */
     private void editItem(String item) throws IOException {
         String id = extractID(item);
         OrderItem requiredOrderItem = getOrderItemData(id);
@@ -147,6 +172,11 @@ public class CustomerPageController implements Initializable {
         refreshOrderItemList();
     }
 
+    /**
+     * Function to get the details of order data
+     * @param idString
+     * @return orderitem
+     */
     private OrderItem getOrderItemData(String idString) {
         int id = Integer.parseInt(idString);
         for (OrderItem orderItem : currentOrder.getOrderItems()) {
@@ -163,7 +193,6 @@ public class CustomerPageController implements Initializable {
      * @param selectedItem
      * If there is no order a new order is created and the item is added to the order
      * If an order exists takes the selected item as parameter and adds the new item to the list
-     * @author Saurav Suresh
      */
 
     private void handleOrder(Item selectedItem) {
@@ -180,7 +209,6 @@ public class CustomerPageController implements Initializable {
     /**
      * A function to generate the order id by getting the lenght of total number of orders present excelsheet(database)
      * @return orderId
-     * @author Saurav Suresh
      */
     public int generateOrderId() {
         int maxOrderId = 0;
@@ -200,7 +228,6 @@ public class CustomerPageController implements Initializable {
      * A function to return the item corresponding to the id passed through
      * @param idString
      * @return item
-     * @author Saurav Suresh
      */
     public Item getItemData(String idString){
         int id = Integer.parseInt(idString);
@@ -216,7 +243,6 @@ public class CustomerPageController implements Initializable {
      * A function to get the id from the String recieved based on the user input
      * @param data
      * @return id
-     * @author Saurav Suresh
      */
     public static String extractID(String data) {
         int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
@@ -229,7 +255,6 @@ public class CustomerPageController implements Initializable {
 
     /**
      * Function to display all the items in the menu
-     * @author Saurav Suresh
      */
     private void refreshItemList() {
         // Clear the displayed list
@@ -242,7 +267,6 @@ public class CustomerPageController implements Initializable {
 
     /**
      * Function to display all the items in the order made by the customer
-     * @author Saurav Suresh
      */
     private void refreshOrderItemList() {
         // Clear the displayed list
@@ -267,6 +291,9 @@ public class CustomerPageController implements Initializable {
         }
     }
 
+    /**
+     * Function to calculate price of all the items in the order
+     */
     private void calculatePrice() {
         int price = 0;
         for (OrderItem orderItem : currentOrder.getOrderItems()) {
@@ -280,7 +307,6 @@ public class CustomerPageController implements Initializable {
 
     /**
      * This function is triggered when the button. It will launch a new window with where the customer can select order type
-     * @author Saurav Suresh
      */
     @FXML
     private void onOrderConfirmClick() {

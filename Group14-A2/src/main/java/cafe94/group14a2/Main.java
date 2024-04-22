@@ -15,10 +15,12 @@ import java.io.IOException;
 
 public class Main extends Application {
     private static Scene scene;
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 720, 480);
@@ -26,9 +28,11 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
+
     public static void main(String[] args) {
         UserController.loadCustomersFromExcel();
         UserController.loadManagersFromExcel();
