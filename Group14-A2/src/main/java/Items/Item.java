@@ -4,7 +4,8 @@ public class Item {
     private int itemID;
     private String itemName;
     private int price;
-    private boolean isMade;
+    private boolean isActive;
+    private boolean isSpecialItem;
 
     private boolean itemIsActive;
     private int quantity;
@@ -20,6 +21,14 @@ public class Item {
 
     public int getItemID() {
         return itemID;
+    }
+
+    public boolean isSpecialItem() {
+        return isSpecialItem;
+    }
+
+    public void setSpecialItem(boolean specialItem) {
+        isSpecialItem = specialItem;
     }
 
     public void setItemID(int itemID) {
@@ -42,21 +51,22 @@ public class Item {
         this.price = price;
     }
 
-    public boolean isMade() {
-        return isMade;
+    public boolean isActive() {
+        return isActive;
     }
 
     public void setMade(boolean made) {
-        isMade = made;
+        isActive = made;
     }
 
-    public Item(int itemID, String itemName, int price) {
+    public Item(int itemID, String itemName, int price,boolean isSpecialItem,boolean isActive) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.price = price;
-        this.isMade = false;
+        this.isActive = isActive;
         this.quantity = 1;
         this.itemIsActive = true;
+        this.isSpecialItem = isSpecialItem;
     }
 
     public String getDescriptionForMenuList() {

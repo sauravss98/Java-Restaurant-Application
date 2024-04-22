@@ -1,8 +1,6 @@
 package Items;
 
-import Orders.OrderController;
-import Orders.OrderDataHandler;
-import Orders.OrderTypeWindowController;
+import Orders.*;
 import User.Manager;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 
 public class ItemMainPageController {
     private ArrayList<Item> items = ItemDataController.getItems();
-    private Stage stage;
     private static Manager activeManager;
     @FXML private Button addItemButton;
     @FXML private Button backButton;
@@ -43,6 +40,51 @@ public class ItemMainPageController {
         addItemButton.setOnAction(e->{
             handleNewItemMenuClick();
         });
+        itemsList.setOnMouseClicked(e->{
+            String selectedItem = (String) itemsList.getSelectionModel().getSelectedItem();
+            try {
+                editItem(selectedItem);
+            } catch (IOException exception) {
+                throw new RuntimeException(exception);
+            }
+        });
+    }
+
+    private void editItem(String selectedItem) throws IOException {
+        String id = extractID(selectedItem);
+        Item requiredItem = getItemData(id);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/mainItemEditPage.fxml"));
+        Parent root = loader.load();
+        ItemEditPageController controller = loader.getController();
+        controller.setCurrentItem(requiredItem);
+
+        Stage itemEditStage = new Stage();
+        controller.setStage(itemEditStage);
+        itemEditStage.setTitle("Edit Item Detail");
+        itemEditStage.setScene(new Scene(root, 600, 600));
+        itemEditStage.initModality(Modality.APPLICATION_MODAL);
+        itemEditStage.showAndWait();
+        refreshItemList();
+    }
+
+    public static String extractID(String data) {
+        int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
+        int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
+        if (endIndex == -1) {
+            endIndex = data.length(); // If no space is found, consider the end of the string
+        }
+        return data.substring(startIndex, endIndex);
+    }
+
+    private Item getItemData(String idString) {
+        int id = Integer.parseInt(idString);
+        for (Item item : items) {
+            if (item.getItemID() == id) {
+                return item;
+            }
+        }
+        return null;
     }
 
     private void handleNewItemMenuClick() {
@@ -81,7 +123,10 @@ public class ItemMainPageController {
         itemsList.getItems().clear();
 
         for (Item item : items) {
-            itemsList.getItems().add(item.getDescriptionForMenuList());
+//            System.out.println("item status "+item.isItemIsActive());
+            if(item.isItemIsActive()) {
+                itemsList.getItems().add(item.getDescriptionForMenuList());
+            }
         }
     }
 }

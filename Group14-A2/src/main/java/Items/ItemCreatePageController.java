@@ -41,9 +41,11 @@ public class ItemCreatePageController {
     private void handleItemCreateButton() {
         String itemName = itemNameField.getText();
         int itemPrice = (int)priceSpinner.getValue();
+        boolean isSpecialItem = false;
+        boolean isActive = true;
         if(!itemName.isEmpty()){
             int itemId = ItemDataController.getItemIDCounter()+1;
-            Item item = new Item(itemId,itemName,itemPrice);
+            Item item = new Item(itemId,itemName,itemPrice,isSpecialItem,isActive);
             ItemDataController.setItemIDCounter(itemId);
             items.add(item);
             ItemDataController.saveItemDataToExcel(item);
