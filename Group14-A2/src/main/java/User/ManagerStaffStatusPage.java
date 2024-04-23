@@ -65,7 +65,7 @@ public class ManagerStaffStatusPage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println("User type is "+requiredStaff.getUserType());
         ManagerStaffEditController controller = loader.getController();
         controller.setStaff(requiredStaff);
 
@@ -91,7 +91,7 @@ public class ManagerStaffStatusPage {
     private Staff getStaffData(String idString) {
         int id = Integer.parseInt(idString);
         for (Staff staff : staffs) {
-            if (staff.getStaffID() == id) {
+            if (staff.getUserId() == id) {
                 return staff;
             }
         }
