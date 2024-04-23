@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to control the Manager Order View page
+ */
 public class ManagerOrderView {
     private ArrayList<Order> orders = OrderDataHandler.getOrders();
     private Stage stage;
@@ -19,12 +22,22 @@ public class ManagerOrderView {
     @FXML private Button goBackButton;
     @FXML private ListView orderList;
 
+    /**
+     * Default constructor for the class
+     */
     public ManagerOrderView(){}
 
+    /**
+     * Function to set the stage object to open the new window
+     * @param stage The stage required to open the window is passed from another class
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-    
+
+    /**
+     * Function to initialize the UI element
+     */
     public  void initialize(){
         refreshOrdersList();
         goBackButton.setOnAction(e->{
@@ -40,6 +53,12 @@ public class ManagerOrderView {
         });
     }
 
+    /**
+     * Function to edit the order
+     * It sends item to a new class which will handle the item edit process
+     * @param selectedItem The item to be edited
+     * @throws IOException exception called when it cannot find the file
+     */
     private void editOrder(String selectedItem) throws IOException {
         String id = extractID(selectedItem);
         Order requiredOrder = getOrderData(id);
@@ -59,6 +78,11 @@ public class ManagerOrderView {
         refreshOrdersList();
     }
 
+    /**
+     * Function to get the id from the data in the ui
+     * @param data The data is recieved from the UI
+     * @return Return the extracted id as string
+     */
     public static String extractID(String data) {
         int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
         int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
@@ -68,6 +92,11 @@ public class ManagerOrderView {
         return data.substring(startIndex, endIndex);
     }
 
+    /**
+     * Function to get the order data based on the id passed
+     * @param idString Extracted Id is passed as a string
+     * @return the order object is returned based on the condition
+     */
     private Order getOrderData(String idString) {
         int id = Integer.parseInt(idString);
         for (Order order : orders) {
@@ -78,6 +107,9 @@ public class ManagerOrderView {
         return null;
     }
 
+    /**
+     * Function to render the order list
+     */
     private void refreshOrdersList() {
         orderList.getItems().clear();
 
@@ -86,6 +118,10 @@ public class ManagerOrderView {
         }
     }
 
+    /**
+     * Funtion to handle the back button click.
+     * It will close the window when pressed
+     */
     private void handleBackButton() {
         if(stage!=null){
             stage.close();
