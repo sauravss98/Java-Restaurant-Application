@@ -7,13 +7,13 @@ public class Staff extends User{
     private boolean isStaff = true;
     private boolean isActive = true;
 
-    public Staff(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff,String userType,boolean isLoggedIn) {
+    public Staff(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff,String userType,boolean isLoggedIn,boolean isActive) {
         super(userId, email, firstName, lastName,userType,isLoggedIn);
         this.staffID = staffID;
         this.hoursWorked = hoursWorked;
         this.totalHours = totalHours;
         this.isStaff = isStaff;
-        this.isActive = true;
+        this.isActive = isActive;
     }
 
     @Override

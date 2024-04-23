@@ -142,10 +142,11 @@ public class  UserController {
                     String userType = row.getCell(5).getStringCellValue();
                     int hoursWorked = (int) row.getCell(6).getNumericCellValue();
                     int totalHours = (int) row.getCell(7).getNumericCellValue();
+                    boolean isActive = row.getCell(8).getBooleanCellValue();
                     boolean isStaff = true;
                     boolean isManager = true;
                     boolean isLoggedIn = false;
-                    Manager manager = new Manager(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn);
+                    Manager manager = new Manager(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn,isActive);
                     userCount++;
                     staffCount++;
                     managers.add(manager);
@@ -173,10 +174,11 @@ public class  UserController {
                     String userType = row.getCell(5).getStringCellValue();
                     int hoursWorked = (int) row.getCell(6).getNumericCellValue();
                     int totalHours = (int) row.getCell(7).getNumericCellValue();
+                    boolean isActive = row.getCell(8).getBooleanCellValue();
                     boolean isStaff = true;
                     boolean isManager = true;
                     boolean isLoggedIn = false;
-                    Chef chef = new Chef(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn);
+                    Chef chef = new Chef(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn,isActive);
                     userCount++;
                     staffCount++;
                     chefs.add(chef);
@@ -204,10 +206,11 @@ public class  UserController {
                     String userType = row.getCell(5).getStringCellValue();
                     int hoursWorked = (int) row.getCell(6).getNumericCellValue();
                     int totalHours = (int) row.getCell(7).getNumericCellValue();
+                    boolean isActive = row.getCell(8).getBooleanCellValue();
                     boolean isStaff = true;
                     boolean isManager = true;
                     boolean isLoggedIn = false;
-                    Waiter waiter = new Waiter(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn);
+                    Waiter waiter = new Waiter(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn,isActive);
                     userCount++;
                     staffCount++;
                     waiters.add(waiter);
@@ -235,10 +238,11 @@ public class  UserController {
                     String userType = row.getCell(5).getStringCellValue();
                     int hoursWorked = (int) row.getCell(6).getNumericCellValue();
                     int totalHours = (int) row.getCell(7).getNumericCellValue();
+                    boolean isActive = row.getCell(8).getBooleanCellValue();
                     boolean isStaff = true;
                     boolean isManager = true;
                     boolean isLoggedIn = false;
-                    Driver driver = new Driver(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn);
+                    Driver driver = new Driver(userId, email, firstName, lastName, staffId, hoursWorked,totalHours,isStaff,isManager,userType,isLoggedIn,isActive);
                     userCount++;
                     staffCount++;
                     drivers.add(driver);
@@ -351,6 +355,7 @@ public class  UserController {
             headerRow.createCell(5).setCellValue("User Type");
             headerRow.createCell(6).setCellValue("Hours Worked");
             headerRow.createCell(7).setCellValue("Total Hours");
+            headerRow.createCell(8).setCellValue("Active Status");
         }
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
@@ -362,6 +367,7 @@ public class  UserController {
         row.createCell(5).setCellValue(manager.getUserType());
         row.createCell(6).setCellValue(manager.getHoursWorked());
         row.createCell(7).setCellValue(manager.getTotalHours());
+        row.createCell(8).setCellValue(manager.getIsActive());
 
         for (int i = 0; i < 8; i++) {
             sheet.autoSizeColumn(i);
@@ -404,6 +410,7 @@ public class  UserController {
             headerRow.createCell(5).setCellValue("User Type");
             headerRow.createCell(6).setCellValue("Hours Worked");
             headerRow.createCell(7).setCellValue("Total Hours");
+            headerRow.createCell(7).setCellValue("Active Status");
         }
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
@@ -415,6 +422,7 @@ public class  UserController {
         row.createCell(5).setCellValue(chef.getUserType());
         row.createCell(6).setCellValue(chef.getHoursWorked());
         row.createCell(7).setCellValue(chef.getTotalHours());
+        row.createCell(8).setCellValue(chef.getIsActive());
 
         for (int i = 0; i < 8; i++) {
             sheet.autoSizeColumn(i);
@@ -457,6 +465,7 @@ public class  UserController {
             headerRow.createCell(5).setCellValue("User Type");
             headerRow.createCell(6).setCellValue("Hours Worked");
             headerRow.createCell(7).setCellValue("Total Hours");
+            headerRow.createCell(7).setCellValue("Active Status");
         }
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
@@ -468,6 +477,7 @@ public class  UserController {
         row.createCell(5).setCellValue(driver.getUserType());
         row.createCell(6).setCellValue(driver.getHoursWorked());
         row.createCell(7).setCellValue(driver.getTotalHours());
+        row.createCell(8).setCellValue(driver.getIsActive());
 
         for (int i = 0; i < 8; i++) {
             sheet.autoSizeColumn(i);
@@ -510,6 +520,7 @@ public class  UserController {
             headerRow.createCell(5).setCellValue("User Type");
             headerRow.createCell(6).setCellValue("Hours Worked");
             headerRow.createCell(7).setCellValue("Total Hours");
+            headerRow.createCell(8).setCellValue("Active Status");
         }
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
@@ -520,7 +531,7 @@ public class  UserController {
         row.createCell(4).setCellValue(waiter.getStaffID());
         row.createCell(5).setCellValue(waiter.getUserType());
         row.createCell(6).setCellValue(waiter.getHoursWorked());
-        row.createCell(7).setCellValue(waiter.getTotalHours());
+        row.createCell(7).setCellValue(waiter.getIsActive());
 
         for (int i = 0; i < 8; i++) {
             sheet.autoSizeColumn(i);

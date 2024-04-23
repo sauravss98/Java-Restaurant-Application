@@ -17,7 +17,8 @@ public class ManagerStaffStatusPage {
 
     @FXML
     private Button goBackButton;
-    @FXML private ListView staffList;
+    @FXML private ListView activeList;
+    @FXML private ListView inactiveList;
 
     public ManagerStaffStatusPage(){}
 
@@ -26,26 +27,60 @@ public class ManagerStaffStatusPage {
     }
 
     public  void initialize(){
-        refreshReservationList();
+        refreshActiveStaffList();
+        refreshInactiveStaffList();
         goBackButton.setOnAction(e->{
             handleBackButton();
         });
     }
 
-    private void refreshReservationList() {
-        staffList.getItems().clear();
+    private void refreshInactiveStaffList() {
+        inactiveList.getItems().clear();
 
         for (Manager manager : managers) {
-            staffList.getItems().add(manager.getStaffDescription());
+            if(!manager.getIsActive()) {
+                inactiveList.getItems().add(manager.getStaffDescription());
+            }
         }
         for (Chef chef : chefs) {
-            staffList.getItems().add(chef.getStaffDescription());
+            if(!chef.getIsActive()) {
+                inactiveList.getItems().add(chef.getStaffDescription());
+            }
         }
         for (Waiter waiter : waiters) {
-            staffList.getItems().add(waiter.getStaffDescription());
+            if(!waiter.getIsActive()) {
+                inactiveList.getItems().add(waiter.getStaffDescription());
+            }
         }
         for (Driver driver : drivers) {
-            staffList.getItems().add(driver.getStaffDescription());
+            if(!driver.getIsActive()) {
+                inactiveList.getItems().add(driver.getStaffDescription());
+            }
+        }
+    }
+
+    private void refreshActiveStaffList() {
+        activeList.getItems().clear();
+
+        for (Manager manager : managers) {
+            if(manager.getIsActive()) {
+                activeList.getItems().add(manager.getStaffDescription());
+            }
+        }
+        for (Chef chef : chefs) {
+            if(chef.getIsActive()) {
+                activeList.getItems().add(chef.getStaffDescription());
+            }
+        }
+        for (Waiter waiter : waiters) {
+            if(waiter.getIsActive()) {
+                activeList.getItems().add(waiter.getStaffDescription());
+            }
+        }
+        for (Driver driver : drivers) {
+            if(driver.getIsActive()) {
+                activeList.getItems().add(driver.getStaffDescription());
+            }
         }
     }
 

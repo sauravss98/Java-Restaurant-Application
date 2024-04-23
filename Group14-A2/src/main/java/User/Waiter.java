@@ -16,8 +16,8 @@ public class Waiter extends Staff{
         this.orderTaken = orderTaken;
     }
 
-    public Waiter(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff,boolean isWaiter,String userType,boolean isLoggedIn) {
-        super(userId, email, firstName, lastName, staffID, hoursWorked, totalHours, isStaff,userType,isLoggedIn);
+    public Waiter(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff,boolean isWaiter,String userType,boolean isLoggedIn,boolean isActive) {
+        super(userId, email, firstName, lastName, staffID, hoursWorked, totalHours, isStaff,userType,isLoggedIn,isActive);
         this.isWaiter = isWaiter;
     }
 }
