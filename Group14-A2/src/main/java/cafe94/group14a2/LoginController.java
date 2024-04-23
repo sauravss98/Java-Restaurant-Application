@@ -11,6 +11,7 @@ import java.util.Objects;
 
 /**
  * Class to control the login section
+ * @author Saurav
  */
 public class LoginController {
     @FXML private TextField EmailTextField;
@@ -20,6 +21,7 @@ public class LoginController {
      * Function to check whether email is valid or not
      * @param email it send the email as a string
      * @return returns the type of the user based on the used send
+     * @author Saurav
      */
     public String checkValidEmail(String email){
         String type = "";
@@ -60,6 +62,7 @@ public class LoginController {
      * Function to handle the login click in UI
      * it cheks if the user details are valid and are correct and then send it to the correct page based on the user type
      * @throws IOException exception called when it cannot find the file
+     * @author Saurav
      */
     @FXML
     protected void onLoginClick() throws IOException {
@@ -88,6 +91,7 @@ public class LoginController {
      * Function to handle the sigh up click button in the UI
      * it changes the page to the create user page
      * @throws IOException exception called when it cannot find the file
+     * @author Saurav
      */
     @FXML
     protected void onSignUpClick() throws IOException {

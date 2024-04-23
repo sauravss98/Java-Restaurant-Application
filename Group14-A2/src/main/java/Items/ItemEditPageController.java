@@ -7,6 +7,7 @@ import org.w3c.dom.Text;
 
 /**
  * Class for controlling the item edit page
+ * @author Saurav
  */
 public class ItemEditPageController {
     @FXML private Label itemNameText;
@@ -21,12 +22,14 @@ public class ItemEditPageController {
 
     /**
      * Constructor: default
+     * @author Saurav
      */
     public ItemEditPageController(){}
 
     /**
      * Function to set the current item in the instance of the class
      * @param item instance of item is sent
+     * @author Saurav
      */
      public void setCurrentItem(Item item){
         this.currentItem=item;
@@ -36,6 +39,7 @@ public class ItemEditPageController {
     /**
      * Function to set the stage(window) in the current class instance
      * @param stage the stage instance is passed
+     * @author Saurav
      */
     public void setStage(Stage stage){
         this.stage=stage;
@@ -43,6 +47,7 @@ public class ItemEditPageController {
 
     /**
      * Function to initialize the UI elements
+     * @author Saurav
      */
     public void initialize(){
         displayItemName();
@@ -60,6 +65,7 @@ public class ItemEditPageController {
 
     /**
      * Function to display the price spinner
+     * @author Saurav
      */
     private void refreshPriceSpinner() {
         if (currentItem != null) {
@@ -73,6 +79,7 @@ public class ItemEditPageController {
 
     /**
      * Function to handle the cancel click and close the window
+     * @author Saurav
      */
     private void handleCancelButton() {
         if (stage != null) {
@@ -82,6 +89,7 @@ public class ItemEditPageController {
 
     /**
      * Function to handle the confirm button and save the data changes made
+     * @author Saurav
      */
     private void handleConfirmButton() {
         int price = (int) priceSpinner.getValue();
@@ -97,6 +105,7 @@ public class ItemEditPageController {
 
     /**
      * Function to handle the remove button and remove the item form
+     * @author Saurav
      */
     private void handleRemoveButton() {
         currentItem.setItemIsActive(false);
@@ -108,6 +117,7 @@ public class ItemEditPageController {
 
     /**
      * Function to display the item name ui content
+     * @author Saurav
      */
     private void displayItemName() {
         if(currentItem!=null) {

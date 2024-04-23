@@ -20,6 +20,7 @@ import java.util.Objects;
 
 /**
  * Class to control  all the item data
+ * @author Saurav
  */
 public final class ItemDataController {
     private static int itemIDCounter=0;
@@ -28,6 +29,7 @@ public final class ItemDataController {
     /**
      * Function to get the array list of items
      * @return array list of item
+     * @author Saurav
      */
     public static ArrayList<Item> getItems() {
         return items;
@@ -36,6 +38,7 @@ public final class ItemDataController {
     /**
      * Function to add an item to the arraylist
      * @param item the instance of the item is sent
+     * @author Saurav
      */
     public static void addItems(Item item){
         items.add(item);
@@ -44,6 +47,7 @@ public final class ItemDataController {
     /**
      * Function to get the number of item id created till then
      * @return the count  of the number of items in the arraylist
+     * @author Saurav
      */
     public static int getItemIDCounter() {
         return itemIDCounter;
@@ -52,6 +56,7 @@ public final class ItemDataController {
     /**
      * Function to set the number of items in the arraylist after adding an element into the list
      * @param itemid the last item id used is sent
+     * @author Saurav
      */
     public static void setItemIDCounter(int itemid) {
         itemIDCounter = itemid;
@@ -61,6 +66,7 @@ public final class ItemDataController {
      * Function to search and return the item
      * @param itemId the item id used to searched
      * @return the item searched and found is sent
+     * @author Saurav
      */
     public static Item getItemById(int itemId) {
         for (Item item : items) {
@@ -77,6 +83,7 @@ public final class ItemDataController {
      * Function to edit the data in the excel sheet containing item data
      * @param item the instance of the item required.
      * @param mode the mode at which the function has to operate. There are 2 modes, edit and remove
+     * @author Saurav
      */
     public static void editExcelSheetData(Item item, String mode) {
         Workbook workbook;
@@ -122,6 +129,7 @@ public final class ItemDataController {
 
     /**
      * Function to load item data from the excel sheet
+     * @author Saurav
      */
     public static void loadItemsFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/Items/ItemData.xlsx")) {
@@ -150,6 +158,7 @@ public final class ItemDataController {
     /**
      * Function to save the item data to the excel sheet
      * @param item the instance of the item to add into the sheet is sent
+     * @author Saurav
      */
     public static void saveItemDataToExcel(Item item){
         Workbook workbook;

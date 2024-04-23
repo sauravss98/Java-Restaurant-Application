@@ -1,5 +1,10 @@
 package Items;
 
+/**
+ * Class for Item
+ * It is used to create the objects for items
+ * @author Saurav
+ */
 public class Item {
     private int itemID;
     private String itemName;
@@ -13,6 +18,7 @@ public class Item {
     /**
      * getter function for quantity
      * @return quantity
+     * @author Saurav
      */
     public int getQuantity() {
         return quantity;
@@ -21,6 +27,7 @@ public class Item {
     /**
      * setter function for quantity
      * @param quantity quantity value
+     * @author Saurav
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -30,6 +37,7 @@ public class Item {
     /**
      * getter function for item id
      * @return item id
+     * @author Saurav
      */
     public int getItemID() {
         return itemID;
@@ -38,6 +46,7 @@ public class Item {
     /**
      * getter function for quantity
      * @return special status
+     * @author Saurav
      */
     public boolean isSpecialItem() {
         return isSpecialItem;
@@ -46,6 +55,7 @@ public class Item {
     /**
      * setter function for special item status
      * @param specialItem special item status
+     * @author Saurav
      */
     public void setSpecialItem(boolean specialItem) {
         isSpecialItem = specialItem;
@@ -54,6 +64,7 @@ public class Item {
     /**
      * setter function for item id
      * @param itemID item id as int
+     * @author Saurav
      */
     public void setItemID(int itemID) {
         this.itemID = itemID;
@@ -62,6 +73,7 @@ public class Item {
     /**
      * getter function for quantity
      * @return item name
+     * @author Saurav
      */
     public String getItemName() {
         return itemName;
@@ -70,6 +82,7 @@ public class Item {
     /**
      * setter function for item name
      * @param itemName item name as string
+     * @author Saurav
      */
     public void setItemName(String itemName) {
         this.itemName = itemName;
@@ -78,6 +91,7 @@ public class Item {
     /**
      * getter function for quantity
      * @return price
+     * @author Saurav
      */
     public int getPrice() {
         return price;
@@ -86,6 +100,7 @@ public class Item {
     /**
      * setter function for price
      * @param price value of price as int
+     * @author Saurav
      */
     public void setPrice(int price) {
         this.price = price;
@@ -94,6 +109,7 @@ public class Item {
     /**
      * getter function for quantity
      * @return active status
+     * @author Saurav
      */
     public boolean isActive() {
         return isActive;
@@ -102,6 +118,7 @@ public class Item {
     /**
      * setter function for food made status
      * @param made boolean status
+     * @author Saurav
      */
     public void setMade(boolean made) {
         isActive = made;
@@ -114,6 +131,7 @@ public class Item {
      * @param price item price as int
      * @param isSpecialItem item special status as boolean
      * @param isActive item is active status as boolean
+     * @author Saurav
      */
     public Item(int itemID, String itemName, int price,boolean isSpecialItem,boolean isActive) {
         this.itemID = itemID;
@@ -128,6 +146,7 @@ public class Item {
     /**
      * function for getting description for the menu
      * @return string with description
+     * @author Saurav
      */
     public String getDescriptionForMenuList() {
         return "ID: " + itemID + " Item: " + itemName + " - price: " + price;
@@ -136,13 +155,15 @@ public class Item {
     /**
      * function for getting description for the list view
      * @return string with description
+     * @author Saurav
      */
     public String getDescriptionForList() {
         return "ID: "+itemID+" Item: " + itemName + " - price: "+price;
     }
 
     /**
-     * setter function for quantity
+     * Setter function for quantity
+     * @author Saurav
      */
     public void addQuantity(){
         this.quantity = quantity+1;
@@ -151,6 +172,7 @@ public class Item {
     /**
      * getter function for item active status
      * @return item active status
+     * @author Saurav
      */
     public boolean isItemIsActive() {
         return itemIsActive;
@@ -159,6 +181,7 @@ public class Item {
     /**
      * setter function for quantity
      * @param itemIsActive send item active status
+     * @author Saurav
      */
     public void setItemIsActive(boolean itemIsActive) {
         this.itemIsActive = itemIsActive;

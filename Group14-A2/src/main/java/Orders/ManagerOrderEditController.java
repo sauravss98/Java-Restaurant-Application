@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 /**
  * Class for controlling the order edit page for the manager
+ * @author Saurav
  */
 public class ManagerOrderEditController {
     @FXML private Label orderIdLabel;
@@ -26,12 +27,14 @@ public class ManagerOrderEditController {
 
     /**
      * Default constructor for the class
+     * @author Saurav
      */
     public ManagerOrderEditController(){}
 
     /**
      * Function to set the instance of the class with the order
      * @param order passes order from different classes
+     * @author Saurav
      */
     public void setOrder(Order order){
         this.currentOrder = order;
@@ -41,6 +44,7 @@ public class ManagerOrderEditController {
     /**
      * Function to set the instance of the class with the stage
      * @param stage passes the stage from different classes
+     * @author Saurav
      */
     public void setStage(Stage stage){
         this.stage = stage;
@@ -48,6 +52,7 @@ public class ManagerOrderEditController {
 
     /**
      * Function to initialize the UI elements of the application
+     * @author Saurav
      */
     public void initialize(){
         renderPage();
@@ -65,6 +70,7 @@ public class ManagerOrderEditController {
     /**
      * Function to handle the update button click
      * The required data is saved
+     * @author Saurav
      */
     private void handleUpdateButton() {
         try {
@@ -82,6 +88,7 @@ public class ManagerOrderEditController {
 
     /**
      * Function to render the page with data required
+     * @author Saurav
      */
     private void renderPage() {
         if(currentOrder!=null) {
@@ -101,6 +108,7 @@ public class ManagerOrderEditController {
     /**
      * Function to handle the cancel click button
      * It closes the stage when the button is clicked
+     * @author Saurav
      */
     private void handleCancelClick() {
         if(stage!=null){
