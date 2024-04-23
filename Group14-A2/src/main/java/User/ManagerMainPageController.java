@@ -26,6 +26,7 @@ public class ManagerMainPageController {
     @FXML private Button checkReservationsButton;
     @FXML private Button manageItemButton;
     @FXML private Button logoutButton;
+    @FXML private Button reportButton;
     @FXML private ListView activeOrdersList;
     @FXML private ListView activeStaffList;
     private static Manager manager;
