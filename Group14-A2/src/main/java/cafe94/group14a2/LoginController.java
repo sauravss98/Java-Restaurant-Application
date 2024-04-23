@@ -9,11 +9,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control the login section
+ */
 public class LoginController {
     @FXML private TextField EmailTextField;
     @FXML private Label LoginErrorLabel;
 
-
+    /**
+     * Function to check whether email is valid or not
+     * @param email it send the email as a string
+     * @return returns the type of the user based on the used send
+     */
     public String checkValidEmail(String email){
         String type = "";
         ArrayList<Customer> customers = UserController.getCustomers();
@@ -49,6 +56,11 @@ public class LoginController {
         return type;
     }
 
+    /**
+     * Function to handle the login click in UI
+     * it cheks if the user details are valid and are correct and then send it to the correct page based on the user type
+     * @throws IOException exception called when it cannot find the file
+     */
     @FXML
     protected void onLoginClick() throws IOException {
         String email = EmailTextField.getText();
@@ -72,6 +84,11 @@ public class LoginController {
         }
     }
 
+    /**
+     * Function to handle the sigh up click button in the UI
+     * it changes the page to the create user page
+     * @throws IOException exception called when it cannot find the file
+     */
     @FXML
     protected void onSignUpClick() throws IOException {
         Main.setRoot("createUser");
