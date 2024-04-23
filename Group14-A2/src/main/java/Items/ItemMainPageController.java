@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to control the item main page
+ */
 public class ItemMainPageController {
     private ArrayList<Item> items = ItemDataController.getItems();
     private static Manager activeManager;
@@ -22,16 +25,31 @@ public class ItemMainPageController {
     @FXML private Button backButton;
     @FXML private ListView itemsList;
 
+    /**
+     * Constructor to instantiate the class
+     * @param manager
+     */
     public ItemMainPageController(Manager manager){
         this.activeManager = manager;
         setActiveManager(manager);
     }
+
+    /**
+     * Default constructor for the Class
+     */
     public ItemMainPageController(){}
 
+    /**
+     * Function to set the active manager in the instance of the class form other classes
+     * @param manager manager instance is passed
+     */
     public void setActiveManager(Manager manager){
         this.activeManager = manager;
     }
 
+    /**
+     * Function to initialize the UI elements in the page
+     */
     public void initialize(){
         refreshItemList();
         backButton.setOnAction(e->{
@@ -50,6 +68,11 @@ public class ItemMainPageController {
         });
     }
 
+    /**
+     * Function handle the edit item button. A new window is opened with the details of the item to be edited loaded
+     * @param selectedItem The selected item is passed
+     * @throws IOException exception called when it cannot find the file
+     */
     private void editItem(String selectedItem) throws IOException {
         String id = extractID(selectedItem);
         Item requiredItem = getItemData(id);
@@ -68,6 +91,11 @@ public class ItemMainPageController {
         refreshItemList();
     }
 
+    /**
+     * Function to get the id as integer from the ui element
+     * @param data String data of the selected item details is sent
+     * @return it returns the id as string
+     */
     public static String extractID(String data) {
         int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
         int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
@@ -77,6 +105,11 @@ public class ItemMainPageController {
         return data.substring(startIndex, endIndex);
     }
 
+    /**
+     * Function to get the item data
+     * @param idString passes the id as string
+     * @return returns the item object
+     */
     private Item getItemData(String idString) {
         int id = Integer.parseInt(idString);
         for (Item item : items) {
@@ -87,6 +120,10 @@ public class ItemMainPageController {
         return null;
     }
 
+    /**
+     * Function to handle the new item button click
+     * It will open a new window where the user can create the new item
+     */
     private void handleNewItemMenuClick() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/itemCreatePage.fxml"));
@@ -109,6 +146,10 @@ public class ItemMainPageController {
         }
     }
 
+    /**
+     * function to handle the back button click.
+     * When triggered it will go back to the main manager landing page
+     */
     private void handleBackButtonClick() {
         try {
             Main.setRoot("managerMainPage");
@@ -118,6 +159,9 @@ public class ItemMainPageController {
     }
 
 
+    /**
+     * Function to display all the items in the database(Excel sheets)
+     */
     private void refreshItemList() {
         // Clear the displayed list
         itemsList.getItems().clear();
