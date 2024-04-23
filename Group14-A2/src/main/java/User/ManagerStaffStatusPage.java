@@ -36,16 +36,16 @@ public class ManagerStaffStatusPage {
         staffList.getItems().clear();
 
         for (Manager manager : managers) {
-            staffList.getItems().add(manager.toString());
+            staffList.getItems().add(manager.getStaffDescription());
         }
         for (Chef chef : chefs) {
-            staffList.getItems().add(chef.toString());
+            staffList.getItems().add(chef.getStaffDescription());
         }
         for (Waiter waiter : waiters) {
-            staffList.getItems().add(waiter.toString());
+            staffList.getItems().add(waiter.getStaffDescription());
         }
         for (Driver driver : drivers) {
-            staffList.getItems().add(driver.toString());
+            staffList.getItems().add(driver.getStaffDescription());
         }
     }
 

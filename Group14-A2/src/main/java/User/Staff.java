@@ -5,6 +5,7 @@ public class Staff extends User{
     private int hoursWorked;
     private int totalHours;
     private boolean isStaff = true;
+    private boolean isActive = true;
 
     public Staff(int userId, String email, String firstName, String lastName, int staffID, int hoursWorked, int totalHours, boolean isStaff,String userType,boolean isLoggedIn) {
         super(userId, email, firstName, lastName,userType,isLoggedIn);
@@ -12,6 +13,20 @@ public class Staff extends User{
         this.hoursWorked = hoursWorked;
         this.totalHours = totalHours;
         this.isStaff = isStaff;
+        this.isActive = true;
+    }
+
+    @Override
+    public String getStaffDescription() {
+        return super.getStaffDescription() + " Hours Worked: " + hoursWorked+" Total Hours: "+ totalHours;
+    }
+
+    public void setIsActive(boolean isActive){
+        this.isActive = isActive;
+    }
+
+    public boolean getIsActive(){
+        return isActive;
     }
 
     public int getStaffID() {

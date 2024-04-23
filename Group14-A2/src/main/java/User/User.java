@@ -20,6 +20,14 @@ public class User {
                 '}';
     }
 
+    public String getFullName(){
+        return firstName+" "+lastName;
+    }
+
+    public String getStaffDescription(){
+        return "ID: "+userId+" Name: "+getFullName()+"Staff Type: "+userType;
+    }
+
     public User(int userID,String email, String firstName, String lastName,String userType,boolean isLoggedIn) {
         this.userId = userID;
         this.email = email;
