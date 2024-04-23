@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * The main class used to control the customer landing page
+ */
 public class CustomerPageController implements Initializable {
     private static String activeUserEmail;
     private static ArrayList<Customer> customers = UserController.getCustomers();
@@ -50,7 +53,7 @@ public class CustomerPageController implements Initializable {
 
     /**
      * Constructor to instantiate the controller
-     * @param activeUserEmail
+     * @param activeUserEmail sends the email id as a string
      */
     public CustomerPageController(String activeUserEmail) {
         this.activeUserEmail = activeUserEmail;
@@ -58,8 +61,8 @@ public class CustomerPageController implements Initializable {
 
     /**
      * Function to initialize the controller UI
-     * @param url
-     * @param resourceBundle
+     * @param url its sends location of file
+     * @param resourceBundle it sends location of in build resource bundle
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("activeemail is this: " + activeUserEmail);
@@ -113,7 +116,7 @@ public class CustomerPageController implements Initializable {
 
     /**
      *  Function to handle logout button
-     * @throws IOException
+     * @throws IOException exception called when it cannot find the file
      */
     private void handleLogoutButtonAction() throws IOException {
         currentCustomer = null;
@@ -149,8 +152,8 @@ public class CustomerPageController implements Initializable {
 
     /**
      * Function that is used to edit the details of the item
-     * @param item
-     * @throws IOException
+     * @param item it passes the item details as a string
+     * @throws IOException exception called when it cannot find the file
      */
     private void editItem(String item) throws IOException {
         String id = extractID(item);
@@ -174,7 +177,7 @@ public class CustomerPageController implements Initializable {
 
     /**
      * Function to get the details of order data
-     * @param idString
+     * @param idString it sends the item id as a string
      * @return orderitem
      */
     private OrderItem getOrderItemData(String idString) {
@@ -190,7 +193,7 @@ public class CustomerPageController implements Initializable {
 
     /**
      *This is the funtion that is used to handle the order
-     * @param selectedItem
+     * @param selectedItem it sends the object of the selected item
      * If there is no order a new order is created and the item is added to the order
      * If an order exists takes the selected item as parameter and adds the new item to the list
      */
@@ -226,7 +229,7 @@ public class CustomerPageController implements Initializable {
 
     /**
      * A function to return the item corresponding to the id passed through
-     * @param idString
+     * @param idString it sends id as a string
      * @return item
      */
     public Item getItemData(String idString){
@@ -241,7 +244,7 @@ public class CustomerPageController implements Initializable {
 
     /**
      * A function to get the id from the String recieved based on the user input
-     * @param data
+     * @param data it sends the data as a string
      * @return id
      */
     public static String extractID(String data) {
