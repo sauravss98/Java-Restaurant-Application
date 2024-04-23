@@ -18,24 +18,50 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control  all the item data
+ */
 public final class ItemDataController {
     private static int itemIDCounter=0;
     private static ArrayList<Item> items = new ArrayList<>();
+
+    /**
+     * Function to get the array list of items
+     * @return array list of item
+     */
     public static ArrayList<Item> getItems() {
         return items;
     }
+
+    /**
+     * Function to add an item to the arraylist
+     * @param item the instance of the item is sent
+     */
     public static void addItems(Item item){
         items.add(item);
     }
 
+    /**
+     * Function to get the number of item id created till then
+     * @return the count  of the number of items in the arraylist
+     */
     public static int getItemIDCounter() {
         return itemIDCounter;
     }
 
+    /**
+     * Function to set the number of items in the arraylist after adding an element into the list
+     * @param itemid the last item id used is sent
+     */
     public static void setItemIDCounter(int itemid) {
         itemIDCounter = itemid;
     }
 
+    /**
+     * Function to search and return the item
+     * @param itemId the item id used to searched
+     * @return the item searched and found is sent
+     */
     public static Item getItemById(int itemId) {
         for (Item item : items) {
             if (item.getItemID() == itemId) {
@@ -47,6 +73,11 @@ public final class ItemDataController {
 
     private static final String FILE_PATH = "src/main/java/Items/ItemData.xlsx";
 
+    /**
+     * Function to edit the data in the excel sheet containing item data
+     * @param item the instance of the item required.
+     * @param mode the mode at which the function has to operate. There are 2 modes, edit and remove
+     */
     public static void editExcelSheetData(Item item, String mode) {
         Workbook workbook;
         try {
@@ -89,6 +120,9 @@ public final class ItemDataController {
         }
     }
 
+    /**
+     * Function to load item data from the excel sheet
+     */
     public static void loadItemsFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/Items/ItemData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
@@ -113,6 +147,10 @@ public final class ItemDataController {
         }
     }
 
+    /**
+     * Function to save the item data to the excel sheet
+     * @param item the instance of the item to add into the sheet is sent
+     */
     public static void saveItemDataToExcel(Item item){
         Workbook workbook;
         Sheet sheet;
