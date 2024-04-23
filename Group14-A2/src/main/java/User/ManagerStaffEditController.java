@@ -106,9 +106,30 @@ public class ManagerStaffEditController {
         cancelButton.setOnAction(e->{
             handleCancelClick();
         });
+        removeStaffButton.setOnAction(e->{
+            handleRemoveButton();
+        });
     }
 
     private void handleCancelClick() {
+        if(stage!=null){
+            stage.close();
+        }
+    }
+
+    private void handleRemoveButton(){
+        if(activeStaff.getUserType().equals("Manager")){
+            activeManager.setIsActive(false);
+        }
+        if(activeStaff.getUserType().equals("Chef")){
+            activeChef.setIsActive(false);
+        }
+        if(activeStaff.getUserType().equals("Driver")){
+            activeDriver.setIsActive(false);
+        }
+        if(activeStaff.getUserType().equals("Waiter")){
+            activeWaiter.setIsActive(false);
+        }
         if(stage!=null){
             stage.close();
         }
