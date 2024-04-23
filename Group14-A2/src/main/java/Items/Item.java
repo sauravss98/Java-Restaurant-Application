@@ -11,14 +11,16 @@ public class Item {
     private int quantity;
 
     /**
-     * @return
+     * getter function for quantity
+     * @return quantity
      */
     public int getQuantity() {
         return quantity;
     }
 
     /**
-     * @param quantity
+     * setter function for quantity
+     * @param quantity quantity value
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -26,81 +28,92 @@ public class Item {
 
 
     /**
-     * @return
+     * getter function for item id
+     * @return item id
      */
     public int getItemID() {
         return itemID;
     }
 
     /**
-     * @return
+     * getter function for quantity
+     * @return special status
      */
     public boolean isSpecialItem() {
         return isSpecialItem;
     }
 
     /**
-     * @param specialItem
+     * setter function for special item status
+     * @param specialItem special item status
      */
     public void setSpecialItem(boolean specialItem) {
         isSpecialItem = specialItem;
     }
 
     /**
-     * @param itemID
+     * setter function for item id
+     * @param itemID item id as int
      */
     public void setItemID(int itemID) {
         this.itemID = itemID;
     }
 
     /**
-     * @return
+     * getter function for quantity
+     * @return item name
      */
     public String getItemName() {
         return itemName;
     }
 
     /**
-     * @param itemName
+     * setter function for item name
+     * @param itemName item name as string
      */
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
 
     /**
-     * @return
+     * getter function for quantity
+     * @return price
      */
     public int getPrice() {
         return price;
     }
 
     /**
-     * @param price
+     * setter function for price
+     * @param price value of price as int
      */
     public void setPrice(int price) {
         this.price = price;
     }
 
     /**
-     * @return
+     * getter function for quantity
+     * @return active status
      */
     public boolean isActive() {
         return isActive;
     }
 
     /**
-     * @param made
+     * setter function for food made status
+     * @param made boolean status
      */
     public void setMade(boolean made) {
         isActive = made;
     }
 
     /**
-     * @param itemID
-     * @param itemName
-     * @param price
-     * @param isSpecialItem
-     * @param isActive
+     * It is the constructor that is used to create a new instance of the Item
+     * @param itemID item id as int
+     * @param itemName item name as string
+     * @param price item price as int
+     * @param isSpecialItem item special status as boolean
+     * @param isActive item is active status as boolean
      */
     public Item(int itemID, String itemName, int price,boolean isSpecialItem,boolean isActive) {
         this.itemID = itemID;
@@ -113,35 +126,39 @@ public class Item {
     }
 
     /**
-     * @return
+     * function for getting description for the menu
+     * @return string with description
      */
     public String getDescriptionForMenuList() {
         return "ID: " + itemID + " Item: " + itemName + " - price: " + price;
     }
 
     /**
-     * @return
+     * function for getting description for the list view
+     * @return string with description
      */
     public String getDescriptionForList() {
         return "ID: "+itemID+" Item: " + itemName + " - price: "+price;
     }
 
     /**
-     *
+     * setter function for quantity
      */
     public void addQuantity(){
         this.quantity = quantity+1;
     }
 
     /**
-     * @return
+     * getter function for item active status
+     * @return item active status
      */
     public boolean isItemIsActive() {
         return itemIsActive;
     }
 
     /**
-     * @param itemIsActive
+     * setter function for quantity
+     * @param itemIsActive send item active status
      */
     public void setItemIsActive(boolean itemIsActive) {
         this.itemIsActive = itemIsActive;
