@@ -8,6 +8,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+
+/**
+ * Class for controlling the order edit page for the manager
+ */
 public class ManagerOrderEditController {
     @FXML private Label orderIdLabel;
     @FXML private Label orderTypeLabel;
@@ -20,17 +24,31 @@ public class ManagerOrderEditController {
     private Stage stage;
     private ObservableList<String> options = FXCollections.observableArrayList();
 
+    /**
+     * Default constructor for the class
+     */
     public ManagerOrderEditController(){}
 
+    /**
+     * Function to set the instance of the class with the order
+     * @param order passes order from different classes
+     */
     public void setOrder(Order order){
         this.currentOrder = order;
         initialize();
     }
 
+    /**
+     * Function to set the instance of the class with the stage
+     * @param stage passes the stage from different classes
+     */
     public void setStage(Stage stage){
         this.stage = stage;
     }
 
+    /**
+     * Function to initialize the UI elements of the application
+     */
     public void initialize(){
         renderPage();
         warningLabel.setVisible(false);
@@ -44,6 +62,10 @@ public class ManagerOrderEditController {
         });
     }
 
+    /**
+     * Function to handle the update button click
+     * The required data is saved
+     */
     private void handleUpdateButton() {
         try {
             String userType = statusChoiceBox.getValue().toString();
@@ -58,6 +80,9 @@ public class ManagerOrderEditController {
         }
     }
 
+    /**
+     * Function to render the page with data required
+     */
     private void renderPage() {
         if(currentOrder!=null) {
             orderIdLabel.setText(String.valueOf(currentOrder.getOrderId()));
@@ -73,6 +98,10 @@ public class ManagerOrderEditController {
         }
     }
 
+    /**
+     * Function to handle the cancel click button
+     * It closes the stage when the button is clicked
+     */
     private void handleCancelClick() {
         if(stage!=null){
             stage.close();
