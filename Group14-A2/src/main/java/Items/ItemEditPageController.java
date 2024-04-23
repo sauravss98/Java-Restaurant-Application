@@ -5,6 +5,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
+/**
+ * Class for controlling the item edit page
+ */
 public class ItemEditPageController {
     @FXML private Label itemNameText;
     @FXML private Spinner priceSpinner;
@@ -16,17 +19,31 @@ public class ItemEditPageController {
     private Item currentItem;
     private Stage stage;
 
+    /**
+     * Constructor: default
+     */
     public ItemEditPageController(){}
 
+    /**
+     * Function to set the current item in the instance of the class
+     * @param item instance of item is sent
+     */
      public void setCurrentItem(Item item){
         this.currentItem=item;
         initialize();
      }
 
+    /**
+     * Function to set the stage(window) in the current class instance
+     * @param stage the stage instance is passed
+     */
     public void setStage(Stage stage){
         this.stage=stage;
     }
 
+    /**
+     * Function to initialize the UI elements
+     */
     public void initialize(){
         displayItemName();
         refreshPriceSpinner();
@@ -41,6 +58,9 @@ public class ItemEditPageController {
         });
     }
 
+    /**
+     * Function to display the price spinner
+     */
     private void refreshPriceSpinner() {
         if (currentItem != null) {
             SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, currentItem.getPrice());
@@ -51,12 +71,18 @@ public class ItemEditPageController {
         }
     }
 
+    /**
+     * Function to handle the cancel click and close the window
+     */
     private void handleCancelButton() {
         if (stage != null) {
             stage.close();
         }
     }
 
+    /**
+     * Function to handle the confirm button and save the data changes made
+     */
     private void handleConfirmButton() {
         int price = (int) priceSpinner.getValue();
         boolean toggleButtonInput = specialButton.isSelected();
@@ -69,6 +95,9 @@ public class ItemEditPageController {
         }
     }
 
+    /**
+     * Function to handle the remove button and remove the item form
+     */
     private void handleRemoveButton() {
         currentItem.setItemIsActive(false);
         ItemDataController.editExcelSheetData(currentItem,"remove");
@@ -77,6 +106,9 @@ public class ItemEditPageController {
         }
     }
 
+    /**
+     * Function to display the item name ui content
+     */
     private void displayItemName() {
         if(currentItem!=null) {
             itemNameText.setText("Item Name : "+currentItem.getItemName());
