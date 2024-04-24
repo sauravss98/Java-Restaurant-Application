@@ -52,7 +52,11 @@ public class WaiterMainPageController {
             }
         });
         logTimeButton.setOnAction(e->{
-            handleLogTimeClick();
+            try {
+                handleLogTimeClick();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         logoutButton.setOnAction(e->{
             handleLogoutButtonClick();
@@ -67,7 +71,18 @@ public class WaiterMainPageController {
         }
     }
 
-    private void handleLogTimeClick() {
+    private void handleLogTimeClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/waiterTimeLogger.fxml"));
+        Parent root = loader.load();
+        WaiterTimeLogController controller = loader.getController();
+        controller.setCurrentWaiter(activeWaiter);
+
+        Stage orderViewStage = new Stage();
+        controller.setStage(orderViewStage);
+        orderViewStage.setTitle("Edit Time Log");
+        orderViewStage.setScene(new Scene(root, 600, 600));
+        orderViewStage.initModality(Modality.APPLICATION_MODAL);
+        orderViewStage.showAndWait();
     }
 
     private void handleCheckOrderButtonClick() throws IOException {
