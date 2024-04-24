@@ -7,9 +7,14 @@ import User.Waiter;
 import User.WaiterMainPageController;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,6 +56,10 @@ public class WaiterOrderController {
 
     public void initialize(){
         refreshMenu();
+        refreshOrderItemList();
+        CompleteOrder.setOnAction(e->{
+            handleCompleteOrderClick();
+        });
         backButton.setOnAction(e->{
             handleBackButton();
         });
@@ -72,6 +81,65 @@ public class WaiterOrderController {
             System.out.println("Name: "+requiredItem.getItemName());
             handleOrder(requiredItem);
         });
+        OrdersList.setOnMouseClicked(event ->{
+            String selectedItem = (String) OrdersList.getSelectionModel().getSelectedItem();
+            try {
+                editItem(selectedItem);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    private void handleCompleteOrderClick() {
+        currentOrder.setOrderType("dineIn");
+        currentOrder.setOrderStatus("InProgress");
+        OrderDataHandler.saveOrderDataToExcel(currentOrder);
+        try {
+            Main.setRoot("waiterMainPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Function that is used to edit the details of the item
+     * @param item it passes the item details as a string
+     * @throws IOException exception called when it cannot find the file
+     */
+    private void editItem(String item) throws IOException {
+        String id = extractID(item);
+        OrderItem requiredOrderItem = getOrderItemData(id);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderItemEditPage.fxml"));
+        Parent root = loader.load();
+        OrderItemEditPageController controller = loader.getController();
+        controller.setCurrentItem(requiredOrderItem);
+        controller.setCurrentOrder(currentOrder);
+        System.out.println("loader " + loader.getController());
+
+        Stage orderTypeStage = new Stage();
+        controller.setStage(orderTypeStage);
+        orderTypeStage.setTitle("Edit Item Detail");
+        orderTypeStage.setScene(new Scene(root, 600, 600));
+        orderTypeStage.initModality(Modality.APPLICATION_MODAL);
+        orderTypeStage.showAndWait();
+        refreshOrderItemList();
+    }
+
+    /**
+     * Function to get the details of order data
+     * @param idString it sends the item id as a string
+     * @return orderitem
+     */
+    private OrderItem getOrderItemData(String idString) {
+        int id = Integer.parseInt(idString);
+        for (OrderItem orderItem : currentOrder.getOrderItems()) {
+            if (orderItem.getItem().getItemID() == id) {
+                return orderItem;
+            }
+        }
+        return null;
     }
 
     /**
@@ -118,7 +186,6 @@ public class WaiterOrderController {
      * If there is no order a new order is created and the item is added to the order
      * If an order exists takes the selected item as parameter and adds the new item to the list
      */
-
     private void handleOrder(Item selectedItem) {
         if (currentOrder == null) {
             int newOrderID = generateOrderId();
@@ -162,7 +229,6 @@ public class WaiterOrderController {
     }
 
     private void handleBackButton() {
-//        new WaiterMainPageController(activeEmail);
         try {
             Main.setRoot("waiterMainPage");
         } catch (IOException e) {
