@@ -1,9 +1,15 @@
 package User;
 
 import Orders.WaiterOrderController;
+import Orders.WaiterOrderViewController;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +45,11 @@ public class WaiterMainPageController {
             handleMakeOrderButtonClick();
         });
         checkOrderButton.setOnAction(e->{
-            handleCheckOrderButtonClick();
+            try {
+                handleCheckOrderButtonClick();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         logTimeButton.setOnAction(e->{
             handleLogTimeClick();
@@ -60,7 +70,18 @@ public class WaiterMainPageController {
     private void handleLogTimeClick() {
     }
 
-    private void handleCheckOrderButtonClick() {
+    private void handleCheckOrderButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/waiterOrderView.fxml"));
+        Parent root = loader.load();
+        WaiterOrderViewController controller = loader.getController();
+        controller.setActiveWaiter(activeWaiter);
+
+        Stage orderViewStage = new Stage();
+        controller.setStage(orderViewStage);
+        orderViewStage.setTitle("Edit Item Detail");
+        orderViewStage.setScene(new Scene(root, 600, 600));
+        orderViewStage.initModality(Modality.APPLICATION_MODAL);
+        orderViewStage.showAndWait();
     }
 
     private void handleMakeOrderButtonClick() {

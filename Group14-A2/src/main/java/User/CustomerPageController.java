@@ -222,7 +222,6 @@ public class CustomerPageController implements Initializable {
                 maxOrderId = order.getOrderId();
             }
         }
-
         // Return the next available order ID
         return maxOrderId + 1;
     }
