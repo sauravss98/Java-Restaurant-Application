@@ -573,7 +573,7 @@ public class  UserController {
                 if (userId == manager.getUserId()) {
                     if(Objects.equals(mode, "edit")) {
                         row.getCell(6).setCellValue(manager.getHoursWorked());
-                        row.getCell(3).setCellValue(manager.getTotalHours());
+                        row.getCell(7).setCellValue(manager.getTotalHours());
                         break;
                     } else if (Objects.equals(mode, "remove")) {
                         row.getCell(8).setCellValue(manager.getIsActive());
@@ -615,7 +615,7 @@ public class  UserController {
                 if (userId == chef.getUserId()) {
                     if(Objects.equals(mode, "edit")) {
                         row.getCell(6).setCellValue(chef.getHoursWorked());
-                        row.getCell(3).setCellValue(chef.getTotalHours());
+                        row.getCell(7).setCellValue(chef.getTotalHours());
                         break;
                     } else if (Objects.equals(mode, "remove")) {
                         row.getCell(8).setCellValue(chef.getIsActive());
@@ -657,7 +657,7 @@ public class  UserController {
                 if (userId == waiter.getUserId()) {
                     if(Objects.equals(mode, "edit")) {
                         row.getCell(6).setCellValue(waiter.getHoursWorked());
-                        row.getCell(3).setCellValue(waiter.getTotalHours());
+                        row.getCell(7).setCellValue(waiter.getTotalHours());
                         break;
                     } else if (Objects.equals(mode, "remove")) {
                         row.getCell(8).setCellValue(waiter.getIsActive());
@@ -699,7 +699,7 @@ public class  UserController {
                 if (userId == driver.getUserId()) {
                     if(Objects.equals(mode, "edit")) {
                         row.getCell(6).setCellValue(driver.getHoursWorked());
-                        row.getCell(3).setCellValue(driver.getTotalHours());
+                        row.getCell(7).setCellValue(driver.getTotalHours());
                         break;
                     } else if (Objects.equals(mode, "remove")) {
                         row.getCell(8).setCellValue(driver.getIsActive());
