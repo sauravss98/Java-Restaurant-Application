@@ -18,27 +18,88 @@ public class Order {
 
     private String orderStatus;
     private boolean isCompleted = false;
-    private int customerId;
+    private int customerId=0;
+    private int managerId=0;
+    private int waiterId=0;
+    private int chefId=0;
+    private int driverId=0;
     private Date orderDate;
     private Timestamp orderCreatedTime;
     private Timestamp orderCompletedTime;
 
     private ArrayList<OrderItem> orderItems = new ArrayList<>();
 
+
     /**
      * Getter function for customer id
-     * @return customerID
+     * @return customerId
      */
     public int getCustomerId() {
         return customerId;
     }
 
     /**
-     * Setter function for setting the customer id
-     * @param customerId the customer id is passed
+     * Getter function for manager id
+     * @return managerId
      */
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public int getManagerId() {
+        return managerId;
+    }
+
+    /**
+     * Setter function for setting the manager id
+     * @param managerId the manager id is passed
+     */
+    public void setManagerId(int managerId) {
+        this.managerId = managerId;
+    }
+
+    /**
+     * Getter function for waiter id
+     * @return waiterId
+     */
+    public int getWaiterId() {
+        return waiterId;
+    }
+
+    /**
+     * Setter function for setting the waiter id
+     * @param waiterId the waiter id is passed
+     */
+    public void setWaiterId(int waiterId) {
+        this.waiterId = waiterId;
+    }
+
+    /**
+     * Getter function for chef id
+     * @return chef
+     */
+    public int getChefId() {
+        return chefId;
+    }
+
+    /**
+     * Setter function for setting the chef id
+     * @param chefId the chef id is passed
+     */
+    public void setChefId(int chefId) {
+        this.chefId = chefId;
+    }
+
+    /**
+     * Getter function for driver id
+     * @return driverId
+     */
+    public int getDriverId() {
+        return driverId;
+    }
+
+    /**
+     * Setter function for setting the driver id
+     * @param driverId the driver id is passed
+     */
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 
     /**
@@ -284,7 +345,7 @@ public class Order {
      * @param orderStatus the order status is passed
      * @param customerId the customer id is passed
      */
-    public Order(int orderId, String orderType, ArrayList<Integer> items, boolean isCompleted,String orderStatus, int customerId) {
+    public Order(int orderId, String orderType, ArrayList<Integer> items, boolean isCompleted,String orderStatus, int customerId,int waiterId,int chefId,int driverId) {
         this.orderId = orderId;
         this.orderType = orderType;
         this.items = items;
@@ -292,6 +353,9 @@ public class Order {
         this.isCompleted = isCompleted;
         this.orderStatus = orderStatus;
         this.customerId = customerId;
+        this.waiterId = waiterId;
+        this.chefId = chefId;
+        this.driverId = driverId;
     }
 
 //    @Override

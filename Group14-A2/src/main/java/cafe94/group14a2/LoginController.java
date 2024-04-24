@@ -79,8 +79,11 @@ public class LoginController {
                     throw new RuntimeException(e);
                 }
             } else if(userType.equals("Manager")) {
-                    new ManagerMainPageController(email);
-                    Main.setRoot("managerMainPage");
+                new ManagerMainPageController(email);
+                Main.setRoot("managerMainPage");
+            } else if (userType.equals("Waiter")) {
+                new WaiterMainPageController(email);
+                Main.setRoot("waiterMainPage");
             }else {
                     LoginErrorLabel.setText("Not a user. Please try again or create new user");
             }

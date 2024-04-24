@@ -77,6 +77,9 @@ public class OrderDataHandler {
                     boolean isCompleted = row.getCell(3).getBooleanCellValue();
                     String orderStatus = row.getCell(4).getStringCellValue();
                     int customerId = (int) row.getCell(5).getNumericCellValue();
+                    int waiterId = (int) row.getCell(6).getNumericCellValue();
+                    int chefId = (int) row.getCell(7).getNumericCellValue();
+                    int driverId = (int) row.getCell(8).getNumericCellValue();
 
                     // parse the string to integer
                     String[] itemsArray = itemsString.substring(1, itemsString.length() - 1).split(",");
@@ -85,7 +88,7 @@ public class OrderDataHandler {
                         items.add(Integer.parseInt(item.trim()));
                     }
 
-                    Order order = new Order(orderId, orderType, items, isCompleted, orderStatus, customerId);
+                    Order order = new Order(orderId, orderType, items, isCompleted, orderStatus, customerId,waiterId,chefId,driverId);
                     for (Integer itemId : items) {
                         boolean itemExists = false;
                         for (OrderItem orderItem : order.getOrderItems()) {
@@ -137,6 +140,9 @@ public class OrderDataHandler {
             headerRow.createCell(3).setCellValue("Order Completed Status");
             headerRow.createCell(4).setCellValue("Order status");
             headerRow.createCell(5).setCellValue("Customer ID");
+            headerRow.createCell(6).setCellValue("Waiter Type");
+            headerRow.createCell(7).setCellValue("Chef Type");
+            headerRow.createCell(8).setCellValue("Driver Type");
         } else {
             try (FileInputStream inputStream = new FileInputStream(file)) {
                 workbook = new XSSFWorkbook(inputStream);
@@ -155,6 +161,9 @@ public class OrderDataHandler {
         row.createCell(3).setCellValue(order.isCompleted());
         row.createCell(4).setCellValue(order.getOrderStatus());
         row.createCell(5).setCellValue(order.getCustomerId());
+        row.createCell(6).setCellValue(order.getWaiterId());
+        row.createCell(7).setCellValue(order.getChefId());
+        row.createCell(8).setCellValue(order.getDriverId());
 
         for (int i = 0; i < 6; i++) {
             sheet.autoSizeColumn(i);

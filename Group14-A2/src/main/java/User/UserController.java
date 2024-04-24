@@ -410,7 +410,7 @@ public class  UserController {
             headerRow.createCell(5).setCellValue("User Type");
             headerRow.createCell(6).setCellValue("Hours Worked");
             headerRow.createCell(7).setCellValue("Total Hours");
-            headerRow.createCell(7).setCellValue("Active Status");
+            headerRow.createCell(8).setCellValue("Active Status");
         }
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
@@ -465,7 +465,7 @@ public class  UserController {
             headerRow.createCell(5).setCellValue("User Type");
             headerRow.createCell(6).setCellValue("Hours Worked");
             headerRow.createCell(7).setCellValue("Total Hours");
-            headerRow.createCell(7).setCellValue("Active Status");
+            headerRow.createCell(8).setCellValue("Active Status");
         }
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
@@ -531,7 +531,8 @@ public class  UserController {
         row.createCell(4).setCellValue(waiter.getStaffID());
         row.createCell(5).setCellValue(waiter.getUserType());
         row.createCell(6).setCellValue(waiter.getHoursWorked());
-        row.createCell(7).setCellValue(waiter.getIsActive());
+        row.createCell(7).setCellValue(waiter.getTotalHours());
+        row.createCell(8).setCellValue(waiter.getIsActive());
 
         for (int i = 0; i < 8; i++) {
             sheet.autoSizeColumn(i);
