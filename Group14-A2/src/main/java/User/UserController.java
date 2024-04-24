@@ -548,4 +548,173 @@ public class  UserController {
             }
         }
     }
+
+    public static void editStaffExcelData(Manager manager, String mode){
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream("src/main/java/User/ManagerData.xlsx");
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            // File doesn't exist or is empty, create a new workbook
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            // Workbook is empty, create a new sheet
+            sheet = workbook.createSheet("Sheet1");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int userId = (int) row.getCell(0).getNumericCellValue();
+                if (userId == manager.getUserId()) {
+                    if(Objects.equals(mode, "edit")) {
+                        row.getCell(6).setCellValue(manager.getHoursWorked());
+                        row.getCell(3).setCellValue(manager.getTotalHours());
+                        break;
+                    } else if (Objects.equals(mode, "remove")) {
+                        row.getCell(8).setCellValue(manager.getIsActive());
+                        break;
+                    }
+                }
+            }
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/ManagerData.xlsx")) {
+            workbook.write(outputStream);
+            System.out.println("Staff data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving Staff to Excel: " + e.getMessage());
+        }
+    }
+
+    public static void editStaffExcelData(Chef chef, String mode){
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream("src/main/java/User/ChefData.xlsx");
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            // File doesn't exist or is empty, create a new workbook
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            // Workbook is empty, create a new sheet
+            sheet = workbook.createSheet("Sheet1");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int userId = (int) row.getCell(0).getNumericCellValue();
+                if (userId == chef.getUserId()) {
+                    if(Objects.equals(mode, "edit")) {
+                        row.getCell(6).setCellValue(chef.getHoursWorked());
+                        row.getCell(3).setCellValue(chef.getTotalHours());
+                        break;
+                    } else if (Objects.equals(mode, "remove")) {
+                        row.getCell(8).setCellValue(chef.getIsActive());
+                        break;
+                    }
+                }
+            }
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/ChefData.xlsx")) {
+            workbook.write(outputStream);
+            System.out.println("Staff data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving Staff to Excel: " + e.getMessage());
+        }
+
+    }
+    public static void editStaffExcelData(Waiter waiter, String mode){
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream("src/main/java/User/WaiterData.xlsx");
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            // File doesn't exist or is empty, create a new workbook
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            // Workbook is empty, create a new sheet
+            sheet = workbook.createSheet("Sheet1");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int userId = (int) row.getCell(0).getNumericCellValue();
+                if (userId == waiter.getUserId()) {
+                    if(Objects.equals(mode, "edit")) {
+                        row.getCell(6).setCellValue(waiter.getHoursWorked());
+                        row.getCell(3).setCellValue(waiter.getTotalHours());
+                        break;
+                    } else if (Objects.equals(mode, "remove")) {
+                        row.getCell(8).setCellValue(waiter.getIsActive());
+                        break;
+                    }
+                }
+            }
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/WaiterData.xlsx")) {
+            workbook.write(outputStream);
+            System.out.println("Staff data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving Staff to Excel: " + e.getMessage());
+        }
+
+    }
+    public static void editStaffExcelData(Driver driver, String mode){
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream("src/main/java/User/DriverData.xlsx");
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            // File doesn't exist or is empty, create a new workbook
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            // Workbook is empty, create a new sheet
+            sheet = workbook.createSheet("Sheet1");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int userId = (int) row.getCell(0).getNumericCellValue();
+                if (userId == driver.getUserId()) {
+                    if(Objects.equals(mode, "edit")) {
+                        row.getCell(6).setCellValue(driver.getHoursWorked());
+                        row.getCell(3).setCellValue(driver.getTotalHours());
+                        break;
+                    } else if (Objects.equals(mode, "remove")) {
+                        row.getCell(8).setCellValue(driver.getIsActive());
+                        break;
+                    }
+                }
+            }
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/DriverData.xlsx")) {
+            workbook.write(outputStream);
+            System.out.println("Staff data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving Staff to Excel: " + e.getMessage());
+        }
+
+    }
 }

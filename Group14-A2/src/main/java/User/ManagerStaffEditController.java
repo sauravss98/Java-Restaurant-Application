@@ -14,6 +14,7 @@ public class ManagerStaffEditController {
     private ArrayList<Waiter> waiters = UserController.getWaiters();
     private ArrayList<Chef> chefs = UserController.getChefs();
     private ArrayList<Driver> drivers = UserController.getDrivers();
+    private ArrayList<Staff> staffs;
     private Stage stage;
     private Staff activeStaff;
     private Chef activeChef;
@@ -28,13 +29,17 @@ public class ManagerStaffEditController {
     @FXML private Button removeStaffButton;
     @FXML private Button cancelButton;
     @FXML private Button confirmStaffButton;
-
+    @FXML private Label warningLabel;
 
 
     public ManagerStaffEditController(){}
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public void setStaffArrayList(ArrayList<Staff> staffs){
+        this.staffs = staffs;
     }
 
     public void setStaff(Staff staff) {
@@ -99,6 +104,8 @@ public class ManagerStaffEditController {
     }
 
     public void initialize(){
+        warningLabel.setText("");
+        warningLabel.setVisible(false);
         refreshLabelData();
         if(activeManager!=null) {
             System.out.println("active user is " + activeManager.getFullName());
@@ -109,7 +116,36 @@ public class ManagerStaffEditController {
         removeStaffButton.setOnAction(e->{
             handleRemoveButton();
         });
+        confirmStaffButton.setOnAction(e->{
+            handleConfirmClickButton();
+        });
     }
+
+    private void handleConfirmClickButton() {
+        if((int)workedHoursSpinner.getValue()<(int)totalHoursSpinner.getValue()) {
+            activeStaff.setHoursWorked((int) workedHoursSpinner.getValue());
+            activeStaff.setTotalHours((int) totalHoursSpinner.getValue());
+            if (activeStaff.getUserType().equals("Manager")) {
+                UserController.editStaffExcelData(activeManager, "edit");
+            }
+            if (activeStaff.getUserType().equals("Chef")) {
+                UserController.editStaffExcelData(activeChef, "edit");
+            }
+            if (activeStaff.getUserType().equals("Driver")) {
+                UserController.editStaffExcelData(activeDriver, "edit");
+            }
+            if (activeStaff.getUserType().equals("Waiter")) {
+                UserController.editStaffExcelData(activeWaiter, "edit");
+            }
+            if (stage != null) {
+                stage.close();
+            }
+        }else {
+            warningLabel.setText("Enter Correct Value. Worked hours should be less than total");
+            warningLabel.setVisible(true);
+        }
+    }
+
 
     private void handleCancelClick() {
         if(stage!=null){
@@ -120,15 +156,19 @@ public class ManagerStaffEditController {
     private void handleRemoveButton(){
         if(activeStaff.getUserType().equals("Manager")){
             activeManager.setIsActive(false);
+            UserController.editStaffExcelData(activeManager,"remove");
         }
         if(activeStaff.getUserType().equals("Chef")){
             activeChef.setIsActive(false);
+            UserController.editStaffExcelData(activeChef,"remove");
         }
         if(activeStaff.getUserType().equals("Driver")){
             activeDriver.setIsActive(false);
+            UserController.editStaffExcelData(activeDriver,"remove");
         }
         if(activeStaff.getUserType().equals("Waiter")){
             activeWaiter.setIsActive(false);
+            UserController.editStaffExcelData(activeWaiter,"remove");
         }
         if(stage!=null){
             stage.close();

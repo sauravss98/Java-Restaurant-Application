@@ -45,7 +45,7 @@ public class ManagerMainPageController {
     public ManagerMainPageController(String email){
         this.activeEmail = email;
         for (Manager requiredManager: managersList){
-            if(activeEmail == requiredManager.getEmail()){
+            if(activeEmail.equals(requiredManager.getEmail())){
                 this.manager = requiredManager;
             }
         }

@@ -67,6 +67,7 @@ public class ManagerStaffStatusPage {
         }
         ManagerStaffEditController controller = loader.getController();
         controller.setStaff(requiredStaff);
+        controller.setStaffArrayList(staffs);
 
         Stage staffEditStage = new Stage();
         controller.setStage(staffEditStage);
