@@ -11,11 +11,13 @@ import org.w3c.dom.Text;
  */
 public class ItemEditPageController {
     @FXML private Label itemNameText;
+    @FXML private Label warningLabel;
     @FXML private Spinner priceSpinner;
     @FXML private Button removeItemButton;
     @FXML private Button confirmItemButton;
     @FXML private Button cancelButton;
     @FXML private ToggleButton specialButton;
+    @FXML private TextField itemNameTextBox;
 
     private Item currentItem;
     private Stage stage;
@@ -50,6 +52,8 @@ public class ItemEditPageController {
      * @author Saurav
      */
     public void initialize(){
+        warningLabel.setText("");
+        warningLabel.setVisible(false);
         displayItemName();
         refreshPriceSpinner();
         removeItemButton.setOnAction(e -> {
@@ -92,14 +96,21 @@ public class ItemEditPageController {
      * @author Saurav
      */
     private void handleConfirmButton() {
+        String itemName = itemNameTextBox.getText();
         int price = (int) priceSpinner.getValue();
         boolean toggleButtonInput = specialButton.isSelected();
         System.out.println("status "+toggleButtonInput);
-        currentItem.setPrice(price);
-        currentItem.setSpecialItem(toggleButtonInput);
-        ItemDataController.editExcelSheetData(currentItem,"edit");
-        if (stage != null) {
-            stage.close();
+        if(itemName!=null) {
+            currentItem.setItemName(itemName);
+            currentItem.setPrice(price);
+            currentItem.setSpecialItem(toggleButtonInput);
+            ItemDataController.editExcelSheetData(currentItem, "edit");
+            if (stage != null) {
+                stage.close();
+            }
+        } else{
+            warningLabel.setVisible(true);
+            warningLabel.setText("Item name null");
         }
     }
 

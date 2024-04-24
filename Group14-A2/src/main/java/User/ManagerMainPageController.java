@@ -1,10 +1,7 @@
 package User;
 
 import Items.ItemMainPageController;
-import Orders.ManagerOrderView;
-import Orders.OrderController;
-import Orders.OrderDataHandler;
-import Orders.OrderTypeWindowController;
+import Orders.*;
 import Reservation.ReservationManagerPage;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
@@ -28,10 +25,10 @@ public class ManagerMainPageController {
     @FXML private Button logoutButton;
     @FXML private Button reportButton;
     @FXML private ListView activeOrdersList;
-    @FXML private ListView activeStaffList;
     private static Manager manager;
     private static String activeEmail;
     private ArrayList<Manager> managersList = UserController.getManagers();
+    private ArrayList<Order> orders = OrderDataHandler.getOrders();
 
     /**
      * Construnctor for the controller
@@ -182,6 +179,12 @@ public class ManagerMainPageController {
     }
 
     private void refreshActiveOrderList(){
+        activeOrdersList.getItems().clear();
 
+        for (Order order : orders) {
+            if(order.getOrderStatus().equals("InProgress")){
+                activeOrdersList.getItems().add(order.getDescriptionForOrderList());
+            }
+        }
     }
 }

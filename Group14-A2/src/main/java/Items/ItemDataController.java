@@ -108,6 +108,7 @@ public final class ItemDataController {
                 int itemId = (int) row.getCell(0).getNumericCellValue();
                 if (itemId == item.getItemID()) {
                     if(Objects.equals(mode, "edit")) {
+                        row.getCell(1).setCellValue(item.getItemName());
                         row.getCell(2).setCellValue(item.getPrice());
                         row.getCell(3).setCellValue(item.isSpecialItem());
                         break;
