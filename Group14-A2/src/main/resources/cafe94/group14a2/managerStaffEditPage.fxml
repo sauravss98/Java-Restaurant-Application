@@ -10,6 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.ManagerStaffEditController">
     <children>
+      <Label fx:id="warningLabel" text="Label" textFill="RED" />
       <Label fx:id="idLabel" text="Label" />
       <Label fx:id="userNameLabel" text="Label" />
       <Label fx:id="userTypeLabel" text="Label" />
