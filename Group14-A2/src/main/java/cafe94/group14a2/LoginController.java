@@ -84,6 +84,9 @@ public class LoginController {
             } else if (userType.equals("Waiter")) {
                 new WaiterMainPageController(email);
                 Main.setRoot("waiterMainPage");
+            }else if(userType.equals("Chef")){
+                new ChefMainPageController(email);
+                Main.setRoot("chefMainPage");
             }else {
                     LoginErrorLabel.setText("Not a user. Please try again or create new user");
             }
