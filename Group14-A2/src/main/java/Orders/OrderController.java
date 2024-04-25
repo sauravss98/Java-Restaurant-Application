@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to control the order
+ */
 public class OrderController {
     private static Customer activeCustomer;
     @FXML private ListView OrderListView;
@@ -21,14 +24,24 @@ public class OrderController {
     @FXML private Button reservationButton;
     private static ArrayList<Order> orders = OrderDataHandler.getOrders();
 
+    /**
+     * Constructor
+     */
     public OrderController() {
         // Default constructor
     }
 
+    /**
+     * Function to set the active
+     * @param activeCustomer pass the active customer object
+     */
     public void setActiveCustomer(Customer activeCustomer) {
         this.activeCustomer = activeCustomer;
     }
 
+    /**
+     * Function to initialize the UI
+     */
     public void initialize()
     {
         System.out.println("Hi "+activeCustomer.getFirstName());
@@ -57,6 +70,11 @@ public class OrderController {
         });
     }
 
+    /**
+     * Function to create new window to launch the new order list detail window
+     * @param requiredOrder Pass the order object
+     * @throws IOException Exception to handle file missing issue
+     * */
     private void launchListPage(Order requiredOrder) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderDetailsPage.fxml"));
         Parent root = loader.load();
@@ -70,6 +88,10 @@ public class OrderController {
         orderTypeStage.show();
     }
 
+    /**
+     * Function to handle the navigation when pressing the button
+     * @param fxml sends the name of the fxml file
+     */
     private void handleNavButtonAction(String fxml){
         try {
             Main.setRoot(fxml);
@@ -80,7 +102,7 @@ public class OrderController {
 
     /**
      * A function to return the item corresponding to the id passed through
-     * @param idString
+     * @param idString the id is passed as a string
      * @return item
      * @author Saurav Suresh
      */
@@ -97,7 +119,7 @@ public class OrderController {
 
     /**
      * A function to get the id from the String recieved based on the user input
-     * @param data
+     * @param data the string data is passed
      * @return id
      * @author Saurav Suresh
      */
@@ -111,6 +133,9 @@ public class OrderController {
         return data.substring(startIndex, endIndex);
     }
 
+    /**
+     * Function to refresh the item list
+     */
     private void refreshItemList() {
         // Clear the displayed list
         OrderListView.getItems().clear();

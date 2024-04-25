@@ -19,14 +19,26 @@ public class OrderDataHandler {
     private static ArrayList<Item> allItems = ItemDataController.getItems();
     private static final String FILE_PATH = "src/main/java/Orders/OrderData.xlsx";
 
+    /**
+     * Function to return the order list
+     * @return returns order list
+     */
     public static ArrayList<Order> getOrders() {
         return orders;
     }
 
+    /**
+     * Function to add order to the orders list
+     * @param order the order object is passed
+     */
     public static void addOrder(Order order){
         orders.add(order);
     }
 
+    /**
+     * Function to edit the Excel sheet data
+     * @param order The order object is passed
+     */
     public static void editOrderWaiterCompleteExcelSheetData(Order order) {
         Workbook workbook;
         try {
@@ -65,6 +77,9 @@ public class OrderDataHandler {
         }
     }
 
+    /**
+     * Function to edit the Excel sheet data for order
+     */
     public static void editOrderExcelSheetData(Order order) {
         Workbook workbook;
         try {
@@ -101,6 +116,9 @@ public class OrderDataHandler {
         }
     }
 
+    /**
+     * Function to load order data from the Excel sheet
+     */
     public static void loadOrdersFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/Orders/OrderData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
@@ -155,6 +173,10 @@ public class OrderDataHandler {
         }
     }
 
+    /**
+     * Function to calculate the price of items in the order
+     * @param order Order object is passed
+     */
     private static void calculatePrice(Order order) {
         int price = 0;
         for (OrderItem orderItem : order.getOrderItems()) {
@@ -163,6 +185,10 @@ public class OrderDataHandler {
         order.setPrice(price);
     }
 
+    /**
+     * Function to save new order data into the Excel sheet
+     * @param order Order object is passed
+     */
     public static void saveOrderDataToExcel(Order order) {
         Workbook workbook;
         Sheet sheet;
