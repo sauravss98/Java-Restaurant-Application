@@ -756,6 +756,42 @@ public class  UserController {
 
     }
 
+    public static void editDriverTimeLogExcelData(Driver driver) {
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream("src/main/java/User/DriverData.xlsx");
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            // File doesn't exist or is empty, create a new workbook
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            // Workbook is empty, create a new sheet
+            sheet = workbook.createSheet("Sheet1");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int userId = (int) row.getCell(0).getNumericCellValue();
+                if (userId == driver.getUserId()) {
+                    System.out.println("Driver value changed "+driver.getHoursWorked());
+                    row.getCell(6).setCellValue(driver.getHoursWorked());
+                    break;
+                }
+            }
+        }
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/User/DriverData.xlsx")) {
+            workbook.write(outputStream);
+            System.out.println("Staff data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving Staff to Excel: " + e.getMessage());
+        }
+    }
+
     public static void editChefTimeLogExcelData(Chef chef){
         Workbook workbook;
         try {

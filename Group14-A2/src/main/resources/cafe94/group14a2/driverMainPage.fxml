@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.DriverMainPageController">
+    <children>
+        <ScrollPane prefHeight="289.0" prefWidth="600.0">
+            <content>
+                <HBox fx:id="containerBox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
+            </content>
+            <VBox.margin>
+                <Insets top="30.0" />
+            </VBox.margin>
+        </ScrollPane>
+        <HBox fx:id="numbersHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <children>
+                <Button fx:id="logTimeChangeButton" mnemonicParsing="false" text="Log Time" />
+                <Button styleClass="btn, btn-warning" fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
+            </children></HBox>
+    </children>
+</VBox>

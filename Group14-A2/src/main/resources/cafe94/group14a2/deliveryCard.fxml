@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="mainCard" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Orders.DriverCardController">
+    <children>
+        <Label fx:id="orderIdLabel" text="Label">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin></Label>
+      <Label fx:id="customerNameLabel" text="Label" />
+      <Label fx:id="addressLabel" layoutX="96.0" layoutY="37.0" text="Label" />
+        <Button fx:id="completeOrderButton" mnemonicParsing="false" styleClass="btn, btn-info" text="Complete Order" />
+    </children>
+    <padding>
+        <Insets top="5.0" />
+    </padding>
+</VBox>
