@@ -13,6 +13,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to handle all the order data
+ * @author Saurav
+ */
 public class OrderDataHandler {
     private static ArrayList<Integer> itemlist = new ArrayList<>();
     private static ArrayList<Order> orders = new ArrayList<>();
