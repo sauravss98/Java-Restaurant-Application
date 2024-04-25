@@ -84,12 +84,22 @@ public class ChefMainPageController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderCard.fxml"));
                     VBox vbox = loader.load();
                     CardController controller = loader.getController();
+                    controller.setChefMainPageController(this);
                     controller.setOrder(order);
                     controller.setCurrentChef(activeChef);
                     controller.initialize();
                     containerBox.getChildren().add(vbox);
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshCardDisplay() {
+        containerBox.getChildren().clear(); // Clear existing cards
+        try {
+            addCard(); // Add cards again
         } catch (IOException e) {
             e.printStackTrace();
         }

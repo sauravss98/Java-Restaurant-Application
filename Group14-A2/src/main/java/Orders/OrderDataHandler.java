@@ -39,6 +39,50 @@ public class OrderDataHandler {
         orders.add(order);
     }
 
+
+    /**
+     * Function to edit the Excel sheet data
+     * This function is used when the chef completes the order
+     * @param order The order object is passed
+     */
+    public static void saveChefExcelChange(Order order) {
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream(FILE_PATH);
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            // File doesn't exist or is empty, create a new workbook
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            // Workbook is empty, create a new sheet
+            sheet = workbook.createSheet("Sheet1");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int orderId = (int) row.getCell(0).getNumericCellValue();
+                if (orderId == order.getOrderId()) {
+                    row.getCell(3).setCellValue(order.isCompleted());
+                    row.getCell(4).setCellValue(order.getOrderStatus());
+                    row.getCell(7).setCellValue(order.getChefId());
+                    break;
+                }
+            }
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream(FILE_PATH)) {
+            workbook.write(outputStream);
+            System.out.println("Order data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving items to Excel: " + e.getMessage());
+        }
+    }
+
     /**
      * Function to edit the Excel sheet data
      * @param order The order object is passed

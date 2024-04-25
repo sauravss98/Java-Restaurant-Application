@@ -1,6 +1,7 @@
 package Orders;
 
 import User.Chef;
+import User.ChefMainPageController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,12 +13,17 @@ public class CardController {
     @FXML private Label orderIdLabel;
     @FXML private ListView itemsList;
     @FXML private Button completeOrderButton;
+    private ChefMainPageController chefMainPageController;
 
     public CardController(){}
 
     public CardController (Order order,Chef chef){
         this.currentOrder = order;
         this.currentChef = chef;
+    }
+
+    public void setChefMainPageController(ChefMainPageController controller) {
+        this.chefMainPageController = controller;
     }
 
     public void setOrder(Order order){
@@ -50,7 +56,11 @@ public class CardController {
     }
 
     private void handleCompleteButton() {
-        System.out.println("Order Id is "+currentOrder.getOrderId());
+        currentOrder.setOrderStatus("Food Prepared");
+        currentOrder.setCompleted(true);
+        currentOrder.setChefId(currentChef.getUserId());
+        OrderDataHandler.saveChefExcelChange(currentOrder);
+        chefMainPageController.refreshCardDisplay();
     }
 
     private void refreshCard() {
