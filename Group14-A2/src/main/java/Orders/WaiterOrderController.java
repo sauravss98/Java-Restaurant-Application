@@ -20,6 +20,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control the order page for waiters
+ * @author Saurav
+ */
 public class WaiterOrderController {
     private String activeEmail;
     private static Waiter currentWaiter;
@@ -35,25 +39,23 @@ public class WaiterOrderController {
     private ArrayList<Order> orders = OrderDataHandler.getOrders();
     private ArrayList<Waiter> waiters = UserController.getWaiters();
 
+    /**
+     * Default constructor for the class
+     */
     public WaiterOrderController(){
     }
 
+    /**
+     * Constructor which initialises the waiter object
+     * @param waiter waiter object is passed
+     */
     public WaiterOrderController(Waiter waiter){
         this.currentWaiter = waiter;
-//        System.out.println("Email "+email);
-//        this.activeEmail = email
-//        for(Waiter waiter:waiters){
-//            if (Objects.equals(waiter.getEmail(), activeEmail)) {
-//                currentWaiter = waiter;
-//                waiter.setLoggedIn(true);
-//                break;
-//            }
-//        }
-//        System.out.println("Current Waiter "+currentWaiter.getFullName());
     }
 
-
-
+    /**
+     * Function to initialize the UI element
+     */
     public void initialize(){
         refreshMenu();
         refreshOrderItemList();
@@ -91,6 +93,9 @@ public class WaiterOrderController {
         });
     }
 
+    /**
+     * Function to handle the complete order button
+     */
     private void handleCompleteOrderClick() {
         currentOrder.setOrderType("dineIn");
         currentOrder.setOrderStatus("InProgress");
@@ -255,6 +260,9 @@ public class WaiterOrderController {
         return maxOrderId + 1;
     }
 
+    /**
+     * Function to refresh the menu list view
+     */
     private void refreshMenu() {
         ItemsList.getItems().clear();
 
