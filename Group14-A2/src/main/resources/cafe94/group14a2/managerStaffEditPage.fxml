@@ -43,7 +43,7 @@
                         <Insets />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="confirmStaffButton" mnemonicParsing="false" text="Confirm" />
+                <Button styleClass="btn, btn-warning" fx:id="confirmStaffButton" mnemonicParsing="false" text="Confirm" />
                 <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
             </children>
             <VBox.margin>

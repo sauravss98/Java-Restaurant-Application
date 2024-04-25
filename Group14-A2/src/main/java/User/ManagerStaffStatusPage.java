@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,6 +74,7 @@ public class ManagerStaffStatusPage {
         controller.setStage(staffEditStage);
         staffEditStage.setTitle("Edit Staff Detail");
         staffEditStage.setScene(new Scene(root, 600, 600));
+        staffEditStage.getScene().getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         staffEditStage.initModality(Modality.APPLICATION_MODAL);
         staffEditStage.showAndWait();
         refreshInactiveStaffList();

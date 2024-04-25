@@ -19,7 +19,7 @@
       <HBox fx:id="numbersHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Button fx:id="logTimeChangeButton" mnemonicParsing="false" text="Log Time" />
-            <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
+            <Button styleClass="btn, btn-warning" fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
          </children></HBox>
    </children>
 </VBox>
