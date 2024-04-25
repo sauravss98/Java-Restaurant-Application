@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 public class CardController {
-    private static Order currentOrder;
+    private Order currentOrder;
     private static Chef currentChef;
     @FXML private Label orderIdLabel;
     @FXML private ListView itemsList;

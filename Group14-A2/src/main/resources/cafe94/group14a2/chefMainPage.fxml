@@ -10,7 +10,7 @@
    <children>
       <ScrollPane prefHeight="289.0" prefWidth="600.0">
          <content>
-            <HBox fx:id="mainHbox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
+            <HBox fx:id="containerBox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
          </content>
          <VBox.margin>
             <Insets top="30.0" />
@@ -18,7 +18,8 @@
       </ScrollPane>
       <HBox fx:id="numbersHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button fx:id="actionButton" mnemonicParsing="false" text="Logout" />
+            <Button fx:id="logTimeChangeButton" mnemonicParsing="false" text="Log Time" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
          </children></HBox>
    </children>
 </VBox>
