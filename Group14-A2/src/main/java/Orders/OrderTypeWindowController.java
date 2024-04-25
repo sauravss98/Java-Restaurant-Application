@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Class to control the Order Type Edit Window
+ */
 public class OrderTypeWindowController {
     @FXML private Button dineInButton;
     @FXML private Button deliveryButton;
@@ -17,7 +20,9 @@ public class OrderTypeWindowController {
     private Stage stage;
 
 
-
+    /**
+     * Function to initialize the UI components
+     */
     public void initialize() {
         OrderDoneBox.setVisible(false);
         dineInButton.setOnAction(e -> {
@@ -37,14 +42,26 @@ public class OrderTypeWindowController {
         });
     }
 
+    /**
+     * Function to set the order to the current instance of the class
+     * @param currentOrder The order object is passed
+     */
     public void setCurrentOrder(Order currentOrder){
         this.currentOrder = currentOrder;
     }
 
+    /**
+     * Function to set the stage for the current instance of class
+     * @param stage The stage object is passed
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to handle the confirm button click and set the order type
+     * @param type The order type is passed based on what is selected
+     */
     private void handleConfirmButtonAction(String type){
         currentOrder.setOrderType(type);
         currentOrder.setOrderStatus("InProgress");
@@ -53,12 +70,18 @@ public class OrderTypeWindowController {
         OrderDataHandler.saveOrderDataToExcel(currentOrder);
     }
 
+    /**
+     * Function to handle the cancel button click and it will close the stage
+     */
     private void handleCancelButtonAction(){
         if (stage != null) {
             stage.close();
         }
     }
 
+    /**
+     * Function to hande the order done button. It closes the window
+     */
     private void handleOrderDoneButtonAction(){
         if (stage != null) {
             stage.close();
