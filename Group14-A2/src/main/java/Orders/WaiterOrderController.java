@@ -94,6 +94,7 @@ public class WaiterOrderController {
     private void handleCompleteOrderClick() {
         currentOrder.setOrderType("dineIn");
         currentOrder.setOrderStatus("InProgress");
+        orders.add(currentOrder);
         OrderDataHandler.saveOrderDataToExcel(currentOrder);
         try {
             Main.setRoot("waiterMainPage");
@@ -189,7 +190,7 @@ public class WaiterOrderController {
     private void handleOrder(Item selectedItem) {
         if (currentOrder == null) {
             int newOrderID = generateOrderId();
-            currentOrder = new Order(newOrderID,"dine-in",new ArrayList<>(),false,"cart",0,currentWaiter.getUserId(),0,0);
+            currentOrder = new Order(newOrderID,"dinein",new ArrayList<>(),false,"cart",0,currentWaiter.getUserId(),0,0);
         }
         currentOrder.addToItem(selectedItem.getItemID());
         currentOrder.addItem(selectedItem, 1); // Pass 1 as the quantity for a new item
