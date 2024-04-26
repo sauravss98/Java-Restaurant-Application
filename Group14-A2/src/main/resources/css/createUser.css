@@ -1,5 +1,6 @@
 #mainVbox {
-  -fx-background-color: rgba(91, 153, 111, 0.486);
+//  -fx-background-color: rgba(91, 153, 111, 0.486);
+  -fx-background-color:#DDFFD9
 }
 
 #mainVbox.button {
@@ -7,5 +8,5 @@
 }
 
 .button {
-  -fx-border-radius: 50%;
+  -fx-border-;
 }

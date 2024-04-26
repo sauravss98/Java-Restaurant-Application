@@ -8,24 +8,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<!--<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe94.group14a2.LoginController">-->
-
 <VBox id="LoginPage" alignment="CENTER" spacing="20.0" stylesheets="@../../css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe94.group14a2.LoginController">
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cafe 94">
       <font>
          <Font size="36.0" />
       </font>
    </Text>
-<!--        <Label text="Enter Your Email" translateX="-25.0" translateY="20.0" />-->
     <HBox alignment="CENTER">
         <Label text="Enter Your Email: " />
-        <TextField fx:id="EmailTextField" promptText="Enter Email" />
+        <TextField styleClass="labelClass" fx:id="EmailTextField" promptText="Enter Email" />
     </HBox>
-<!--     <Label text="Enter Your Email: " />-->
-<!--     <TextField fx:id="EmailTextField" promptText="Enter Email" />-->
-<!--    <Label text="Enter Your Email" translateX="-25.0" translateY="20.0" />-->
-<!--   <TextField fx:id="EmailTextField" promptText="Enter Email" />-->
     <Button styleClass="btn, btn-primary" onAction="#onLoginClick" text="Login" />
-   <Button mnemonicParsing="false" onAction="#onSignUpClick" text="Create Account" />
+   <Button styleClass="createButton" mnemonicParsing="false" onAction="#onSignUpClick" text="Create Account" />
    <Label fx:id="LoginErrorLabel" textFill="#ea0000" />
 </VBox>
