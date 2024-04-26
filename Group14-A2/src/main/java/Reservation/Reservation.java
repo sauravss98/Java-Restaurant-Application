@@ -78,7 +78,6 @@ public class Reservation {
                 ", dateOfReservation= " + dateOfReservation +
                 ", customer= " + customer.getFullName() +
                 ", table type= "+tabletype+
-                ", Number of tables= "+numberOfTables+
-                '}';
+                ", Number of tables= "+numberOfTables;
     }
 }
