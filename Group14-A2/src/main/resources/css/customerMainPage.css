@@ -5,3 +5,20 @@
   -fx-min-height: 100px;
   -fx-min-width: 250px;
 }
+
+.tabPane {
+  -fx-background-color: rgba(91, 153, 111, 0.486);
+}
+
+.tabButton {
+  -fx-background-color: rgba(91, 153, 111, 0.486);
+  -fx-font-weight: bold;
+}
+
+#ItemsList {
+  -fx-font-weight: 600;
+}
+
+.tabButton::selection {
+  -fx-background-color: blue;
+}

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -25,16 +26,22 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="198.0" prefWidth="568.0" spacing="10.0">
          <children>
-            <TabPane prefHeight="210.0" prefWidth="331.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane styleClass="tabPane" prefHeight="210.0" prefWidth="331.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Main Items">
+                <Tab text="Main Items" styleClass="tabButton">
                      <content>
                         <ListView fx:id="ItemsList" minWidth="200.0" prefHeight="600.0" prefWidth="600.0" />
                      </content>
                 </Tab>
-                <Tab text="Specials">
+                <Tab text="Specials" styleClass="tabButton">
                      <content>
-                        <ListView fx:id="SpecialsList" prefHeight="174.0" prefWidth="200.0" />
+                        <ListView fx:id="SpecialsList" prefHeight="174.0" prefWidth="200.0">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets top="10.0" />
+                           </opaqueInsets></ListView>
                      </content>
                 </Tab>
               </tabs>
