@@ -41,6 +41,8 @@ public class ReservationDataController {
             headerRow.createCell(1).setCellValue("Number of Guests");
             headerRow.createCell(2).setCellValue("Date Of Reservation");
             headerRow.createCell(3).setCellValue("Customer ID");
+            headerRow.createCell(4).setCellValue("Table Type");
+            headerRow.createCell(5).setCellValue("Table Count");
         } else {
             try (FileInputStream inputStream = new FileInputStream(file)) {
                 workbook = new XSSFWorkbook(inputStream);
@@ -64,6 +66,8 @@ public class ReservationDataController {
         dateCell.setCellStyle(dateCellStyle);
 //        System.out.println("The date is "+reservation.getDateOfReservation());
         row.createCell(3).setCellValue(reservation.getCustomer().getCustomerID());
+        row.createCell(4).setCellValue(reservation.getTabletype());
+        row.createCell(5).setCellValue(reservation.getNumberOfTables());
 
         for (int i = 0; i < 6; i++) {
             sheet.autoSizeColumn(i);
@@ -96,6 +100,8 @@ public class ReservationDataController {
                     int numberOfGuests = (int)row.getCell(1).getNumericCellValue();
                     LocalDate dateOfReservation = LocalDate.parse(dataFormatter.formatCellValue(row.getCell(2)));
                     int customerId = (int)row.getCell(3).getNumericCellValue();
+                    String tableType = row.getCell(4).getStringCellValue();
+                    int tableCount = (int)row.getCell(5).getNumericCellValue();
 
                     for (Customer customerToLoad : customers){
                         if(customerId == customerToLoad.getUserId()){
@@ -103,7 +109,7 @@ public class ReservationDataController {
                         }
                     }
 
-                    Reservation reservation = new Reservation(reservationId,numberOfGuests, dateOfReservation, customer);
+                    Reservation reservation = new Reservation(reservationId,numberOfGuests, dateOfReservation, customer,tableType,tableCount);
                     reservations.add(reservation);
                 }
             }

@@ -10,6 +10,25 @@ public class Reservation {
     private int numberOfGuests;
     private LocalDate dateOfReservation;
     private Customer customer;
+    private String tabletype;
+    private int numberOfTables;
+    private LocalDateTime time;
+
+    public String getTabletype() {
+        return tabletype;
+    }
+
+    public void setTabletype(String tabletype) {
+        this.tabletype = tabletype;
+    }
+
+    public int getNumberOfTables() {
+        return numberOfTables;
+    }
+
+    public void setNumberOfTables(int numberOfTables) {
+        this.numberOfTables = numberOfTables;
+    }
 
     public int getReservationId() {
         return reservationId;
@@ -43,11 +62,13 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public Reservation(int reservationId, int numberOfGuests, LocalDate dateOfReservation, Customer customer) {
+    public Reservation(int reservationId, int numberOfGuests, LocalDate dateOfReservation, Customer customer,String tabletype,int numberOfTables) {
         this.reservationId = reservationId;
         this.numberOfGuests = numberOfGuests;
         this.dateOfReservation = dateOfReservation;
         this.customer = customer;
+        this.tabletype = tabletype;
+        this.numberOfTables = numberOfTables;
     }
 
     @Override

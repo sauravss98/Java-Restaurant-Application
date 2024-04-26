@@ -1,15 +1,15 @@
 package Reservation;
 
 import User.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ReservationCreateController {
     private static ArrayList<Reservation> reservations = ReservationDataController.getReservations();
@@ -18,6 +18,9 @@ public class ReservationCreateController {
     @FXML private Spinner guestSpinner;
     @FXML private Button confirmReservationButton;
     @FXML private DatePicker datePickerElement;
+    @FXML private ChoiceBox tableChoiceBox;
+    @FXML private Label warningLabel;
+    private ObservableList<String> options = FXCollections.observableArrayList();
     private Reservation reservation;
 
     public ReservationCreateController(){
@@ -33,6 +36,9 @@ public class ReservationCreateController {
     }
 
     public void initialize(){
+        warningLabel.setVisible(false);
+        tableChoiceBox.setItems(options);
+        options.addAll("2 seat","4 seat","8 seat", "10 seat");
         refreshQuantitySpinner();
         confirmReservationButton.setOnAction(e->{
             handleConfirmButton();
@@ -45,15 +51,51 @@ public class ReservationCreateController {
     }
 
     private void handleConfirmButton(){
-        int reservationId = generateOrderId();
-        int numberOfGuests = (int) guestSpinner.getValue();
-        LocalDate reservationDate = datePickerElement.getValue();
-        reservation = new Reservation(reservationId,numberOfGuests,reservationDate,customer);
-        ReservationDataController.addReservation(reservation);
-        ReservationDataController.saveReservationDataToExcel(reservation);
-        if (stage != null) {
-            stage.close();
+        try {
+            int reservationId = generateOrderId();
+            int numberOfGuests = (int) guestSpinner.getValue();
+            String tableType = tableChoiceBox.getValue().toString();
+            int tablesRequired = calculateNumberOfTables(tableType,numberOfGuests);
+            if(tablesRequired==0){
+                tablesRequired =1;
+            }
+            System.out.println("table is "+ tablesRequired);
+            LocalDate reservationDate = datePickerElement.getValue();
+            reservation = new Reservation(reservationId, numberOfGuests, reservationDate, customer,tableType,tablesRequired);
+            ReservationDataController.addReservation(reservation);
+            ReservationDataController.saveReservationDataToExcel(reservation);
+            if (stage != null) {
+                stage.close();
+            }
+        } catch (NullPointerException nullPointerException){
+            warningLabel.setVisible(true);
+            warningLabel.setText("Enter all details");
         }
+    }
+
+    private int calculateNumberOfTables(String table,int numberOfGuests) {
+        if (Objects.equals(table, "2 seat")){
+            if(numberOfGuests%2 ==0){
+                return numberOfGuests/2;
+            }
+            return  (numberOfGuests/2)+1;
+        } else if (Objects.equals(table, "4 seat")){
+            if(numberOfGuests%4 ==0){
+                return numberOfGuests/4;
+            }
+            return  (numberOfGuests/4)+1;
+        } else if (Objects.equals(table, "8 seat")){
+            if(numberOfGuests%8 ==0){
+                return numberOfGuests/8;
+            }
+            return  (numberOfGuests/8)+1;
+        } else if (Objects.equals(table, "10 seat")){
+            if(numberOfGuests%10 ==0){
+                return numberOfGuests/10;
+            }
+            return  (numberOfGuests/10)+1;
+        }
+        return 0;
     }
 
     public int generateOrderId() {
