@@ -32,7 +32,7 @@ public class ReservationDataController {
         Workbook workbook;
         Sheet sheet;
 
-        File file = new File("source/main/java/Reservation/ReservationData.xlsx");
+        File file = new File("src/main/java/Reservation/ReservationData.xlsx");
         if (!file.exists()) {
             workbook = new XSSFWorkbook();
             sheet = workbook.createSheet("Order Data");
@@ -88,7 +88,7 @@ public class ReservationDataController {
     }
 
     public static void loadOrdersFromExcel() {
-        try (FileInputStream inputStream = new FileInputStream("source/main/java/Reservation/ReservationData.xlsx")) {
+        try (FileInputStream inputStream = new FileInputStream("src/main/java/Reservation/ReservationData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
             DataFormatter dataFormatter = new DataFormatter();

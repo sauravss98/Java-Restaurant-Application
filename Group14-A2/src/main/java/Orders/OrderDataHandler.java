@@ -21,7 +21,7 @@ public class OrderDataHandler {
     private static ArrayList<Integer> itemlist = new ArrayList<>();
     private static ArrayList<Order> orders = new ArrayList<>();
     private static ArrayList<Item> allItems = ItemDataController.getItems();
-    private static final String FILE_PATH = "source/main/java/Orders/OrderData.xlsx";
+    private static final String FILE_PATH = "src/main/java/Orders/OrderData.xlsx";
 
     /**
      * Function to return the order list
@@ -213,7 +213,7 @@ public class OrderDataHandler {
      * Function to load order data from the Excel sheet
      */
     public static void loadOrdersFromExcel() {
-        try (FileInputStream inputStream = new FileInputStream("source/main/java/Orders/OrderData.xlsx")) {
+        try (FileInputStream inputStream = new FileInputStream("src/main/java/Orders/OrderData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
@@ -286,7 +286,7 @@ public class OrderDataHandler {
         Workbook workbook;
         Sheet sheet;
 
-        File file = new File("source/main/java/Orders/OrderData.xlsx");
+        File file = new File("src/main/java/Orders/OrderData.xlsx");
         if (!file.exists()) {
             workbook = new XSSFWorkbook();
             sheet = workbook.createSheet("Order Data");
