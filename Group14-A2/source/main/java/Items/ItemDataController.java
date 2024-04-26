@@ -77,7 +77,7 @@ public final class ItemDataController {
         return null;
     }
 
-    private static final String FILE_PATH = "src/main/java/Items/ItemData.xlsx";
+    private static final String FILE_PATH = "source/main/java/Items/ItemData.xlsx";
 
     /**
      * Function to edit the data in the excel sheet containing item data
@@ -133,7 +133,7 @@ public final class ItemDataController {
      * @author Saurav
      */
     public static void loadItemsFromExcel() {
-        try (FileInputStream inputStream = new FileInputStream("src/main/java/Items/ItemData.xlsx")) {
+        try (FileInputStream inputStream = new FileInputStream("source/main/java/Items/ItemData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
@@ -165,7 +165,7 @@ public final class ItemDataController {
         Workbook workbook;
         Sheet sheet;
 
-        File file = new File("src/main/java/Items/ItemData.xlsx");
+        File file = new File("source/main/java/Items/ItemData.xlsx");
         if (file.exists()) {
             try (FileInputStream inputStream = new FileInputStream(file)) {
                 workbook = new XSSFWorkbook(inputStream);
@@ -195,7 +195,7 @@ public final class ItemDataController {
         for (int i = 0; i < 5; i++) {
             sheet.autoSizeColumn(i);
         }
-        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/Items/ItemData.xlsx")) {
+        try (FileOutputStream outputStream = new FileOutputStream("source/main/java/Items/ItemData.xlsx")) {
             workbook.write(outputStream);
             System.out.println("Item data saved to Excel file successfully.");
         } catch (IOException e) {

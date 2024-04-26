@@ -125,7 +125,7 @@ public class ReportGenerator {
         Workbook workbook;
         Sheet sheet;
 
-        File file = new File("src/main/java/Report/ReportData.xlsx");
+        File file = new File("source/main/java/Report/ReportData.xlsx");
         if (!file.exists()) {
             workbook = new XSSFWorkbook();
             sheet = workbook.createSheet("Report Data");
@@ -235,7 +235,7 @@ public class ReportGenerator {
     }
 
     public static void loadReportExcelData(){
-            try (FileInputStream inputStream = new FileInputStream("src/main/java/Report/ReportData.xlsx")) {
+            try (FileInputStream inputStream = new FileInputStream("source/main/java/Report/ReportData.xlsx")) {
                 Workbook workbook = new XSSFWorkbook(inputStream);
                 Sheet sheet = workbook.getSheetAt(0);
                 DataFormatter dataFormatter = new DataFormatter();
