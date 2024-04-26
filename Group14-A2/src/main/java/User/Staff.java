@@ -18,7 +18,7 @@ public class Staff extends User{
 
     @Override
     public String getStaffDescription() {
-        return super.getStaffDescription() + " Hours Worked: " + hoursWorked+" Total Hours: "+ totalHours;
+        return super.getStaffDescription() + " Hours Worked: " + hoursWorked;
     }
 
     public void setIsActive(boolean isActive){

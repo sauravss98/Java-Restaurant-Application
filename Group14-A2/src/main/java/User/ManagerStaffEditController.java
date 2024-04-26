@@ -25,11 +25,11 @@ public class ManagerStaffEditController {
     @FXML private Label userNameLabel;
     @FXML private Label userTypeLabel;
     @FXML private Spinner workedHoursSpinner;
-    @FXML private Spinner totalHoursSpinner;
     @FXML private Button removeStaffButton;
     @FXML private Button cancelButton;
     @FXML private Button confirmStaffButton;
     @FXML private Label warningLabel;
+    private int oldWorkedHoursValue;
 
 
     public ManagerStaffEditController(){}
@@ -40,6 +40,10 @@ public class ManagerStaffEditController {
 
     public void setStaffArrayList(ArrayList<Staff> staffs){
         this.staffs = staffs;
+    }
+
+    public void setOldWorkedHoursValue(int hoursValue){
+        this.oldWorkedHoursValue = hoursValue;
     }
 
     public void setStaff(Staff staff) {
@@ -104,6 +108,11 @@ public class ManagerStaffEditController {
     }
 
     public void initialize(){
+        if(activeStaff!=null) {
+            setOldWorkedHoursValue(activeStaff.getHoursWorked());
+        } else {
+            setOldWorkedHoursValue(0);
+        }
         warningLabel.setText("");
         warningLabel.setVisible(false);
         refreshLabelData();
@@ -122,9 +131,8 @@ public class ManagerStaffEditController {
     }
 
     private void handleConfirmClickButton() {
-        if((int)workedHoursSpinner.getValue()<(int)totalHoursSpinner.getValue()) {
+        if(oldWorkedHoursValue<(int)workedHoursSpinner.getValue()) {
             activeStaff.setHoursWorked((int) workedHoursSpinner.getValue());
-            activeStaff.setTotalHours((int) totalHoursSpinner.getValue());
             if (activeStaff.getUserType().equals("Manager")) {
                 UserController.editStaffExcelData(activeManager, "edit");
             }
@@ -140,9 +148,9 @@ public class ManagerStaffEditController {
             if (stage != null) {
                 stage.close();
             }
-        }else {
-            warningLabel.setText("Enter Correct Value. Worked hours should be less than total");
+        } else {
             warningLabel.setVisible(true);
+            warningLabel.setText("New value should be greater than the old value");
         }
     }
 
@@ -198,8 +206,6 @@ public class ManagerStaffEditController {
         userTypeLabel.setText("User Type: "+manager.getUserType());
         SpinnerValueFactory<Integer> workHouredValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, manager.getHoursWorked());
         workedHoursSpinner.setValueFactory(workHouredValueFactory);
-        SpinnerValueFactory<Integer> totalHoursValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, manager.getTotalHours());
-        totalHoursSpinner.setValueFactory(totalHoursValueFactory);
     }
     private void setDataLabels(Chef chef){
         idLabel.setText("Staff ID: "+chef.getUserId());
@@ -207,8 +213,6 @@ public class ManagerStaffEditController {
         userTypeLabel.setText("User Type: "+chef.getUserType());
         SpinnerValueFactory<Integer> workHouredValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, chef.getHoursWorked());
         workedHoursSpinner.setValueFactory(workHouredValueFactory);
-        SpinnerValueFactory<Integer> totalHoursValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, chef.getTotalHours());
-        totalHoursSpinner.setValueFactory(totalHoursValueFactory);
     }
     private void setDataLabels(Waiter waiter){
         idLabel.setText("Staff ID: "+waiter.getUserId());
@@ -216,8 +220,6 @@ public class ManagerStaffEditController {
         userTypeLabel.setText("User Type: "+waiter.getUserType());
         SpinnerValueFactory<Integer> workHouredValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, waiter.getHoursWorked());
         workedHoursSpinner.setValueFactory(workHouredValueFactory);
-        SpinnerValueFactory<Integer> totalHoursValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, waiter.getTotalHours());
-        totalHoursSpinner.setValueFactory(totalHoursValueFactory);
     }
     private void setDataLabels(Driver driver){
         idLabel.setText("Staff ID: "+driver.getUserId());
@@ -225,7 +227,5 @@ public class ManagerStaffEditController {
         userTypeLabel.setText("User Type: "+driver.getUserType());
         SpinnerValueFactory<Integer> workHouredValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, driver.getHoursWorked());
         workedHoursSpinner.setValueFactory(workHouredValueFactory);
-        SpinnerValueFactory<Integer> totalHoursValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, driver.getTotalHours());
-        totalHoursSpinner.setValueFactory(totalHoursValueFactory);
     }
 }
