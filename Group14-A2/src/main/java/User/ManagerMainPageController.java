@@ -53,6 +53,9 @@ public class ManagerMainPageController {
      */
     public void initialize(){
         refreshActiveOrderList();
+        reportButton.setOnAction(e->{
+            handleReportButton();
+        });
         createStaffButton.setOnAction(e->{
             handleCreateStaffClick();
         });
@@ -71,6 +74,14 @@ public class ManagerMainPageController {
         logoutButton.setOnAction(e->{
             handleLogoutButton();
         });
+    }
+
+    private void handleReportButton() {
+        try {
+            Main.setRoot("reportMainPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
