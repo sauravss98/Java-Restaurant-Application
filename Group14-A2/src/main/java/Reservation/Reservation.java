@@ -73,11 +73,12 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" +
-                "reservationId=" + reservationId +
-                ", numberOfGuests=" + numberOfGuests +
-                ", dateOfReservation=" + dateOfReservation +
-                ", customer=" + customer +
+        return "reservationId= " + reservationId +
+                ", numberOfGuests= " + numberOfGuests +
+                ", dateOfReservation= " + dateOfReservation +
+                ", customer= " + customer.getFullName() +
+                ", table type= "+tabletype+
+                ", Number of tables= "+numberOfTables+
                 '}';
     }
 }
