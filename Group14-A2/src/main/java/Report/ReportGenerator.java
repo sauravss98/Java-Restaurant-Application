@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ReportGenerator {
+    private static int reportGenerationCounter = 0;
     private static int reportCounter = 0;
     private static ArrayList<Report> reports = new ArrayList<>();
 
@@ -53,7 +54,8 @@ public class ReportGenerator {
         Report report = new Report(reportId,mostOrderedItemId, mostActiveCustomerId, mostWorkedStaffId, today);
         reports.add(report);
         reportCounter++;
-        ReportGenerator.saveReportDataToExcel(report);
+        saveReportDataToExcel(report);
+        createNewExcelReport(report);
     }
 
     private static ArrayList<Staff> getAllStaff() {
@@ -124,6 +126,63 @@ public class ReportGenerator {
         Sheet sheet;
 
         File file = new File("src/main/java/Report/ReportData.xlsx");
+        if (!file.exists()) {
+            workbook = new XSSFWorkbook();
+            sheet = workbook.createSheet("Report Data");
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Report ID");
+            headerRow.createCell(1).setCellValue("Popular Item");
+            headerRow.createCell(2).setCellValue("Popular Customer");
+            headerRow.createCell(3).setCellValue("Popular Staff");
+            headerRow.createCell(4).setCellValue("Created Date");
+        } else {
+            try (FileInputStream inputStream = new FileInputStream(file)) {
+                workbook = new XSSFWorkbook(inputStream);
+                sheet = workbook.getSheetAt(0);
+            } catch (IOException e) {
+                System.err.println("Error opening existing Excel file: " + e.getMessage());
+                return;
+            }
+        }
+
+        int rowNum = sheet.getLastRowNum() + 1;
+        Row row = sheet.createRow(rowNum);
+        row.createCell(0).setCellValue(report.getReportId());
+        row.createCell(1).setCellValue(report.getMostOrderedItemid());
+        row.createCell(2).setCellValue(report.getMostActiveCustomerId());
+        row.createCell(3).setCellValue(report.getMostWorkedStaffId());
+        Cell dateCell = row.createCell(4);
+        dateCell.setCellValue(report.getCreatedDate());
+        CellStyle dateCellStyle = workbook.createCellStyle();
+        CreationHelper createHelper = workbook.getCreationHelper();
+        short dateFormat = createHelper.createDataFormat().getFormat("yyyy-MM-dd");
+        dateCellStyle.setDataFormat(dateFormat);
+        dateCell.setCellStyle(dateCellStyle);
+
+        for (int i = 0; i < 6; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
+            workbook.write(outputStream);
+            System.out.println("Report data saved to Excel file successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving reservation data to Excel file: " + e.getMessage());
+        } finally {
+            try {
+                workbook.close();
+            } catch (IOException e) {
+                System.err.println("Error closing workbook: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void createNewExcelReport(Report report) {
+        String reportName = String.valueOf(report.getCreatedDate())+reportGenerationCounter++;
+        Workbook workbook;
+        Sheet sheet;
+
+        File file = new File("downloads/"+reportName+".xlsx");
         if (!file.exists()) {
             workbook = new XSSFWorkbook();
             sheet = workbook.createSheet("Report Data");
