@@ -2,6 +2,7 @@ package User;
 
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -14,8 +15,11 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
+import java.util.regex.*;
 
 public class  UserController {
+    private static final String REGEX_PATTERN = "^(.+)@(\\\\S+)$";
+
     public static ArrayList<Customer> getCustomers() {
         return customers;
     }
@@ -73,6 +77,7 @@ public class  UserController {
         return  emailIsValid;
     }
 
+    @FXML private Button backButton;
     @FXML private TextField emailField;
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
@@ -96,6 +101,11 @@ public class  UserController {
     }
 
     @FXML
+    private void onBackButtonClick() throws IOException {
+        Main.setRoot("login");
+    }
+
+    @FXML
     private void onCreateUserClick() throws IOException {
         int userId = userCount + 1;
         String email = emailField.getText();
@@ -105,24 +115,26 @@ public class  UserController {
         boolean isCustomer = true;
         String userType = "Customer";
         boolean isLoggedIn = false;
-        if(checkEmailValidity()) {
-            if(!(email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())){
-                Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer,userType,isLoggedIn);
-                saveCustomerDataToExcel(newCustomer);
-                System.out.println(newCustomer);
-                if(customers.add(newCustomer)) {
-                    userCount++;
-                    Main.setRoot("login");
-                }
-                else{
-                    errorLabel.setText("Error..please try again");
+        if(patternMatches(email)) {
+            if (checkEmailValidity()) {
+                if (!(email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || address.isEmpty())) {
+                    Customer newCustomer = new Customer(userId, email, firstName, lastName, address, isCustomer, userType, isLoggedIn);
+                    saveCustomerDataToExcel(newCustomer);
+                    System.out.println(newCustomer);
+                    if (customers.add(newCustomer)) {
+                        userCount++;
+                        Main.setRoot("login");
+                    } else {
+                        errorLabel.setText("Error..please try again");
+                    }
+                } else {
+                    errorLabel.setText("Enter all details");
                 }
             } else {
-                errorLabel.setText("Enter all details");
+                errorLabel.setText("Email already exists");
             }
-        }
-        else {
-            errorLabel.setText("Email already exists");
+        } else {
+            errorLabel.setText("Invalid Email Format");
         }
     }
 
@@ -828,4 +840,12 @@ public class  UserController {
         }
 
     }
+
+    public static boolean patternMatches(String emailAddress) {
+        return Pattern.compile(REGEX_PATTERN)
+                .matcher(emailAddress)
+                .matches();
+    }
+
+
 }

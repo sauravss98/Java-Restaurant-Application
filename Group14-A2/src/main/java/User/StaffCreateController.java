@@ -68,43 +68,48 @@ public class StaffCreateController {
         int totalHours = 20;
         boolean isLoggedIn = false;
         boolean isActive = true;
-        if(checkEmailValidity()){
-            if(!(email.isEmpty()||firstname.isEmpty()||lastname.isEmpty()||userType.isEmpty())){
-                int userId = UserController.getUsersCount()+1;
-                int staffId = UserController.getStaffCount()+1;
-                if(Objects.equals(userType, "Waiter")){
-                    boolean isWaiter = true;
-                    Waiter waiter = new Waiter(userId,email,firstname,lastname,staffId,hoursWorked,totalHours,isStaff,isWaiter, "Waiter",isLoggedIn,isActive);
-                    waiters.add(waiter);
-                    UserController.saveWaiterDataToExcel(waiter);
-                } else if(Objects.equals(userType, "Manager")){
-                    boolean isManager = true;
-                    Manager manager = new Manager(userId,email,firstname,lastname,staffId,hoursWorked,totalHours,isStaff,isManager,"Manager",isLoggedIn,isActive);
-                    managers.add(manager);
-                    UserController.saveManagerDataToExcel(manager);
-                }else if (Objects.equals(userType, "Chef")){
-                    boolean isChef = true;
-                    Chef chef = new Chef(userId,email,firstname,lastname,staffId,hoursWorked,totalHours,isStaff,isChef,"Chef",isLoggedIn,isActive);
-                    chefs.add(chef);
-                    UserController.saveChefDataToExcel(chef);
-                } else if(Objects.equals(userType, "Driver")){
-                    boolean isDriver = true;
-                    Driver driver = new Driver(userId,email,firstname,lastname,staffId,hoursWorked,totalHours,isStaff,isDriver,"Driver",isLoggedIn,isActive);
-                    drivers.add(driver);
-                    UserController.saveDriverDataToExcel(driver);
+        if(UserController.patternMatches(email)) {
+            if (checkEmailValidity()) {
+                if (!(email.isEmpty() || firstname.isEmpty() || lastname.isEmpty() || userType.isEmpty())) {
+                    int userId = UserController.getUsersCount() + 1;
+                    int staffId = UserController.getStaffCount() + 1;
+                    if (Objects.equals(userType, "Waiter")) {
+                        boolean isWaiter = true;
+                        Waiter waiter = new Waiter(userId, email, firstname, lastname, staffId, hoursWorked, totalHours, isStaff, isWaiter, "Waiter", isLoggedIn, isActive);
+                        waiters.add(waiter);
+                        UserController.saveWaiterDataToExcel(waiter);
+                    } else if (Objects.equals(userType, "Manager")) {
+                        boolean isManager = true;
+                        Manager manager = new Manager(userId, email, firstname, lastname, staffId, hoursWorked, totalHours, isStaff, isManager, "Manager", isLoggedIn, isActive);
+                        managers.add(manager);
+                        UserController.saveManagerDataToExcel(manager);
+                    } else if (Objects.equals(userType, "Chef")) {
+                        boolean isChef = true;
+                        Chef chef = new Chef(userId, email, firstname, lastname, staffId, hoursWorked, totalHours, isStaff, isChef, "Chef", isLoggedIn, isActive);
+                        chefs.add(chef);
+                        UserController.saveChefDataToExcel(chef);
+                    } else if (Objects.equals(userType, "Driver")) {
+                        boolean isDriver = true;
+                        Driver driver = new Driver(userId, email, firstname, lastname, staffId, hoursWorked, totalHours, isStaff, isDriver, "Driver", isLoggedIn, isActive);
+                        drivers.add(driver);
+                        UserController.saveDriverDataToExcel(driver);
+                    }
+                    UserController.setUserCount(userId);
+                    UserController.setStaffCount(staffId);
+                    if (stage != null) {
+                        stage.close();
+                    }
+                } else {
+                    warningLabel.setVisible(true);
+                    warningLabel.setText("Please enter all the details");
                 }
-                UserController.setUserCount(userId);
-                UserController.setStaffCount(staffId);
-                if(stage!=null){
-                 stage.close();
-                }
-            }else {
+            } else {
                 warningLabel.setVisible(true);
-                warningLabel.setText("Please enter all the details");
+                warningLabel.setText("Username already exists");
             }
-        } else {
+        }else {
             warningLabel.setVisible(true);
-            warningLabel.setText("Username already exists");
+            warningLabel.setText("Invalid Email Format");
         }
     }
 
