@@ -2,6 +2,7 @@ package cafe94.group14a2;
 
 import Items.ItemDataController;
 import Orders.OrderDataHandler;
+import Report.ReportGenerator;
 import Reservation.ReservationDataController;
 import User.UserController;
 import javafx.application.Application;
@@ -72,6 +73,7 @@ public class Main extends Application {
         ItemDataController.loadItemsFromExcel();
         OrderDataHandler.loadOrdersFromExcel();
         ReservationDataController.loadOrdersFromExcel();
+        ReportGenerator.loadReportExcelData();
         launch();
     }
 }

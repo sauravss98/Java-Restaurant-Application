@@ -79,6 +79,14 @@ public class Report {
         return allStaff;
     }
 
+    public int getReportId() {
+        return reportId;
+    }
+
+    public void setReportId(int reportId) {
+        this.reportId = reportId;
+    }
+
     public LocalDate getCreatedDate() {
         return createdDate;
     }
@@ -119,7 +127,7 @@ public class Report {
         this.createdDate = createdDate;
         setPopularCustomer(mostActiveCustomerId);
         setPopularItem(mostOrderedItemid);
-
+        setBestStaff(mostWorkedStaffId);
     }
 
     @Override
@@ -138,9 +146,9 @@ public class Report {
     public String getDescriptionForReportList(){
         return "Report{" +
                 "Report id" + reportId +
-                ", popularItem=" + popularItem +
-                ", popularCustomer=" + popularCustomer +
-                ", bestStaff=" + bestStaff +
+                ", popularItem=" + popularItem.getItemName() +
+                ", popularCustomer=" + popularCustomer.getFullName() +
+                ", bestStaff=" + bestStaff.getFullName() +
                 ", createdDate=" + createdDate+
                 '}';
     }
