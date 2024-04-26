@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -23,11 +25,20 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="198.0" prefWidth="568.0" spacing="10.0">
          <children>
-            <VBox fx:id="MenuItemList" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <ListView fx:id="ItemsList" minWidth="200.0" prefHeight="600.0" prefWidth="600.0" />
-               </children>
-            </VBox>
+            <TabPane prefHeight="210.0" prefWidth="331.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Main Items">
+                     <content>
+                        <ListView fx:id="ItemsList" minWidth="200.0" prefHeight="600.0" prefWidth="600.0" />
+                     </content>
+                </Tab>
+                <Tab text="Specials">
+                     <content>
+                        <ListView fx:id="SpecialsList" prefHeight="174.0" prefWidth="200.0" />
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
             <VBox fx:id="OrderItems" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Text fx:id="OrderSectionText" strokeType="OUTSIDE" strokeWidth="0.0" />

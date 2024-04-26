@@ -33,6 +33,7 @@ public class CustomerPageController implements Initializable {
     private static ArrayList<Order> orders = OrderDataHandler.getOrders();
     @FXML private Label NameDisplayLabel;
     @FXML private ListView ItemsList;
+    @FXML private ListView SpecialsList;
     @FXML private ListView OrdersList;
     @FXML private Text OrderSectionText;
     @FXML private Button CompleteOrder;
@@ -78,8 +79,19 @@ public class CustomerPageController implements Initializable {
         }
         refreshItemList();
         refreshOrderItemList();
+        refreshSpecialItemList();
         ItemsList.setOnMouseClicked(event -> {
             String selectedItemDescription = (String) ItemsList.getSelectionModel().getSelectedItem();
+            System.out.println(selectedItemDescription);
+            String id = extractID(selectedItemDescription);
+            System.out.println("id is: "+id);
+            Item requiredItem = getItemData(id);
+            System.out.println("Name: "+requiredItem.getItemName());
+            handleOrder(requiredItem);
+        });
+
+        SpecialsList.setOnMouseClicked(event -> {
+            String selectedItemDescription = (String) SpecialsList.getSelectionModel().getSelectedItem();
             System.out.println(selectedItemDescription);
             String id = extractID(selectedItemDescription);
             System.out.println("id is: "+id);
@@ -263,7 +275,23 @@ public class CustomerPageController implements Initializable {
         ItemsList.getItems().clear();
 
         for (Item item : items) {
-            ItemsList.getItems().add(item.getDescriptionForMenuList());
+            if(!item.isSpecialItem()) {
+                ItemsList.getItems().add(item.getDescriptionForMenuList());
+            }
+        }
+    }
+
+    /**
+     * Function to display all the special items in the menu
+     */
+    private void refreshSpecialItemList() {
+        // Clear the displayed list
+        SpecialsList.getItems().clear();
+
+        for (Item item : items) {
+            if(item.isSpecialItem()) {
+                SpecialsList.getItems().add(item.getDescriptionForMenuList());
+            }
         }
     }
 
