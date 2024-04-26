@@ -16,7 +16,6 @@ module cafe94.group14a2 {
     opens cafe94.group14a2 to javafx.fxml;
     opens  User to javafx.fxml;
     exports User;
-//    exports User;
     exports cafe94.group14a2;
     exports Orders;
     opens Orders to javafx.fxml;
