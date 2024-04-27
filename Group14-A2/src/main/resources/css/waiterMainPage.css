@@ -1,0 +1,19 @@
+.mainPage {
+  -fx-background-color: #ffbb70;
+}
+
+.button {
+  -fx-background-color: #ffec9e;
+}
+
+.button:hover {
+  -fx-background-color: #ed9455;
+}
+
+.tabs {
+  -fx-background-color: #ffec9e;
+}
+
+.tab:selected {
+  -fx-background-color: #ed9455;
+}

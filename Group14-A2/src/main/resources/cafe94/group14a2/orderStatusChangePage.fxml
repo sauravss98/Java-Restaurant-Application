@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="OrderDetailsPage" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Orders.WaiterOrderStatusChangePage">
+<VBox styleClass="mainPage" stylesheets="@../../css/waiterPopUp.css" fx:id="OrderDetailsPage" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Orders.WaiterOrderStatusChangePage">
     <children>
         <Text fx:id="orderIdText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
         <ListView fx:id="OrderItemsList" prefHeight="276.0" prefWidth="560.0">

@@ -16,7 +16,7 @@
 }
 
 .tab:selected {
-  -fx-background-color: #277a9e; /* Change this color to the color you want when the tab is selected */
+  -fx-background-color: #277a9e;
 }
 
 .toggleButton {

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox id="customerLandingPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@../../css/customerMainPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Orders.WaiterOrderController">
+<VBox styleClass="mainPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@../../css/waiterMainPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Orders.WaiterOrderController">
     <children>
         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
             <children>
@@ -20,12 +20,12 @@
             <children>
             <TabPane prefHeight="178.0" prefWidth="250.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Menu">
+                <Tab styleClass="tabs" text="Menu">
                      <content>
                         <ListView fx:id="ItemsList" prefHeight="149.0" prefWidth="221.0" />
                      </content>
                 </Tab>
-                <Tab text="Specials">
+                <Tab styleClass="tabs" text="Specials">
                      <content>
                         <ListView fx:id="specialsItemList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="149.0" prefWidth="245.0" />
                      </content>
