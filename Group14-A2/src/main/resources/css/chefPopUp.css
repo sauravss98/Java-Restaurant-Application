@@ -1,0 +1,11 @@
+.mainPage {
+  -fx-background-color: #bed7dc;
+}
+
+.button {
+  -fx-background-color: #f1eedc;
+}
+
+.button:hover {
+  -fx-background-color: #e5ddc5;
+}

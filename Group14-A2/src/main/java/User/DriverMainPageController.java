@@ -60,7 +60,7 @@ public class DriverMainPageController {
     private void addCard() throws IOException {
         try {
             for (Order order:orders) {
-                if (Objects.equals(order.getOrderStatus(), "Food Prepared") && Objects.equals(order.getOrderType(), "takeout")) {
+                if (Objects.equals(order.getOrderStatus(), "Food Prepared") && Objects.equals(order.getOrderType(), "delivery")) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/deliveryCard.fxml"));
                     VBox vbox = loader.load();
                     DriverCardController controller = loader.getController();
