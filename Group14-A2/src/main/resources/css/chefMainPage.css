@@ -2,10 +2,33 @@
   -fx-background-color: #bed7dc;
 }
 
-.button {
+/* .button {
   -fx-background-color: #f1eedc;
-}
+} */
 
 .button:hover {
-  -fx-background-color: #E5DDC5;
+  -fx-background-color: #e5ddc5;
+}
+
+.button {
+  -fx-background-color: #f1eedc;
+  -fx-border-radius: 999px;
+  -fx-box-shadow: #5e5df0 0 10px 20px -10px;
+  -fx-box-sizing: border-box;
+  -fx-color: #ffffff;
+  -fx-cursor: pointer;
+  -fx-font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  -fx-font-size: 16px;
+  -fx-font-weight: 700;
+  -fx-line-height: 24px;
+  -fx-opacity: 1;
+  -fx-padding: 8px 18px;
+  -fx-user-select: none;
+  -fx-touch-action: manipulation;
+  -fx-width: fit-content;
+  -fx-word-break: break-word;
+  -fx-border: 0;
 }
