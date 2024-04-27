@@ -7,9 +7,9 @@
 }
 
 #confirmReservationButton {
-  -fx-background-color: #38a3a5;
+  -fx-background-color: #57cc99;
 }
 
 #confirmReservationButton:hover {
-  -fx-background-color: #57cc99;
+  -fx-background-color: #38a3a5;
 }

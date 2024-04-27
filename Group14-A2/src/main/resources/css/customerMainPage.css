@@ -29,9 +29,9 @@
 }
 
 .button {
-  -fx-background-color: #38a3a5;
+  -fx-background-color: #57cc99;
 }
 
 .button:hover {
-  -fx-background-color: #57cc99;
+  -fx-background-color: #38a3a5;
 }
