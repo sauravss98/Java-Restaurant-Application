@@ -1,0 +1,16 @@
+#mainCard {
+  -fx-background-color: #6e77ae;
+  -fx-border-color: black;
+}
+
+.button {
+  -fx-background-color: #9290c3;
+}
+
+.button:hover {
+  -fx-background-color: #1b1a55;
+}
+
+.scrollPaneContainer {
+  -fx-background-color: #535c91;
+}
