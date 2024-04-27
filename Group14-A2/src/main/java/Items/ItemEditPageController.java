@@ -75,6 +75,7 @@ public class ItemEditPageController {
         if (currentItem != null) {
             SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, currentItem.getPrice());
             priceSpinner.setValueFactory(valueFactory);
+            specialButton.setSelected(currentItem.isSpecialItem());
         } else {
             SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 1);
             priceSpinner.setValueFactory(valueFactory);

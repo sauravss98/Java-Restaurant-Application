@@ -1,0 +1,30 @@
+.mainPage {
+  -fx-background-color: #2c7da0;
+}
+
+.button {
+  -fx-background-color: #a9d6e5;
+  -fx-border-color: black;
+}
+
+.button:hover {
+  -fx-background-color: #2c7da0;
+}
+
+.tabs {
+  -fx-background-color: #61a5c2;
+}
+
+.tab:selected {
+  -fx-background-color: #277a9e; /* Change this color to the color you want when the tab is selected */
+}
+
+.toggleButton {
+  -fx-background-color: #389ac5;
+  -fx-border-color: black;
+}
+
+.toggleButton:selected {
+  -fx-background-color: #ffffff;
+  -fx-border-color: black;
+}

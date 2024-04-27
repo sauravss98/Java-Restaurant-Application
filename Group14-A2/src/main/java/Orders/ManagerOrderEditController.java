@@ -38,7 +38,7 @@ public class ManagerOrderEditController {
      */
     public void setOrder(Order order){
         this.currentOrder = order;
-//        initialize();
+        initialize();
     }
 
     /**
@@ -59,6 +59,7 @@ public class ManagerOrderEditController {
         warningLabel.setVisible(false);
         statusChoiceBox.setItems(options);
         options.addAll("Cancelled","In Progress","Completed","Food Prepared","Delivered");
+        statusChoiceBox.getSelectionModel().select("In Progress");
         cancelButton.setOnAction(e->{
             handleCancelClick();
         });

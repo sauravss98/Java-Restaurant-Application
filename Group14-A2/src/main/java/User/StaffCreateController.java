@@ -37,6 +37,7 @@ public class StaffCreateController {
         warningLabel.setVisible(false);
         userTypeField.setItems(options);
         options.addAll("Chef","Driver","Manager","Waiter");
+        userTypeField.getSelectionModel().select("Chef");
         createUserButton.setOnAction(e->{
             handleCreateButtonClick();
         });

@@ -157,7 +157,7 @@ public class ManagerMainPageController {
             ManagerStaffStatusPage controller = loader.getController();
 
             Stage staffStage = new Stage();
-            staffStage.setTitle("Create Staff");
+            staffStage.setTitle("View Staff");
             staffStage.setScene(new Scene(root, 720, 600));
 
             controller.setStage(staffStage);
