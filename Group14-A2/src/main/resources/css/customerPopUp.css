@@ -1,3 +1,15 @@
 #OrderDetailsPage {
   -fx-background-color: #c7f9cc;
 }
+
+.mainPage {
+  -fx-background-color: #c7f9cc;
+}
+
+#confirmReservationButton {
+  -fx-background-color: #38a3a5;
+}
+
+#confirmReservationButton:hover {
+  -fx-background-color: #57cc99;
+}

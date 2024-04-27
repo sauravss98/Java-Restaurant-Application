@@ -39,6 +39,7 @@ public class ReservationCreateController {
         warningLabel.setVisible(false);
         tableChoiceBox.setItems(options);
         options.addAll("2 seat","4 seat","8 seat", "10 seat");
+        tableChoiceBox.getSelectionModel().select("2 seat");
         refreshQuantitySpinner();
         confirmReservationButton.setOnAction(e->{
             handleConfirmButton();
