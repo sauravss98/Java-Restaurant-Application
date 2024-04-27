@@ -19,6 +19,6 @@
         <TextField styleClass="labelClass" fx:id="EmailTextField" promptText="Enter Email" />
     </HBox>
     <Button styleClass="btn, btn-primary" onAction="#onLoginClick" text="Login" />
-   <Button styleClass="createButton" mnemonicParsing="false" onAction="#onSignUpClick" text="Create Account" />
+   <Button styleClass="btn, btn-primary" mnemonicParsing="false" onAction="#onSignUpClick" text="Create Account" />
    <Label fx:id="LoginErrorLabel" textFill="#ea0000" />
 </VBox>

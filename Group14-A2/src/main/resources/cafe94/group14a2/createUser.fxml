@@ -48,12 +48,12 @@
             <Insets left="20.0" top="20.0" />
          </padding>
       </HBox>
-      <Button styleClass="button" fx:id="createUserButton" alignment="CENTER" mnemonicParsing="false" onAction="#onCreateUserClick" text="Create User" translateX="300.0" translateY="29.0" VBox.vgrow="NEVER">
+      <Button styleClass="btn, btn-primary" fx:id="createUserButton" alignment="CENTER" mnemonicParsing="false" onAction="#onCreateUserClick" text="Create User" translateX="300.0" translateY="29.0" VBox.vgrow="NEVER">
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </Button>
-      <Button styleClass="button" fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonClick" prefWidth="52.0" text="Back" translateX="300.0">
+      <Button styleClass="btn, btn-primary" fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonClick" prefWidth="52.0" text="Back" translateX="300.0">
          <VBox.margin>
             <Insets top="60.0" />
          </VBox.margin>

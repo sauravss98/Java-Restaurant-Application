@@ -1,5 +1,5 @@
 #customerLandingPage {
-  -fx-background-color: rgba(91, 153, 111, 0.486);
+  -fx-background-color: #c7f9cc;
 }
 #OrdersList {
   -fx-min-height: 100px;
@@ -21,4 +21,17 @@
 
 .tabButton::selection {
   -fx-background-color: blue;
+}
+
+.mainPage {
+  -fx-background-color: #c7f9cc;
+  -fx-font-weight: 500;
+}
+
+.button {
+  -fx-background-color: #38a3a5;
+}
+
+.button:hover {
+  -fx-background-color: #57cc99;
 }

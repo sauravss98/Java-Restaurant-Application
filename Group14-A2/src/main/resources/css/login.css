@@ -2,5 +2,13 @@
   -fx-display: flex;
 }
 #LoginPage {
-  -fx-background-color: rgba(91, 153, 111, 0.486);
+  -fx-background-color: #c7f9cc;
+}
+
+.button {
+  -fx-background-color: #38a3a5;
+}
+
+.button:hover {
+  -fx-background-color: #57cc99;
 }

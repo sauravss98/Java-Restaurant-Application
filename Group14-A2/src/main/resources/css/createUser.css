@@ -1,12 +1,11 @@
 #mainVbox {
-//  -fx-background-color: rgba(91, 153, 111, 0.486);
-  -fx-background-color:#DDFFD9
-}
-
-#mainVbox.button {
-  -fx-border-radius: 50%;
+  -fx-background-color: #c7f9cc;
 }
 
 .button {
-  -fx-border-;
+  -fx-background-color: #38a3a5;
+}
+
+.button:hover {
+  -fx-background-color: #57cc99;
 }
