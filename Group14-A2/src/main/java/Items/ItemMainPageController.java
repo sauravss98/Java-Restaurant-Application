@@ -145,11 +145,6 @@ public class ItemMainPageController {
             orderTypeStage.initModality(Modality.APPLICATION_MODAL);
             orderTypeStage.showAndWait();
             initialize();
-            try {
-                Main.setRoot("orderListPage");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }

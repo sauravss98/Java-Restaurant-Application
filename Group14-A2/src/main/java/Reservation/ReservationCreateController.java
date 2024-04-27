@@ -62,9 +62,14 @@ public class ReservationCreateController {
             }
             System.out.println("table is "+ tablesRequired);
             LocalDate reservationDate = datePickerElement.getValue();
-            reservation = new Reservation(reservationId, numberOfGuests, reservationDate, customer,tableType,tablesRequired);
-            ReservationDataController.addReservation(reservation);
-            ReservationDataController.saveReservationDataToExcel(reservation);
+            if ((!reservationDate.isBefore(LocalDate.now()))|| reservationDate == null) {
+                reservation = new Reservation(reservationId, numberOfGuests, reservationDate, customer, tableType, tablesRequired);
+                ReservationDataController.addReservation(reservation);
+                ReservationDataController.saveReservationDataToExcel(reservation);
+            } else {
+                warningLabel.setVisible(true);
+                warningLabel.setText("Enter all details");
+            }
             if (stage != null) {
                 stage.close();
             }
