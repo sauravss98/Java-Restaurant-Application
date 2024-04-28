@@ -19,23 +19,42 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class to generate the report instance and to handle the report data
+ * @author Saurav
+ */
 public class ReportGenerator {
     private static int reportGenerationCounter = 0;
     private static int reportCounter = 0;
     private static ArrayList<Report> reports = new ArrayList<>();
 
+    /**
+     * Function to get the arrayList of reports
+     * @return Returns arraylist of reports
+     */
     public static ArrayList<Report> getReports(){
         return reports;
     }
 
+    /**
+     * Function to return the count of the number of reports created
+     * @return Integer value of count is returned
+     */
     public static int getReportIDCounter() {
         return reportCounter;
     }
 
+    /**
+     * Function to set the report counter value
+     * @param reportCounter The value of the counter is set
+     */
     public void setReportCounter(int reportCounter){
         this.reportCounter = reportCounter;
     }
 
+    /**
+     * Function to generate the report when button is pressed
+     */
     public static void generateReport() {
         ArrayList<Order> orders = OrderDataHandler.getOrders();
 
@@ -58,6 +77,10 @@ public class ReportGenerator {
         createNewExcelReport(report);
     }
 
+    /**
+     * Function to return all the different type of staff types as an array list of type staff
+     * @return Returns all the staffs
+     */
     private static ArrayList<Staff> getAllStaff() {
         ArrayList<Staff> allStaff = new ArrayList<>();
         allStaff.addAll(UserController.getManagers());
@@ -67,6 +90,11 @@ public class ReportGenerator {
         return allStaff;
     }
 
+    /**
+     * Function to find the most worked staff
+     * @param allStaff Array list of staff is passed
+     * @return returns the id of most worked staff
+     */
     private static int findMostWorkedStaff(ArrayList<Staff> allStaff) {
         int mostWorkedStaffId = -1;
         int maxHours = Integer.MIN_VALUE;
@@ -79,6 +107,11 @@ public class ReportGenerator {
         return mostWorkedStaffId;
     }
 
+    /**
+     * Function to set the count for al the items from all the orders
+     * @param orders The order instance is passed
+     * @return Returns the hash map containing the item and count
+     */
     private static Map<Integer, Integer> countItemsOrdered(ArrayList<Order> orders) {
         Map<Integer, Integer> itemCounts = new HashMap<>();
         for (Order order : orders) {
@@ -90,6 +123,11 @@ public class ReportGenerator {
         return itemCounts;
     }
 
+    /**
+     * Function to find the most orderd item from the hashmap
+     * @param itemCounts The hashmap which has the item id and count of the id is passed
+     * @return Returns the most ordered item
+     */
     private static int findMostOrderedItem(Map<Integer, Integer> itemCounts) {
         int mostOrderedItemId = -1;
         int maxCount = Integer.MIN_VALUE;
@@ -102,6 +140,11 @@ public class ReportGenerator {
         return mostOrderedItemId;
     }
 
+    /**
+     * Function to set the count for all the customers from all the orders
+     * @param orders The order instance is passed
+     * @return Returns the hash map containing the item and count
+     */
     private static int findMostActiveCustomer(ArrayList<Order> orders) {
         Map<Integer, Integer> customerOrdersCount = new HashMap<>();
         for (Order order : orders) {
@@ -121,6 +164,10 @@ public class ReportGenerator {
         return mostActiveCustomerId;
     }
 
+    /**
+     * Function to save the report data to the Excel sheet
+     * @param report The report object is passed
+     */
     public static void saveReportDataToExcel(Report report) {
         Workbook workbook;
         Sheet sheet;
@@ -177,6 +224,10 @@ public class ReportGenerator {
         }
     }
 
+    /**
+     * Function to create the new excel sheet when report generate button is pressed
+     * @param report The report object is passed
+     */
     public static void createNewExcelReport(Report report) {
         String reportName = String.valueOf(report.getCreatedDate())+reportGenerationCounter++;
         Workbook workbook;
@@ -234,6 +285,9 @@ public class ReportGenerator {
         }
     }
 
+    /**
+     * Function to load the data from the excel sheet to and create the objects
+     */
     public static void loadReportExcelData(){
             try (FileInputStream inputStream = new FileInputStream("src/main/java/Report/ReportData.xlsx")) {
                 Workbook workbook = new XSSFWorkbook(inputStream);
