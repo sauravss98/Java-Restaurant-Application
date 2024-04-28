@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
+import java.util.Objects;
+
 /**
  * Class for controlling the item edit page
  * @author Saurav
@@ -101,7 +103,7 @@ public class ItemEditPageController {
         int price = (int) priceSpinner.getValue();
         boolean toggleButtonInput = specialButton.isSelected();
         System.out.println("status "+toggleButtonInput);
-        if(itemName!=null) {
+        if(!Objects.equals(itemName, "")) {
             currentItem.setItemName(itemName);
             currentItem.setPrice(price);
             currentItem.setSpecialItem(toggleButtonInput);

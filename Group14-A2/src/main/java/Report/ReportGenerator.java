@@ -224,12 +224,18 @@ public class ReportGenerator {
         }
     }
 
+    public static int randomNumberGenerator(){
+        int min = 50;
+        int max = 100;
+        return  (int)Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     /**
-     * Function to create the new excel sheet when report generate button is pressed
+     * Function to create the new Excel sheet when report generate button is pressed
      * @param report The report object is passed
      */
     public static void createNewExcelReport(Report report) {
-        String reportName = String.valueOf(report.getCreatedDate())+reportGenerationCounter++;
+        String reportName = String.valueOf(report.getCreatedDate())+randomNumberGenerator();
         Workbook workbook;
         Sheet sheet;
 
@@ -256,9 +262,9 @@ public class ReportGenerator {
         int rowNum = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(rowNum);
         row.createCell(0).setCellValue(report.getReportId());
-        row.createCell(1).setCellValue(report.getMostOrderedItemid());
-        row.createCell(2).setCellValue(report.getMostActiveCustomerId());
-        row.createCell(3).setCellValue(report.getMostWorkedStaffId());
+        row.createCell(1).setCellValue(report.getPopularCustomer().getFullName());
+        row.createCell(2).setCellValue(report.getBestStaff().getFullName());
+        row.createCell(3).setCellValue(report.getPopularItem().getItemName());
         Cell dateCell = row.createCell(4);
         dateCell.setCellValue(report.getCreatedDate());
         CellStyle dateCellStyle = workbook.createCellStyle();

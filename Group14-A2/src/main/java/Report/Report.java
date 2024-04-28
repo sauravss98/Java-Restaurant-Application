@@ -247,13 +247,11 @@ public class Report {
      * @return Returns the string with all the report details
      */
     public String getDescriptionForReportList(){
-        return "Report{" +
-                "Report id" + reportId +
-                ", popularItem=" + popularItem.getItemName() +
-                ", popularCustomer=" + popularCustomer.getFullName() +
-                ", bestStaff=" + bestStaff.getFullName() +
-                ", createdDate=" + createdDate+
-                '}';
+        return "Report id" + reportId +
+                ", popularItem: " + popularItem.getItemName() +
+                ", popularCustomer: " + popularCustomer.getFullName() +
+                ", bestStaff: " + bestStaff.getFullName() +
+                ", createdDate: " + createdDate;
     }
 
 }
