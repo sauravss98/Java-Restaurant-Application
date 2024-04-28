@@ -18,7 +18,7 @@ import java.io.*;
 import java.util.regex.*;
 
 public class  UserController {
-    private static final String REGEX_PATTERN = "^(.+)@(\\\\S+)$";
+    private static final String REGEX_PATTERN = "^(.+)@([\\S]+)$";
 
     public static ArrayList<Customer> getCustomers() {
         return customers;
@@ -846,6 +846,4 @@ public class  UserController {
                 .matcher(emailAddress)
                 .matches();
     }
-
-
 }

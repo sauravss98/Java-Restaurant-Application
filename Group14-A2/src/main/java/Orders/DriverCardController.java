@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to control the card element for the driver page
+ * @author Saurav
+ */
 public class DriverCardController {
     private Order currentOrder;
     private static Driver currentDriver;
@@ -23,20 +27,38 @@ public class DriverCardController {
     @FXML private Button completeOrderButton;
     private DriverMainPageController driverMainPageController;
 
+    /**
+     * Default Constructor for the class
+     */
     public DriverCardController(){}
 
+    /**
+     * Function to set the order object in the class instance
+     * @param order The order object is passed
+     */
     public void setOrder(Order order){
         this.currentOrder = order;
     }
 
+    /**
+     * Function to set the parent class object as instance
+     * @param controller The parent class instance is passed
+     */
     public void setDriverMainPageController(DriverMainPageController controller) {
         this.driverMainPageController = controller;
     }
 
+    /**
+     * Function to set the driver instance to the class
+     * @param driver The driver object is passed
+     */
     public void setCurrentDriver(Driver driver){
         this.currentDriver = driver;
     }
 
+    /**
+     * Function to initialized to the UI component
+     */
     public void initialize(){
         if (currentOrder!=null && currentDriver!=null){
             refreshCard();
@@ -50,6 +72,10 @@ public class DriverCardController {
         });
     }
 
+    /**
+     * Function to handle the complete button click
+     * @throws IOException Exception to catch the files
+     */
     private void handleCompleteButton() throws IOException {
         currentOrder.setOrderStatus("Delivery");
         currentOrder.setDriverId(currentDriver.getUserId());
@@ -70,6 +96,9 @@ public class DriverCardController {
         driverMainPageController.refreshCardDisplay();
     }
 
+    /**
+     * Function to refresh the UI component
+     */
     private void refreshCard() {
         Customer orderCustomer = getCustomerData(currentOrder);
         orderIdLabel.setText("Order Id: "+currentOrder.getOrderId());
@@ -77,6 +106,11 @@ public class DriverCardController {
         addressLabel.setText("Delivery Address :"+orderCustomer.getAddress());
     }
 
+    /**
+     * Function to get the customer data
+     * @param order
+     * @return
+     */
     private Customer getCustomerData(Order order) {
         for(Customer customer : customers)
             if(customer.getUserId() == order.getCustomerId()){

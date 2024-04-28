@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control the waiter order view page
+ */
 public class WaiterOrderViewController {
     private Stage stage;
     private static Waiter activeWaiter;
@@ -22,17 +25,31 @@ public class WaiterOrderViewController {
     @FXML private ListView ordersListView;
 
 
+    /**
+     * Default Constructor
+     */
     public WaiterOrderViewController(){
     }
 
+    /**
+     * Function to set the stage instance
+     * @param stage The stage object is possed
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to set the active waiter details
+     * @param activeWaiter The waiter object is passed
+     */
     public void setActiveWaiter(Waiter activeWaiter) {
         this.activeWaiter = activeWaiter;
     }
 
+    /**
+     * Function to initialize the UI component when loaded
+     */
     public void initialize(){
         backButton.setOnAction(e->{
             handleBackClick();
@@ -50,6 +67,11 @@ public class WaiterOrderViewController {
         });
     }
 
+    /**
+     * Function to launch the new page when button is press
+     * @param requiredOrder The order object is passed
+     * @throws IOException The exception to handle when file does not load properly
+     */
     private void launchListPage(Order requiredOrder) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderStatusChangePage.fxml"));
         Parent root = loader.load();
@@ -97,6 +119,9 @@ public class WaiterOrderViewController {
         return data.substring(startIndex, endIndex);
     }
 
+    /**
+     * Function to refresh the UI list when changes are made
+     */
     private void refreshList() {
         ordersListView.getItems().clear();
 
@@ -107,6 +132,9 @@ public class WaiterOrderViewController {
         }
     }
 
+    /**
+     * Function to handle the back button click
+     */
     private void handleBackClick() {
         if(stage!=null){
             stage.close();
