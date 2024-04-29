@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * Class used to control the manager reservation view page
+ * @author Saurav
+ */
 public class ReservationManagerPage {
     private ArrayList<Reservation> reservations = ReservationDataController.getReservations();
     private Stage stage;
@@ -15,12 +19,22 @@ public class ReservationManagerPage {
     private Button goBackButton;
     @FXML private ListView reservationList;
 
+    /**
+     * Default constructor for the class
+     */
     public ReservationManagerPage(){}
 
+    /**
+     * Function to set the stage object to the class when initialized
+     * @param stage The stage object is used
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to initialize the UI components
+     */
     public  void initialize(){
         refreshReservationList();
         goBackButton.setOnAction(e->{
@@ -28,6 +42,9 @@ public class ReservationManagerPage {
         });
     }
 
+    /**
+     * Function to refresh the reservations list when the page is loaded
+     */
     private void refreshReservationList() {
         reservationList.getItems().clear();
 
@@ -36,6 +53,9 @@ public class ReservationManagerPage {
         }
     }
 
+    /**
+     * Function to handle the back button click and it closes the stage/window
+     */
     private void handleBackButton() {
         if(stage!=null){
             stage.close();
