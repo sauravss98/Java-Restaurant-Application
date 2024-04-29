@@ -125,7 +125,7 @@ public class ReservationDataController {
                     int customerId = (int)row.getCell(3).getNumericCellValue();
                     String tableType = row.getCell(4).getStringCellValue();
                     int tableCount = (int)row.getCell(5).getNumericCellValue();
-                    String time = String.valueOf(row.getCell(6).getDateCellValue());
+                    String time = dataFormatter.formatCellValue(row.getCell(6));
                     String status = row.getCell(7).getStringCellValue();
 
                     for (Customer customerToLoad : customers){
@@ -141,6 +141,40 @@ public class ReservationDataController {
             System.out.println("Reservations loaded from Excel successfully.");
         } catch (IOException e) {
             System.err.println("Error loading reservation from Excel: " + e.getMessage());
+        }
+    }
+
+    public static void editReservationData(Reservation reservation) {
+        Workbook workbook;
+        try {
+            FileInputStream inputStream = new FileInputStream("src/main/java/Reservation/ReservationData.xlsx");
+            workbook = new XSSFWorkbook(inputStream);
+            inputStream.close();
+        } catch (IOException e) {
+            workbook = new XSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+        if (sheet == null) {
+            sheet = workbook.createSheet("Order Data");
+        }
+
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int reservationID = (int) row.getCell(0).getNumericCellValue();
+                if (reservationID == reservation.getReservationId()) {
+                    row.getCell(7).setCellValue(reservation.getBookingStatus());
+                    break;
+                }
+            }
+        }
+
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/Reservation/ReservationData.xlsx")) {
+            workbook.write(outputStream);
+            System.out.println("Reservation data saved to the Excel successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving items to Excel: " + e.getMessage());
         }
     }
 }
