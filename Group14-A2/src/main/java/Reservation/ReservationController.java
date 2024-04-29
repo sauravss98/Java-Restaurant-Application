@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to handle the reservation main page
+ * @author Saurav
+ */
 public class ReservationController {
     private static ArrayList<Reservation> reservations = ReservationDataController.getReservations();
     @FXML private Label reservationText;
@@ -23,12 +27,22 @@ public class ReservationController {
     @FXML private Button orderSwitchPage;
     private static Customer activeCustomer;
 
+    /**
+     * Constructor to create default UI components
+     */
     public ReservationController(){}
 
+    /**
+     * Function to set the customer object to the UI page
+     * @param activeCustomer
+     */
     public void setActiveCustomer(Customer activeCustomer) {
         this.activeCustomer = activeCustomer;
     }
 
+    /**
+     * Function to initialize the UI components
+     */
     public void initialize(){
         reservationTextRefresh();
         refreshRefreshListView();
@@ -48,6 +62,9 @@ public class ReservationController {
         });
     }
 
+    /**
+     * Function to refresh the list view
+     */
     public void refreshRefreshListView(){
         reservationList.getItems().clear();
 
@@ -57,6 +74,10 @@ public class ReservationController {
         }
     }
 
+    /**
+     * Function to handle the reservation button click, which when pressed it will load a new window where usr can create the reservation
+     * @throws IOException Exception to handle issue when loading the fxml file
+     */
     private void handlReservationButton() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/reservationCreatePage.fxml"));
         Parent root = loader.load();
@@ -73,6 +94,10 @@ public class ReservationController {
         }
         initialize();
     }
+
+    /**
+     * Function to refresh the text in the reservation page
+     */
     public void reservationTextRefresh(){
         if(activeCustomer != null){
             reservationText.setText("Hi "+activeCustomer.getFirstName()+". These are your reservations");
