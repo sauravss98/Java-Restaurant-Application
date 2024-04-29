@@ -11,6 +11,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control the reservation create page
+ * @author Saurav
+ */
 public class ReservationCreateController {
     private static ArrayList<Reservation> reservations = ReservationDataController.getReservations();
     private Customer customer;
@@ -23,18 +27,32 @@ public class ReservationCreateController {
     private ObservableList<String> options = FXCollections.observableArrayList();
     private Reservation reservation;
 
+    /**
+     * Default constructor for the class
+     */
     public ReservationCreateController(){
 
     }
 
+    /**
+     * Function to set the stage instance to the class
+     * @param stage The stage object is passed
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to set the customer object to the class
+     * @param customer The customer object is passed
+     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
+    /**
+     * Function to initialize the UI elements
+     */
     public void initialize(){
         warningLabel.setVisible(false);
         tableChoiceBox.setItems(options);
@@ -46,14 +64,20 @@ public class ReservationCreateController {
         });
     }
 
+    /**
+     * Function to refresh the spinner UI element
+     */
     private void refreshQuantitySpinner() {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE,1);
         guestSpinner.setValueFactory(valueFactory);
     }
 
+    /**
+     * Function to handle the confirm button click
+     */
     private void handleConfirmButton(){
         try {
-            int reservationId = generateOrderId();
+            int reservationId = generateReservationId();
             int numberOfGuests = (int) guestSpinner.getValue();
             String tableType = tableChoiceBox.getValue().toString();
             int tablesRequired = calculateNumberOfTables(tableType,numberOfGuests);
@@ -79,6 +103,12 @@ public class ReservationCreateController {
         }
     }
 
+    /**
+     * Function to calculate the number of tables required based on the table type selected and number of guests
+     * @param table The table type is passed
+     * @param numberOfGuests The number of guests is passed
+     * @return The number of tables required as an integer value
+     */
     private int calculateNumberOfTables(String table,int numberOfGuests) {
         if (Objects.equals(table, "2 seat")){
             if(numberOfGuests%2 ==0){
@@ -104,7 +134,11 @@ public class ReservationCreateController {
         return 0;
     }
 
-    public int generateOrderId() {
+    /**
+     * Function to generate the reservation id for new reservation based on the total number reservation that exists
+     * @return Returns an integer id
+     */
+    public int generateReservationId() {
         int maxReservationId = 0;
         // Find the maximum order ID from the existing orders
         for (Reservation reservation : reservations) {
