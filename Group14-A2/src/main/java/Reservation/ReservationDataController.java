@@ -15,19 +15,35 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Class to handle the reservation data
+ * @author Saurav
+ */
 public class ReservationDataController {
     private static ArrayList<Reservation> reservations = new ArrayList<>();
     private static ArrayList<Customer> customers = UserController.getCustomers();
     private static Customer customer;
 
+    /**
+     * Function to get all the reservations which is stored in an arraylist
+     * @return Returns the reservations as an array list
+     */
     public static ArrayList<Reservation> getReservations() {
         return reservations;
     }
 
+    /**
+     * Function to add a new reservation to the array list containing all the reservations
+     * @param reservation The new reservation object is passed
+     */
     public static void addReservation(Reservation reservation){
         reservations.add(reservation);
     }
 
+    /**
+     * Function to save the new reservation data to the Excel sheet
+     * @param reservation The new reservation object is passed
+     */
     public static void saveReservationDataToExcel(Reservation reservation) {
         Workbook workbook;
         Sheet sheet;
@@ -87,6 +103,9 @@ public class ReservationDataController {
         }
     }
 
+    /**
+     * Function to load reservation objects from the excel sheet when loading the app first time
+     */
     public static void loadOrdersFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/Reservation/ReservationData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
