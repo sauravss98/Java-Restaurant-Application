@@ -172,11 +172,12 @@ public class Reservation {
      */
     @Override
     public String toString() {
-        return "reservationId= " + reservationId +
-                ", numberOfGuests= " + numberOfGuests +
-                ", dateOfReservation= " + dateOfReservation +
-                ", customer= " + customer.getFullName() +
-                ", table type= "+tabletype+
-                ", Number of tables= "+numberOfTables;
+        return "ID: " + reservationId +
+                " Guest Count: " + numberOfGuests +
+                ", Reservation Time: "+ bookingTime+
+                ", Reservation Date: " + dateOfReservation+
+                ", Reservation Status: "+bookingStatus+
+                ", Table Type: "+tabletype+
+                ", Number of tables: "+numberOfTables;
     }
 }
