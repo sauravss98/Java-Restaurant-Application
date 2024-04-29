@@ -23,8 +23,11 @@ public class ReservationCreateController {
     @FXML private Button confirmReservationButton;
     @FXML private DatePicker datePickerElement;
     @FXML private ChoiceBox tableChoiceBox;
+    @FXML private ChoiceBox timeChoiceBox;
     @FXML private Label warningLabel;
     private ObservableList<String> options = FXCollections.observableArrayList();
+    private ObservableList<String> timeOptions = FXCollections.observableArrayList();
+
     private Reservation reservation;
 
     /**
@@ -58,6 +61,9 @@ public class ReservationCreateController {
         tableChoiceBox.setItems(options);
         options.addAll("2 seat","4 seat","8 seat", "10 seat");
         tableChoiceBox.getSelectionModel().select("2 seat");
+        timeChoiceBox.setItems(timeOptions);
+        timeOptions.addAll("10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00");
+        timeChoiceBox.getSelectionModel().select("10:00");
         refreshQuantitySpinner();
         confirmReservationButton.setOnAction(e->{
             handleConfirmButton();
@@ -81,13 +87,15 @@ public class ReservationCreateController {
             int numberOfGuests = (int) guestSpinner.getValue();
             String tableType = tableChoiceBox.getValue().toString();
             int tablesRequired = calculateNumberOfTables(tableType,numberOfGuests);
+            String time = timeChoiceBox.getValue().toString();
+            String status = "pending";
             if(tablesRequired==0){
                 tablesRequired =1;
             }
             System.out.println("table is "+ tablesRequired);
             LocalDate reservationDate = datePickerElement.getValue();
             if ((!reservationDate.isBefore(LocalDate.now()))|| reservationDate == null) {
-                reservation = new Reservation(reservationId, numberOfGuests, reservationDate, customer, tableType, tablesRequired);
+                reservation = new Reservation(reservationId, numberOfGuests, reservationDate, customer, tableType, tablesRequired,time,status);
                 ReservationDataController.addReservation(reservation);
                 ReservationDataController.saveReservationDataToExcel(reservation);
             } else {

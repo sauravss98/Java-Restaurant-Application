@@ -59,6 +59,8 @@ public class ReservationDataController {
             headerRow.createCell(3).setCellValue("Customer ID");
             headerRow.createCell(4).setCellValue("Table Type");
             headerRow.createCell(5).setCellValue("Table Count");
+            headerRow.createCell(6).setCellValue("Booking Time");
+            headerRow.createCell(7).setCellValue("Booking Status");
         } else {
             try (FileInputStream inputStream = new FileInputStream(file)) {
                 workbook = new XSSFWorkbook(inputStream);
@@ -84,6 +86,8 @@ public class ReservationDataController {
         row.createCell(3).setCellValue(reservation.getCustomer().getCustomerID());
         row.createCell(4).setCellValue(reservation.getTabletype());
         row.createCell(5).setCellValue(reservation.getNumberOfTables());
+        row.createCell(6).setCellValue(reservation.getBookingTime());
+        row.createCell(7).setCellValue(reservation.getBookingStatus());
 
         for (int i = 0; i < 6; i++) {
             sheet.autoSizeColumn(i);
@@ -121,6 +125,8 @@ public class ReservationDataController {
                     int customerId = (int)row.getCell(3).getNumericCellValue();
                     String tableType = row.getCell(4).getStringCellValue();
                     int tableCount = (int)row.getCell(5).getNumericCellValue();
+                    String time = String.valueOf(row.getCell(6).getDateCellValue());
+                    String status = row.getCell(7).getStringCellValue();
 
                     for (Customer customerToLoad : customers){
                         if(customerId == customerToLoad.getUserId()){
@@ -128,7 +134,7 @@ public class ReservationDataController {
                         }
                     }
 
-                    Reservation reservation = new Reservation(reservationId,numberOfGuests, dateOfReservation, customer,tableType,tableCount);
+                    Reservation reservation = new Reservation(reservationId,numberOfGuests, dateOfReservation, customer,tableType,tableCount,time,status);
                     reservations.add(reservation);
                 }
             }

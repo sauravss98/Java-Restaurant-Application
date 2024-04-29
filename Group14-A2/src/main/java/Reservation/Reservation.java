@@ -3,7 +3,6 @@ package Reservation;
 import User.Customer;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Class to create object of Reservation instance
@@ -16,7 +15,40 @@ public class Reservation {
     private Customer customer;
     private String tabletype;
     private int numberOfTables;
-    private LocalDateTime time;
+    private String bookingTime;
+    private String bookingStatus;
+
+    /**
+     * Function to get the booking status value
+     * @return Returns the booking status as string
+     */
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    /**
+     * Function to set the booking status
+     * @param bookingStatus The booking status is passed as parameter
+     */
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
+    /**
+     * Function to get the booking time
+     * @return Time is returned as string
+     */
+    public String getBookingTime() {
+        return bookingTime;
+    }
+
+    /**
+     * Function to set the booking time
+     * @param bookingTime String value containing booking is passed
+     */
+    public void setBookingTime(String bookingTime) {
+        this.bookingTime = bookingTime;
+    }
 
     /**
      * Funtion to get the table type
@@ -123,13 +155,15 @@ public class Reservation {
      * @param tabletype The table type is sent
      * @param numberOfTables The number of tables is sent
      */
-    public Reservation(int reservationId, int numberOfGuests, LocalDate dateOfReservation, Customer customer,String tabletype,int numberOfTables) {
+    public Reservation(int reservationId, int numberOfGuests, LocalDate dateOfReservation, Customer customer,String tabletype,int numberOfTables,String bookingTime,String bookingStatus) {
         this.reservationId = reservationId;
         this.numberOfGuests = numberOfGuests;
         this.dateOfReservation = dateOfReservation;
         this.customer = customer;
         this.tabletype = tabletype;
         this.numberOfTables = numberOfTables;
+        this.bookingTime = bookingTime;
+        this.bookingStatus = bookingStatus;
     }
 
     /**
