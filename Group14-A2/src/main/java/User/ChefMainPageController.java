@@ -25,6 +25,7 @@ public class ChefMainPageController {
     @FXML private HBox containerBox;
     @FXML private Button logoutButton;
     @FXML private Button logTimeChangeButton;
+    @FXML private Button menuButton;
 
 
     public ChefMainPageController(){}
@@ -53,6 +54,18 @@ public class ChefMainPageController {
                 throw new RuntimeException(ex);
             }
         });
+        menuButton.setOnAction(e->{
+            handleMenuButtonClick();
+        });
+    }
+
+    private void handleMenuButtonClick() {
+        new ChefItemPage(activeChef.getEmail());
+        try {
+            Main.setRoot("chefMenuPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void handleTimeLogButton() throws IOException {
