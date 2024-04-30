@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control the driver main page
+ * @author Saurav
+ */
 public class DriverMainPageController {
     private static Driver activeDriver;
     private ArrayList<Driver> drivers = UserController.getDrivers();
@@ -28,9 +32,16 @@ public class DriverMainPageController {
     @FXML private Button logoutButton;
     @FXML private Button logTimeChangeButton;
 
+    /**
+     * Default constructor
+     */
     public DriverMainPageController(){
-
     }
+
+    /**
+     * Constructor to initialize the class with user
+     * @param email The email of user is passed as string
+     */
     public DriverMainPageController(String email){
         for (Driver driver: drivers){
             if(driver.getEmail().equals(email)){
@@ -39,6 +50,9 @@ public class DriverMainPageController {
         }
     }
 
+    /**
+     * Function to initialize the UI component
+     */
     public void initialize(){
         logoutButton.setOnAction(e->{
             handleLogoutButton();
@@ -57,6 +71,10 @@ public class DriverMainPageController {
         });
     }
 
+    /**
+     * Function to add new card objects based on the number of orders
+     * @throws IOException Exception is thrown if any issue comes when opening the file
+     */
     private void addCard() throws IOException {
         try {
             for (Order order:orders) {
@@ -76,6 +94,9 @@ public class DriverMainPageController {
         }
     }
 
+    /**
+     * Function to refresh the card display
+     */
     public void refreshCardDisplay() {
         containerBox.getChildren().clear(); // Clear existing cards
         try {
@@ -85,6 +106,9 @@ public class DriverMainPageController {
         }
     }
 
+    /**
+     * Function to log out and go back to the login page when clicked
+     */
     private void handleLogoutButton() {
         try {
             Main.setRoot("login");
@@ -93,6 +117,10 @@ public class DriverMainPageController {
         }
     }
 
+    /**
+     * Function to handle the time log button click and open the time log window
+     * @throws IOException Exception is thrown if any issue comes when opening the file
+     */
     private void handleTimeLogButton() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/driverTimeLogger.fxml"));
         Parent root = loader.load();
