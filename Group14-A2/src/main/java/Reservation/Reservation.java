@@ -174,9 +174,9 @@ public class Reservation {
     public String toString() {
         return "ID: " + reservationId +
                 " Guest Count: " + numberOfGuests +
-                ", Reservation Time: "+ bookingTime+
-                ", Reservation Date: " + dateOfReservation+
-                ", Reservation Status: "+bookingStatus+
+                ", Time: "+ bookingTime+
+                ", Date: " + dateOfReservation+
+                ", Status: "+bookingStatus+
                 ", Table Type: "+tabletype+
                 ", Number of tables: "+numberOfTables;
     }
