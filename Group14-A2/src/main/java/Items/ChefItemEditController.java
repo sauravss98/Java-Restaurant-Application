@@ -6,6 +6,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * Class to control the chefs item edit page
+ */
 public class ChefItemEditController {
     private Item currentItem;
     private Stage stage;
@@ -15,17 +18,31 @@ public class ChefItemEditController {
     @FXML private Button confirmButton;
     @FXML private CheckBox specialCheckBox;
 
+    /**
+     * Default constructor for the class
+     */
     public  ChefItemEditController(){}
 
+    /**
+     * Function to set the item object when class is instantiated
+     * @param currentItem The Item object is passed
+     */
     public void setCurrentItem(Item currentItem) {
         this.currentItem = currentItem;
         initialize();
     }
 
+    /**
+     * Function to set the stage object when class is instantiated
+     * @param stage The stage object is passed
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to initialize the UI element
+     */
     public void initialize(){
         if(currentItem!=null) {
             renderItemDetails();
@@ -38,6 +55,9 @@ public class ChefItemEditController {
         });
     }
 
+    /**
+     * Function to handle the confirm button click
+     */
     private void handleConfirmButtonClick() {
         boolean check = specialCheckBox.isSelected();
         currentItem.setSpecialItem(check);
@@ -47,12 +67,18 @@ public class ChefItemEditController {
         }
     }
 
+    /**
+     * Function to handle the back button click
+     */
     private void handleBackClick() {
         if (stage!=null){
             stage.close();
         }
     }
 
+    /**
+     * Function to render the item list
+     */
     private void renderItemDetails() {
         itemName.setText("Item Name: "+currentItem.getItemName());
         specialItemLabel.setText("Daily Special: "+currentItem.isSpecialItem());
