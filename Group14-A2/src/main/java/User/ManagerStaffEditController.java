@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * Class to control the manager staff edit page
+ * @author Saurav
+ */
 public class ManagerStaffEditController {
     private ArrayList<Manager> managers = UserController.getManagers();
     private ArrayList<Waiter> waiters = UserController.getWaiters();
@@ -31,21 +35,39 @@ public class ManagerStaffEditController {
     @FXML private Label warningLabel;
     private int oldWorkedHoursValue;
 
-
+    /**
+     * Default constructor for the class
+     */
     public ManagerStaffEditController(){}
 
+    /**
+     * Function to set the stage object to the class instance
+     * @param stage
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to set the staff array list when loading the
+     * @param staffs Pass the staffs arraylist
+     */
     public void setStaffArrayList(ArrayList<Staff> staffs){
         this.staffs = staffs;
     }
 
+    /**
+     * Function to set the old worked hours
+     * @param hoursValue The hours value is passed as int
+     */
     public void setOldWorkedHoursValue(int hoursValue){
         this.oldWorkedHoursValue = hoursValue;
     }
 
+    /**
+     * Function to set the staff to the class instance
+     * @param staff The staff object is passed
+     */
     public void setStaff(Staff staff) {
         this.activeStaff = staff;
         String userType = activeStaff.getUserType();
@@ -87,26 +109,45 @@ public class ManagerStaffEditController {
         }
     }
 
+    /**
+     * Function to set the chef object to the class
+     * @param activeChef The chef object is passed
+     */
     public void setActiveChef(Chef activeChef) {
         this.activeChef = activeChef;
         initialize();
     }
 
+    /**
+     * Function to set the driver object to the class
+     * @param activeDriver The driver object is passed
+     */
     public void setActiveDriver(Driver activeDriver) {
         this.activeDriver = activeDriver;
         initialize();
     }
 
+    /**
+     * Function to set the manager object to the class
+     * @param activeManager The manager object is passed
+     */
     public void setActiveManager(Manager activeManager) {
         this.activeManager = activeManager;
         initialize();
     }
 
+    /**
+     * Function to set the waiter object to the class
+     * @param activeWaiter The waiter object is passed
+     */
     public void setActiveWaiter(Waiter activeWaiter) {
         this.activeWaiter = activeWaiter;
         initialize();
     }
 
+    /**
+     * Function to initialize the UI components
+     */
     public void initialize(){
         if(activeStaff!=null) {
             setOldWorkedHoursValue(activeStaff.getHoursWorked());
@@ -130,6 +171,9 @@ public class ManagerStaffEditController {
         });
     }
 
+    /**
+     * Function to handle the confirm button click and make changes to the data
+     */
     private void handleConfirmClickButton() {
         if(oldWorkedHoursValue<(int)workedHoursSpinner.getValue()) {
             activeStaff.setHoursWorked((int) workedHoursSpinner.getValue());
@@ -154,13 +198,18 @@ public class ManagerStaffEditController {
         }
     }
 
-
+    /**
+     * Function to handle the cancel button click
+     */
     private void handleCancelClick() {
         if(stage!=null){
             stage.close();
         }
     }
 
+    /**
+     * Function to handle the remove button click. When clicked the item is removed
+     */
     private void handleRemoveButton(){
         if(activeStaff.getUserType().equals("Manager")){
             activeManager.setIsActive(false);
@@ -183,6 +232,9 @@ public class ManagerStaffEditController {
         }
     }
 
+    /**
+     * Function to refresh the data label to the selected type
+     */
     private void refreshLabelData() {
         if(activeStaff!=null){
             if(activeStaff.getUserType().equals("Manager")){
@@ -200,6 +252,10 @@ public class ManagerStaffEditController {
         }
     }
 
+    /**
+     * Function to change the data label to the selected user type
+     * @param manager Manager object is passed
+     */
     private void setDataLabels(Manager manager){
         idLabel.setText("Staff ID: "+manager.getUserId());
         userNameLabel.setText("Name: "+manager.getFullName());
@@ -207,6 +263,11 @@ public class ManagerStaffEditController {
         SpinnerValueFactory<Integer> workHouredValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, manager.getHoursWorked());
         workedHoursSpinner.setValueFactory(workHouredValueFactory);
     }
+
+    /**
+     * Function to change the data label to the selected user type
+     * @param chef Chef object is passed
+     */
     private void setDataLabels(Chef chef){
         idLabel.setText("Staff ID: "+chef.getUserId());
         userNameLabel.setText("Name: "+chef.getFullName());
@@ -214,6 +275,11 @@ public class ManagerStaffEditController {
         SpinnerValueFactory<Integer> workHouredValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, chef.getHoursWorked());
         workedHoursSpinner.setValueFactory(workHouredValueFactory);
     }
+
+    /**
+     * Function to change the data label to the selected user type
+     * @param waiter Waiter object is passed
+     */
     private void setDataLabels(Waiter waiter){
         idLabel.setText("Staff ID: "+waiter.getUserId());
         userNameLabel.setText("Name: "+waiter.getFullName());
@@ -221,6 +287,11 @@ public class ManagerStaffEditController {
         SpinnerValueFactory<Integer> workHouredValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, waiter.getHoursWorked());
         workedHoursSpinner.setValueFactory(workHouredValueFactory);
     }
+
+    /**
+     * Function to change the data label to the selected user type
+     * @param driver Driver object is passed
+     */
     private void setDataLabels(Driver driver){
         idLabel.setText("Staff ID: "+driver.getUserId());
         userNameLabel.setText("Name: "+driver.getFullName());

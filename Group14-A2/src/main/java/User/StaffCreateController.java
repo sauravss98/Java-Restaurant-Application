@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control the staff create logic
+ * @author Saurav
+ */
 public class StaffCreateController {
     private ArrayList<Customer> customers = UserController.getCustomers();
     private ArrayList<Waiter> waiters = UserController.getWaiters();
@@ -28,11 +32,16 @@ public class StaffCreateController {
     private ObservableList<String> options = FXCollections.observableArrayList();
     private Stage stage;
 
-
+    /**
+     * Default constructor
+     */
     public StaffCreateController(){
 
     }
 
+    /**
+     * Function to initialize the UI components
+     */
     public void initialize(){
         warningLabel.setVisible(false);
         userTypeField.setItems(options);
@@ -46,12 +55,18 @@ public class StaffCreateController {
         });
     }
 
+    /**
+     * Function to handle the cancel button click
+     */
     private void handleCancelClick() {
         if(stage!=null){
             stage.close();
         }
     }
 
+    /**
+     * Function to create the create button click and save the data
+     */
     private void handleCreateButtonClick() {
         String email = emailField.getText();
         String firstname = firstNameField.getText();
@@ -114,6 +129,10 @@ public class StaffCreateController {
         }
     }
 
+    /**
+     * Function to check if email is valid by checking if the same email exists in the database
+     * @return It returns a boolean value based on the check. If email exists it returns True, else False.
+     */
     public boolean checkEmailValidity(){
         boolean emailIsValid =true;
         for(Customer customer:customers) {
@@ -144,6 +163,10 @@ public class StaffCreateController {
         return  emailIsValid;
     }
 
+    /**
+     * Function to set the stage when the class is instantiated
+     * @param stage The stage object is passed
+     */
     public void setStage(Stage stage){
         this.stage = stage;
     }

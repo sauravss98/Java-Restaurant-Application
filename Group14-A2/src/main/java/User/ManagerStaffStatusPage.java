@@ -1,8 +1,5 @@
 package User;
 
-import Orders.ManagerOrderEditController;
-import Orders.Order;
-import Reservation.Reservation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +13,10 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to control the manager staff status page
+ * @author Saurav
+ */
 public class ManagerStaffStatusPage {
     private ArrayList<Manager> managers = UserController.getManagers();
     private ArrayList<Waiter> waiters = UserController.getWaiters();
@@ -29,12 +30,22 @@ public class ManagerStaffStatusPage {
     @FXML private ListView activeList;
     @FXML private ListView inactiveList;
 
+    /**
+     * Default constructor
+     */
     public ManagerStaffStatusPage(){}
 
+    /**
+     * Function to set the stage to the instance
+     * @param stage Stage object is passed
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to initialize the UI components
+     */
     public  void initialize(){
         refreshActiveStaffList();
         refreshInactiveStaffList();
@@ -55,6 +66,10 @@ public class ManagerStaffStatusPage {
         });
     }
 
+    /**
+     * Function to edit the staff details. The user is routed to the new page
+     * @param selectedItem The selected item id is passed as a string
+     */
     private void editStaffDetail(String selectedItem) {
         String id = extractID(selectedItem);
         Staff requiredStaff = getStaffData(id);
@@ -81,6 +96,11 @@ public class ManagerStaffStatusPage {
         refreshActiveStaffList();
     }
 
+    /**
+     * Function to get the id from the data passed
+     * @param data Data is passed as string
+     * @return Returns the id as string
+     */
     public static String extractID(String data) {
         int startIndex = data.indexOf("ID: ") + 4; // Add 4 to skip "ID: "
         int endIndex = data.indexOf(" ", startIndex); // Find the space after the ID value
@@ -90,6 +110,11 @@ public class ManagerStaffStatusPage {
         return data.substring(startIndex, endIndex);
     }
 
+    /**
+     * Function to get the staff data based on the id passed
+     * @param idString The id is passed as string
+     * @return Returns the staff
+     */
     private Staff getStaffData(String idString) {
         int id = Integer.parseInt(idString);
         for (Staff staff : staffs) {
@@ -100,6 +125,9 @@ public class ManagerStaffStatusPage {
         return null;
     }
 
+    /**
+     * Function to refresh the list of staff who are inactive
+     */
     private void refreshInactiveStaffList() {
         inactiveList.getItems().clear();
 
@@ -125,6 +153,9 @@ public class ManagerStaffStatusPage {
         }
     }
 
+    /**
+     * Function to refresh the list of staff who are active
+     */
     private void refreshActiveStaffList() {
         activeList.getItems().clear();
 
@@ -150,6 +181,9 @@ public class ManagerStaffStatusPage {
         }
     }
 
+    /**
+     * Function to handle the back button click
+     */
     private void handleBackButton() {
         if(stage!=null){
             stage.close();
