@@ -48,7 +48,7 @@
             </TabPane>
             <VBox fx:id="OrderItems" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select item to edit count or remove it" />
+                  <Text fx:id="userHelpText" strokeType="OUTSIDE" strokeWidth="0.0" text="Select item to edit count or remove it" />
                   <Text fx:id="OrderSectionText" strokeType="OUTSIDE" strokeWidth="0.0" />
                   <ListView fx:id="OrdersList" minWidth="200.0" prefHeight="600.0" prefWidth="600.0" />
                   <Text fx:id="PriceText" strokeType="OUTSIDE" strokeWidth="0.0" />

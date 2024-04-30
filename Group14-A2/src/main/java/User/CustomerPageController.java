@@ -38,6 +38,7 @@ public class CustomerPageController implements Initializable {
     @FXML private Text OrderSectionText;
     @FXML private Button CompleteOrder;
     @FXML private Text PriceText;
+    @FXML private Text userHelpText;
     @FXML private Button reservationButton;
     @FXML private Button logoutButton;
     @FXML private Button allOrdersViewButton;
@@ -305,8 +306,12 @@ public class CustomerPageController implements Initializable {
             OrderSectionText.setText("Please make an order");
             OrdersList.setVisible(false);
             CompleteOrder.setVisible(false);
+            PriceText.setVisible(false);
+            userHelpText.setVisible(false);
         } else {
             CompleteOrder.setVisible(true);
+            userHelpText.setVisible(true);
+            PriceText.setVisible(true);
             if (Objects.equals(currentOrder.getOrderStatus(), "cart")) {
                 OrderSectionText.setText("Order Id: " + currentOrder.getOrderId());
                 OrdersList.setVisible(true);
