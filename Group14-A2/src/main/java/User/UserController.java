@@ -19,27 +19,6 @@ import java.util.regex.*;
 
 public class  UserController {
     private static final String REGEX_PATTERN = "^(.+)@([\\S]+)$";
-
-    public static ArrayList<Customer> getCustomers() {
-        return customers;
-    }
-
-    public static ArrayList<Manager> getManagers() {
-        return managers;
-    }
-
-    public static ArrayList<Waiter> getWaiters() {
-        return waiters;
-    }
-
-    public static ArrayList<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public static ArrayList<Chef> getChefs() {
-        return chefs;
-    }
-
     private static ArrayList<Customer> customers = new ArrayList<>();
     private static ArrayList<Manager> managers = new ArrayList<>();
     private static ArrayList<Waiter> waiters = new ArrayList<>();
@@ -47,6 +26,57 @@ public class  UserController {
     private static ArrayList<Chef> chefs = new ArrayList<>();
     private static int userCount = 0;
     private static int staffCount = 0;
+    @FXML private Button backButton;
+    @FXML private TextField emailField;
+    @FXML private TextField firstNameField;
+    @FXML private TextField lastNameField;
+    @FXML private TextField addressField;
+    @FXML private Label errorLabel;
+
+    /**
+     * Function to return the customer array list
+     * @return Returns arraylist with customer data
+     */
+    public static ArrayList<Customer> getCustomers() {
+        return customers;
+    }
+
+    /**
+     * Function to return the manager array list
+     * @return Returns arraylist with manager data
+     */
+    public static ArrayList<Manager> getManagers() {
+        return managers;
+    }
+
+    /**
+     * Function to return the waiter array list
+     * @return Returns arraylist with waiter data
+     */
+    public static ArrayList<Waiter> getWaiters() {
+        return waiters;
+    }
+
+    /**
+     * Function to return the driver array list
+     * @return Returns arraylist with driver data
+     */
+    public static ArrayList<Driver> getDrivers() {
+        return drivers;
+    }
+
+    /**
+     * Function to return the chef array list
+     * @return Returns arraylist with chef data
+     */
+    public static ArrayList<Chef> getChefs() {
+        return chefs;
+    }
+
+    /**
+     * Function to check if email is valid by checking if the same email exists in the database
+     * @return It returns a boolean value based on the check. If email exists it returns True, else False.
+     */
     public boolean checkEmailValidity(){
         boolean emailIsValid =true;
         for(Customer customer:customers) {
@@ -77,34 +107,51 @@ public class  UserController {
         return  emailIsValid;
     }
 
-    @FXML private Button backButton;
-    @FXML private TextField emailField;
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private TextField addressField;
-    @FXML private Label errorLabel;
-
+    /**
+     * Function to set the total user count value
+     * @param userCount An integer value with user count is passed
+     */
     public static void setUserCount(int userCount) {
         UserController.userCount = userCount;
     }
 
+    /**
+     * Function to get the user count
+     * @return The total user count is returned
+     */
     public static int getUsersCount() {
         return userCount;
     }
 
+    /**
+     * Function to get the staff count
+     * @return The total staff count is returned
+     */
     public static int getStaffCount() {
         return staffCount;
     }
 
+    /**
+     * Function to set the staff count
+     * @param staffCount An integer value with staff count is passed
+     */
     public static void setStaffCount(int staffCount) {
         UserController.staffCount = staffCount;
     }
 
+    /**
+     * Function to handle the back button click and on click goes to the login page
+     * @throws IOException The exception is caused when there is issue opening the file
+     */
     @FXML
     private void onBackButtonClick() throws IOException {
         Main.setRoot("login");
     }
 
+    /**
+     * Funtion to handle the create user click button and create a new user
+     * @throws IOException The exception is caused when there is issue opening the file
+     */
     @FXML
     private void onCreateUserClick() throws IOException {
         int userId = userCount + 1;
@@ -138,6 +185,9 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to load manager data from the excel sheet
+     */
     public static void loadManagersFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/User/ManagerData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
@@ -170,6 +220,9 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to load chef data from the excel sheet
+     */
     public static void loadChefsFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/User/ChefData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
@@ -202,6 +255,9 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to load waiter data from the excel sheet
+     */
     public static void loadWaitersFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/User/WaiterData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
@@ -234,6 +290,9 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to load drivers data from the excel sheet
+     */
     public static void loadDriversFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/User/DriverData.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
@@ -266,6 +325,9 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to load customer data from the excel sheet
+     */
     public static void loadCustomersFromExcel() {
         try (FileInputStream inputStream = new FileInputStream("src/main/java/User/CustomerDate.xlsx")) {
             Workbook workbook = new XSSFWorkbook(inputStream);
@@ -293,6 +355,10 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to save customer data to the excel sheet
+     * @param customer The customer object to be saved is passed
+     */
     public void saveCustomerDataToExcel(Customer customer){
         Workbook workbook;
         Sheet sheet;
@@ -342,6 +408,10 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to save manager data to the excel sheet
+     * @param manager The manager object to be saved is passed
+     */
     public static void saveManagerDataToExcel(Manager manager){
         Workbook workbook;
         Sheet sheet;
@@ -397,6 +467,10 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to save chef data to the excel sheet
+     * @param chef The chef object to be saved is passed
+     */
     public static void saveChefDataToExcel(Chef chef){
         Workbook workbook;
         Sheet sheet;
@@ -452,6 +526,10 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to save driver data to the excel sheet
+     * @param driver The driver object to be saved is passed
+     */
     public static void saveDriverDataToExcel(Driver driver){
         Workbook workbook;
         Sheet sheet;
@@ -507,6 +585,10 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to save waiter data to the excel sheet
+     * @param waiter The waiter object to be saved is passed
+     */
     public static void saveWaiterDataToExcel(Waiter waiter){
         Workbook workbook;
         Sheet sheet;
@@ -562,6 +644,12 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to edit the manager data. It does is based on the mode.
+     * If the mode is edit it will edit data and if the mode is remove it will change the boolean value of user active status to false
+     * @param manager The manager instance is passed
+     * @param mode The mode of operation is passed
+     */
     public static void editStaffExcelData(Manager manager, String mode){
         Workbook workbook;
         try {
@@ -604,6 +692,12 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to edit the chef data. It does is based on the mode.
+     * If the mode is edit it will edit data and if the mode is remove it will change the boolean value of user active status to false
+     * @param chef The chef instance is passed
+     * @param mode The mode of operation is passed
+     */
     public static void editStaffExcelData(Chef chef, String mode){
         Workbook workbook;
         try {
@@ -646,6 +740,13 @@ public class  UserController {
         }
 
     }
+
+    /**
+     * Function to edit the waiter data. It does is based on the mode.
+     * If the mode is edit it will edit data and if the mode is remove it will change the boolean value of user active status to false
+     * @param waiter The waiter instance is passed
+     * @param mode The mode of operation is passed
+     */
     public static void editStaffExcelData(Waiter waiter, String mode){
         Workbook workbook;
         try {
@@ -688,6 +789,13 @@ public class  UserController {
         }
 
     }
+
+    /**
+     * Function to edit the driver data. It does is based on the mode.
+     * If the mode is edit it will edit data and if the mode is remove it will change the boolean value of user active status to false
+     * @param driver The driver instance is passed
+     * @param mode The mode of operation is passed
+     */
     public static void editStaffExcelData(Driver driver, String mode){
         Workbook workbook;
         try {
@@ -731,6 +839,10 @@ public class  UserController {
 
     }
 
+    /**
+     * Function to edit the waiters time log in the excel sheet
+     * @param waiter The waiter instance is passed
+     */
     public static void editWaiterTimeLogExcelData(Waiter waiter){
         Workbook workbook;
         try {
@@ -768,6 +880,10 @@ public class  UserController {
 
     }
 
+    /**
+     * Function to edit the drivers time log in the excel sheet
+     * @param driver The driver instance is passed
+     */
     public static void editDriverTimeLogExcelData(Driver driver) {
         Workbook workbook;
         try {
@@ -804,6 +920,10 @@ public class  UserController {
         }
     }
 
+    /**
+     * Function to edit the chefs time log in the excel sheet
+     * @param chef The chef instance is passed
+     */
     public static void editChefTimeLogExcelData(Chef chef){
         Workbook workbook;
         try {
@@ -841,6 +961,11 @@ public class  UserController {
 
     }
 
+    /**
+     * Function to check if the email passed by the user is a valid email format or not by using regex pattern check
+     * @param emailAddress The email is passed as a string
+     * @return If the email is valid, a boolean value of True is passed, else False
+     */
     public static boolean patternMatches(String emailAddress) {
         return Pattern.compile(REGEX_PATTERN)
                 .matcher(emailAddress)
