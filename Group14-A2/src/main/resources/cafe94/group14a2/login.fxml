@@ -5,20 +5,44 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox id="LoginPage" alignment="CENTER" spacing="20.0" stylesheets="@../../css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe94.group14a2.LoginController">
-   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cafe 94">
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cafe Java">
       <font>
          <Font size="36.0" />
       </font>
+      <fill>
+         <LinearGradient cycleMethod="REFLECT" endX="0.7462120923128994" endY="0.5189394228386157" startX="0.36458333333333337" startY="0.9469697240627174">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.14315789937973022" green="0.6861754655838013" blue="0.75789475440979" />
+                  </color>
+               </Stop>
+               <Stop offset="0.9946164199192462">
+                  <color>
+                     <Color red="0.30877193808555603" green="0.5853801369667053" blue="0.6947368383407593" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.30877193808555603" green="0.5853801369667053" blue="0.6947368383407593" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
    </Text>
     <HBox alignment="CENTER">
         <Label text="Enter Your Email: " />
-        <TextField styleClass="labelClass" fx:id="EmailTextField" promptText="Enter Email" />
+        <TextField fx:id="EmailTextField" promptText="Enter Email" styleClass="labelClass" />
     </HBox>
-    <Button styleClass="btn, btn-primary" onAction="#onLoginClick" text="Login" />
-   <Button styleClass="btn, btn-primary" mnemonicParsing="false" onAction="#onSignUpClick" text="Create Account" />
+    <Button onAction="#onLoginClick" styleClass="btn, btn-primary" text="Login" />
+   <Button mnemonicParsing="false" onAction="#onSignUpClick" styleClass="btn, btn-primary" text="Create Account" />
    <Label fx:id="LoginErrorLabel" textFill="#ea0000" />
 </VBox>
