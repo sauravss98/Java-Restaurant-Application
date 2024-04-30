@@ -39,7 +39,12 @@ public class ChefItemEditController {
     }
 
     private void handleConfirmButtonClick() {
-//        specialCheckBox.get
+        boolean check = specialCheckBox.isSelected();
+        currentItem.setSpecialItem(check);
+        ItemDataController.editExcelSheetData(currentItem,"special");
+        if (stage!=null){
+            stage.close();
+        }
     }
 
     private void handleBackClick() {

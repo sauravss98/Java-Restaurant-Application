@@ -115,6 +115,8 @@ public final class ItemDataController {
                     } else if (Objects.equals(mode, "remove")) {
                         row.getCell(4).setCellValue(item.isItemIsActive());
                         break;
+                    } else if(Objects.equals(mode,"special")){
+                        row.getCell(3).setCellValue(item.isSpecialItem());
                     }
                 }
             }
