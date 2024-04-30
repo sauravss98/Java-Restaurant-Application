@@ -16,6 +16,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to handle the manager main page
+ * @author Saurav
+ */
 public class ManagerMainPageController {
     @FXML private Button createStaffButton;
     @FXML private Button checkStaffStatusButton;
@@ -31,13 +35,13 @@ public class ManagerMainPageController {
     private ArrayList<Order> orders = OrderDataHandler.getOrders();
 
     /**
-     * Construnctor for the controller
+     * Constructor for the controller
      */
     public ManagerMainPageController(){}
 
     /**
      * Constructor to instantiate the controller
-     * @param email
+     * @param email The email is passed as string
      */
     public ManagerMainPageController(String email){
         this.activeEmail = email;
@@ -49,7 +53,7 @@ public class ManagerMainPageController {
     }
 
     /**
-     * Function to initialize the controller U@I
+     * Function to initialize the controller UI
      */
     public void initialize(){
         refreshActiveOrderList();
@@ -76,6 +80,9 @@ public class ManagerMainPageController {
         });
     }
 
+    /**
+     * Function to handle the report button click
+     */
     private void handleReportButton() {
         try {
             Main.setRoot("reportMainPage");
@@ -189,6 +196,9 @@ public class ManagerMainPageController {
         }
     }
 
+    /**
+     * Function to refresh the order list view
+     */
     private void refreshActiveOrderList(){
         activeOrdersList.getItems().clear();
 
