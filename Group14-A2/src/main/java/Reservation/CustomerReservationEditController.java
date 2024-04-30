@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class CustomerReservationEditController {
     private Stage stage;
     private Reservation currentReservation;
@@ -26,6 +28,7 @@ public class CustomerReservationEditController {
     }
 
     public void initialize(){
+        renderCancelButton();
         refreshLabel();
         backButton.setOnAction(e->{
             handleBackClick();
@@ -33,6 +36,14 @@ public class CustomerReservationEditController {
         cancelBookingButton.setOnAction(e->{
             handleCancelButtonClick();
         });
+    }
+
+    private void renderCancelButton() {
+        if(currentReservation!=null){
+            if(Objects.equals(currentReservation.getBookingStatus(), "Cancelled")){
+                cancelBookingButton.setVisible(false);
+            }
+        }
     }
 
     private void handleCancelButtonClick() {

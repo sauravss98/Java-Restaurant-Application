@@ -13,3 +13,19 @@
 #confirmReservationButton:hover {
   -fx-background-color: #38a3a5;
 }
+
+#cancelBookingButton {
+  -fx-background-color: #57cc99;
+}
+
+#cancelBookingButton:hover {
+  -fx-background-color: #38a3a5;
+}
+
+#backButton {
+  -fx-background-color: #57cc99;
+}
+
+#backButton:hover {
+  -fx-background-color: #38a3a5;
+}
