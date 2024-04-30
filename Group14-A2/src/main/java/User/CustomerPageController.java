@@ -356,10 +356,12 @@ public class CustomerPageController implements Initializable {
             OrderDataHandler.addOrder(currentOrder);
             OrderController orderController = new OrderController();
             orderController.setActiveCustomer(currentCustomer);
-            try {
-                Main.setRoot("orderListPage");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if (Objects.equals(currentOrder.getOrderStatus(), "InProgress")) {
+                try {
+                    Main.setRoot("orderListPage");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

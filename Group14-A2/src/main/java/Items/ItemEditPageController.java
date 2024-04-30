@@ -105,15 +105,12 @@ public class ItemEditPageController {
         System.out.println("status "+toggleButtonInput);
         if(!Objects.equals(itemName, "")) {
             currentItem.setItemName(itemName);
-            currentItem.setPrice(price);
-            currentItem.setSpecialItem(toggleButtonInput);
-            ItemDataController.editExcelSheetData(currentItem, "edit");
-            if (stage != null) {
-                stage.close();
-            }
-        } else{
-            warningLabel.setVisible(true);
-            warningLabel.setText("Item name null");
+        }
+        currentItem.setPrice(price);
+        currentItem.setSpecialItem(toggleButtonInput);
+        ItemDataController.editExcelSheetData(currentItem, "edit");
+        if (stage != null) {
+            stage.close();
         }
     }
 
@@ -136,6 +133,11 @@ public class ItemEditPageController {
     private void displayItemName() {
         if(currentItem!=null) {
             itemNameText.setText("Item Name : "+currentItem.getItemName());
+            if (currentItem.isSpecialItem()){
+                specialButton.setText("Item is Daily Special");
+            } else {
+                specialButton.setText("Make Item Daily Special");
+            }
         } else{
             itemNameText.setText("Empty");
         }
