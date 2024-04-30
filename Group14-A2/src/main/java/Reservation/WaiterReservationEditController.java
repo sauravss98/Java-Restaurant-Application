@@ -7,16 +7,17 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class CustomerReservationEditController {
+public class WaiterReservationEditController {
     private Stage stage;
     private Reservation currentReservation;
-    @FXML private Label reservationTimeLabel;
+    @FXML
+    private Label reservationTimeLabel;
     @FXML private Label reservationIdLabel;
     @FXML private Label reservationDateLabel;
-    @FXML private Button cancelBookingButton;
+    @FXML private Button approveButton;
     @FXML private Button backButton;
 
-    public CustomerReservationEditController(){}
+    public WaiterReservationEditController(){}
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -33,7 +34,7 @@ public class CustomerReservationEditController {
         backButton.setOnAction(e->{
             handleBackClick();
         });
-        cancelBookingButton.setOnAction(e->{
+        approveButton.setOnAction(e->{
             handleCancelButtonClick();
         });
     }
@@ -41,13 +42,13 @@ public class CustomerReservationEditController {
     private void renderCancelButton() {
         if(currentReservation!=null){
             if(Objects.equals(currentReservation.getBookingStatus(), "cancelled")){
-                cancelBookingButton.setVisible(false);
+                approveButton.setVisible(false);
             }
         }
     }
 
     private void handleCancelButtonClick() {
-        currentReservation.setBookingStatus("cancelled");
+        currentReservation.setBookingStatus("confirmed");
         ReservationDataController.editReservationData(currentReservation);
         if(stage!=null){
             stage.close();

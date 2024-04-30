@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox styleClass="mainPage" stylesheets="@../../css/waiterPopUp.css" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Reservation.WaiterReservationEditController">
+    <children>
+        <Label fx:id="reservationIdLabel" text="Label" />
+        <Label fx:id="reservationDateLabel" layoutX="296.0" layoutY="201.0" text="Label" />
+        <Label fx:id="reservationTimeLabel" layoutX="296.0" layoutY="210.0" text="Label" />
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <children>
+                <Button styleClass="button" fx:id="approveButton" mnemonicParsing="false" text="Approve The Booking" />
+                <Button styleClass="button" fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Back" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

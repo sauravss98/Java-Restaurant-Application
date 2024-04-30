@@ -2,6 +2,7 @@ package User;
 
 import Orders.WaiterOrderController;
 import Orders.WaiterOrderViewController;
+import Reservation.WaiterReservationMainPageController;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ public class WaiterMainPageController {
     @FXML private Button checkOrderButton;
     @FXML private Button logTimeButton;
     @FXML private Button logoutButton;
+    @FXML private Button reservationButton;
 
     public WaiterMainPageController(){}
 
@@ -61,6 +63,18 @@ public class WaiterMainPageController {
         logoutButton.setOnAction(e->{
             handleLogoutButtonClick();
         });
+        reservationButton.setOnAction(e->{
+            handleReservationClick();
+        });
+    }
+
+    private void handleReservationClick() {
+        new WaiterReservationMainPageController(activeWaiter.getEmail());
+        try {
+            Main.setRoot("waiterReservationPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void handleLogoutButtonClick() {
