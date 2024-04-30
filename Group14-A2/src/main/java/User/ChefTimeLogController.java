@@ -7,6 +7,10 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
 
+/**
+ * Class to handle the chef time log page
+ * @author Saurav
+ */
 public class ChefTimeLogController {
     private static Chef currentChef;
     private Stage stage;
@@ -17,22 +21,40 @@ public class ChefTimeLogController {
     @FXML private Label warningLabel;
     private static int oldHoursWorked;
 
+    /**
+     * Default Constructor
+     */
     public ChefTimeLogController(){}
 
+    /**
+     * Function to set the current chef
+     * @param currentChef The chef object is passed
+     */
     public void setCurrentChef(Chef currentChef) {
         this.currentChef = currentChef;
         setOldHoursWorked(currentChef.getHoursWorked());
         initialize();
     }
 
+    /**
+     * Function to set the old worked hours to compare the time change when submitting the data
+     * @param oldHoursWorked The date is passed
+     */
     public void setOldHoursWorked(int oldHoursWorked) {
         this.oldHoursWorked = oldHoursWorked;
     }
 
+    /**
+     * Function to set the stage object
+     * @param stage The stage object is passed
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to initialize the UI component
+     */
     public void initialize(){
         warningLabel.setVisible(false);
         backButton.setOnAction(e->{
@@ -44,6 +66,9 @@ public class ChefTimeLogController {
         refreshSpinner();
     }
 
+    /**
+     * Function to refresh the spinner
+     */
     private void refreshSpinner() {
         if (currentChef != null) {
             SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, currentChef.getHoursWorked());
@@ -54,6 +79,9 @@ public class ChefTimeLogController {
         }
     }
 
+    /**
+     * Function to handle the confirm click and save the data
+     */
     private void handleConfirmClick() {
         if((int)timeSpinner.getValue()>oldHoursWorked){
             currentChef.setHoursWorked((int)timeSpinner.getValue());
@@ -68,6 +96,9 @@ public class ChefTimeLogController {
         }
     }
 
+    /**
+     * Function handle the back button click
+     */
     private void handleBackClick() {
         if(stage!=null){
             stage.close();

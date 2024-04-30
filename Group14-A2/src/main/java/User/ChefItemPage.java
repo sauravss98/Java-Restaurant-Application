@@ -18,14 +18,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to handle the chef item page
+ * @author Saurav
+ */
 public class ChefItemPage {
     private Chef activeChef;
     private ArrayList<Chef> chefs = UserController.getChefs();
     private ArrayList<Item> items = ItemDataController.getItems();
     @FXML private ListView itemsList;
     @FXML private Button backbutton;
+
+    /**
+     * Default constructor for the class
+     */
     public ChefItemPage(){}
 
+    /**
+     * Constructor for instantiate the class with details of chef
+     * @param activeEmail The email is passed as string
+     */
     public ChefItemPage(String activeEmail){
         for(Chef chef:chefs){
             if(Objects.equals(chef.getEmail(), activeEmail)){
@@ -33,7 +45,10 @@ public class ChefItemPage {
             }
         }
     }
-    
+
+    /**
+     * Function to initialize the UI element
+     */
     public void initialize(){
         refreshItemList();
         backbutton.setOnAction(e->{
@@ -104,6 +119,9 @@ public class ChefItemPage {
         return null;
     }
 
+    /**
+     * Function to handle the back button
+     */
     private void handleBackButtonClick() {
         try {
             Main.setRoot("chefMainPage");
@@ -112,11 +130,13 @@ public class ChefItemPage {
         }
     }
 
+    /**
+     * Function to refresh the item list
+     */
     private void refreshItemList() {
         itemsList.getItems().clear();
 
         for (Item item : items) {
-//            System.out.println("item status "+item.isItemIsActive());
             if(item.isItemIsActive()) {
                 itemsList.getItems().add(item.getDescriptionForMenuList());
             }

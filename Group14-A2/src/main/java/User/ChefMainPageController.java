@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class to control the chef main page
+ */
 public class ChefMainPageController {
     private ArrayList<Chef> chefs = UserController.getChefs();
     private ArrayList<Order> orders = OrderDataHandler.getOrders();
@@ -27,9 +30,15 @@ public class ChefMainPageController {
     @FXML private Button logTimeChangeButton;
     @FXML private Button menuButton;
 
-
+    /**
+     * Default constructor for the class
+     */
     public ChefMainPageController(){}
 
+    /**
+     * Constructor for instantiating the class with chef details
+     * @param email The email is passed
+     */
     public ChefMainPageController(String email){
         for (Chef chef: chefs){
             if(chef.getEmail().equals(email)){
@@ -38,6 +47,9 @@ public class ChefMainPageController {
         }
     }
 
+    /**
+     * Function to initialize the UI components
+     */
     public void initialize(){
         logoutButton.setOnAction(e->{
             handleLogoutButton();
@@ -59,6 +71,9 @@ public class ChefMainPageController {
         });
     }
 
+    /**
+     * Function to handle the menu button click and switch the page
+     */
     private void handleMenuButtonClick() {
         new ChefItemPage(activeChef.getEmail());
         try {
@@ -68,6 +83,10 @@ public class ChefMainPageController {
         }
     }
 
+    /**
+     * Function to open the time log window
+     * @throws IOException Exception is thrown when there is some file issue
+     */
     private void handleTimeLogButton() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/chefTimeLogger.fxml"));
         Parent root = loader.load();
@@ -82,6 +101,9 @@ public class ChefMainPageController {
         orderViewStage.showAndWait();
     }
 
+    /**
+     * Function to handle the logout button
+     */
     private void handleLogoutButton() {
         try {
             Main.setRoot("login");
@@ -90,6 +112,10 @@ public class ChefMainPageController {
         }
     }
 
+    /**
+     * Function to instantiate the cards with details of each order
+     * @throws IOException Exception is called when there is some file issue
+     */
     private void addCard() throws IOException {
         try {
             for (Order order:orders) {
@@ -109,6 +135,9 @@ public class ChefMainPageController {
         }
     }
 
+    /**
+     * Function to refresh the card display
+     */
     public void refreshCardDisplay() {
         containerBox.getChildren().clear(); // Clear existing cards
         try {
