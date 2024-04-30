@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class for handling the waiter reservation main page
+ * @author Saurav
+ */
 public class WaiterReservationMainPageController {
     private ArrayList<Waiter> waiters = UserController.getWaiters();
     private ArrayList<Reservation> reservations = ReservationDataController.getReservations();
@@ -24,8 +28,15 @@ public class WaiterReservationMainPageController {
     @FXML private ListView incompleteList;
     @FXML private ListView completedList;
 
+    /**
+     * Default constructor for the class
+     */
     public WaiterReservationMainPageController(){}
 
+    /**
+     * Counstructor used to create a class instance and instantiate the waiter
+     * @param email The email is passed as a parameter
+     */
     public WaiterReservationMainPageController(String email){
         for (Waiter waiter:waiters){
             if(Objects.equals(waiter.getEmail(), email)){
@@ -34,6 +45,9 @@ public class WaiterReservationMainPageController {
         }
     }
 
+    /**
+     * Function to intialize the UI component
+     */
     public void initialize(){
         renderListView();
         incompleteList.setOnMouseClicked(e->{
@@ -49,6 +63,9 @@ public class WaiterReservationMainPageController {
         });
     }
 
+    /**
+     * Function to handle the back click
+     */
     private void handleBackClick() {
         try {
             Main.setRoot("waiterMainPage");
@@ -57,6 +74,11 @@ public class WaiterReservationMainPageController {
         }
     }
 
+    /**
+     * Function to handle to open the new reservation page
+     * @param reservation The reservation id is passed as the string
+     * @throws IOException The exception to handle file issues
+     */
     private void handleReservation(String reservation) throws IOException {
         String id = extractID(reservation);
         Reservation requiredReservation = getReservationDataData(id);
@@ -103,6 +125,9 @@ public class WaiterReservationMainPageController {
         return null;
     }
 
+    /**
+     * Function to render the list view
+     */
     private void renderListView() {
         incompleteList.getItems().clear();
 

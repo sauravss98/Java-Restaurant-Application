@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+/**
+ * Class to control the customer reservation edit pages
+ * @author Saurav
+ */
 public class CustomerReservationEditController {
     private Stage stage;
     private Reservation currentReservation;
@@ -16,17 +20,31 @@ public class CustomerReservationEditController {
     @FXML private Button cancelBookingButton;
     @FXML private Button backButton;
 
+    /**
+     * Default constructor for the class
+     */
     public CustomerReservationEditController(){}
 
+    /**
+     * Function to set the stage object to the class
+     * @param stage The stage object is passed
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Function to set the reservation object
+     * @param currentReservation The reservation object is passed
+     */
     public void setCurrentReservation(Reservation currentReservation) {
         this.currentReservation = currentReservation;
         initialize();
     }
 
+    /**
+     * Function to initialize the UI component
+     */
     public void initialize(){
         renderCancelButton();
         refreshLabel();
@@ -38,6 +56,9 @@ public class CustomerReservationEditController {
         });
     }
 
+    /**
+     * Function to show/hide the cancel button based on the status of the reservation
+     */
     private void renderCancelButton() {
         if(currentReservation!=null){
             if(Objects.equals(currentReservation.getBookingStatus(), "cancelled")){
@@ -46,6 +67,9 @@ public class CustomerReservationEditController {
         }
     }
 
+    /**
+     * Function to handle the cancel button click
+     */
     private void handleCancelButtonClick() {
         currentReservation.setBookingStatus("cancelled");
         ReservationDataController.editReservationData(currentReservation);
@@ -54,12 +78,18 @@ public class CustomerReservationEditController {
         }
     }
 
+    /**
+     * Function to handle the back button click
+     */
     private void handleBackClick() {
         if(stage!=null){
             stage.close();
         }
     }
 
+    /**
+     * Function to refresh the text in the poge
+     */
     private void refreshLabel() {
         if(currentReservation!=null){
             reservationIdLabel.setText("Reservation ID: "+currentReservation.getReservationId());

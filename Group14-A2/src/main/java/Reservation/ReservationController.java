@@ -70,6 +70,11 @@ public class ReservationController {
         });
     }
 
+    /**
+     * Function to handle the reservation button click
+     * @param reservation The Reservation id is passed as string
+     * @throws IOException Exception is called if there issue opening the file
+     */
     private void handleReservation(String reservation) throws IOException {
         String id = extractID(reservation);
         Reservation requiredReservation = getReservationDataData(id);

@@ -144,6 +144,10 @@ public class ReservationDataController {
         }
     }
 
+    /**
+     * Function to edit the reservation when edit button is clicked
+     * @param reservation The reservation object is passed
+     */
     public static void editReservationData(Reservation reservation) {
         Workbook workbook;
         try {
