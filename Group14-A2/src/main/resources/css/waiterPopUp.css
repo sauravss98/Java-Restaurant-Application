@@ -9,3 +9,7 @@
 .button:hover {
   -fx-background-color: #ed9455;
 }
+
+.tab {
+  -fx-background-color: #ffec9e;
+}

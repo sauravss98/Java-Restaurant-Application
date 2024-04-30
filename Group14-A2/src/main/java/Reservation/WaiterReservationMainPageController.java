@@ -2,6 +2,7 @@ package Reservation;
 
 import User.UserController;
 import User.Waiter;
+import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,6 +44,17 @@ public class WaiterReservationMainPageController {
                 throw new RuntimeException(ex);
             }
         });
+        backButton.setOnAction(e->{
+            handleBackClick();
+        });
+    }
+
+    private void handleBackClick() {
+        try {
+            Main.setRoot("waiterMainPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void handleReservation(String reservation) throws IOException {
