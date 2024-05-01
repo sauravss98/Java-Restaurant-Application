@@ -19,6 +19,10 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ItemMainPageController {
+    private final String FXML_PATH = "/cafe94/group14a2/mainItemEditPage.fxml";
+    private final String ITEM_CREATE_FXML_PATH = "/cafe94/group14a2/itemCreatePage.fxml";
+    private final String EDIT_ITEM_DETAIL = "Edit Item Detail";
+    private final String ADD_ITEM_DETAIL = "Add Item";
     private final ArrayList<Item> items = ItemDataController.getItems();
     private static Manager activeManager;
     @FXML private Button addItemButton;
@@ -82,14 +86,14 @@ public class ItemMainPageController {
         String id = extractID(selectedItem);
         Item requiredItem = getItemData(id);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/mainItemEditPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH));
         Parent root = loader.load();
         ItemEditPageController controller = loader.getController();
         controller.setCurrentItem(requiredItem);
 
         Stage itemEditStage = new Stage();
         controller.setStage(itemEditStage);
-        itemEditStage.setTitle("Edit Item Detail");
+        itemEditStage.setTitle(EDIT_ITEM_DETAIL);
         itemEditStage.setScene(new Scene(root, 600, 600));
         itemEditStage.initModality(Modality.APPLICATION_MODAL);
         itemEditStage.showAndWait();
@@ -134,11 +138,11 @@ public class ItemMainPageController {
      */
     private void handleNewItemMenuClick() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/itemCreatePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ITEM_CREATE_FXML_PATH));
             Parent root = loader.load();
             ItemCreatePageController controller = loader.getController();
             Stage orderTypeStage = new Stage();
-            orderTypeStage.setTitle("Add Item");
+            orderTypeStage.setTitle(ADD_ITEM_DETAIL);
             orderTypeStage.setScene(new Scene(root, 600, 600));
             controller.setStage(orderTypeStage);
             orderTypeStage.initModality(Modality.APPLICATION_MODAL);

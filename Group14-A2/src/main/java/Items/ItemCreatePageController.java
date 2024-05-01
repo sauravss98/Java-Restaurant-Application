@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ItemCreatePageController {
+    final private int ONE = 1;
     private final ArrayList<Item> items = ItemDataController.getItems();
     @FXML private Button cancelButton;
     @FXML private Button addItemButton;
@@ -56,7 +57,8 @@ public class ItemCreatePageController {
      * @author Saurav
      */
     private void refreshPriceSpinner() {
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 1);
+        int ZERO = 0;
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(ZERO, Integer.MAX_VALUE, ONE);
         priceSpinner.setValueFactory(valueFactory);
     }
 
@@ -68,10 +70,12 @@ public class ItemCreatePageController {
     private void handleItemCreateButton() {
         String itemName = itemNameField.getText();
         int itemPrice = (int)priceSpinner.getValue();
-        boolean isSpecialItem = false;
-        boolean isActive = true;
+        boolean FALSE = false;
+        boolean isSpecialItem = FALSE;
+        boolean TRUE = true;
+        boolean isActive = TRUE;
         if(!itemName.isEmpty()){
-            int itemId = ItemDataController.getItemIDCounter()+1;
+            int itemId = ItemDataController.getItemIDCounter()+ONE;
             Item item = new Item(itemId,itemName,itemPrice,isSpecialItem,isActive);
             ItemDataController.setItemIDCounter(itemId);
             items.add(item);

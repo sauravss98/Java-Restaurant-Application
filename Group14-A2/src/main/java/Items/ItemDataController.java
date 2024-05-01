@@ -14,6 +14,16 @@ import java.util.Objects;
  * @author Saurav
  */
 public final class ItemDataController {
+    private static final String FILE_PATH = "src/main/java/Items/ItemData.xlsx";
+    private static final String EDIT = "edit";
+    private static final String REMOVE = "remove";
+    private static final String SPECIAL = "special";
+    private static final String SHEET_NAME = "Sheet1";
+    private static final String ITEM_SUCCESS_SAVE = "Items data saved to the Excel successfully.";
+    private static final String ITEM_SUCCESS_LOAD = "Items loaded from the Excel successfully.";
+    private static final String ERROR_SAVING_DATA = "Error saving item data to Excel file: ";
+    private static final String ERROR_LOADING_DATA = "Error loading item data from Excel file: ";
+    private static final String ERROR_OPENING = "Error opening Excel file: ";
     private static int itemIDCounter=0;
     private static final ArrayList<Item> items = new ArrayList<>();
 
@@ -68,8 +78,6 @@ public final class ItemDataController {
         return null;
     }
 
-    private static final String FILE_PATH = "src/main/java/Items/ItemData.xlsx";
-
     /**
      * Function to edit the data in the excel sheet containing item data
      * @param item the instance of the item required.
@@ -90,7 +98,7 @@ public final class ItemDataController {
         Sheet sheet = workbook.getSheetAt(0);
         if (sheet == null) {
                 // Workbook is empty, create a new sheet
-            sheet = workbook.createSheet("Sheet1");
+            sheet = workbook.createSheet(SHEET_NAME);
         }
 
         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
@@ -98,15 +106,15 @@ public final class ItemDataController {
             if (row != null) {
                 int itemId = (int) row.getCell(0).getNumericCellValue();
                 if (itemId == item.getItemID()) {
-                    if(Objects.equals(mode, "edit")) {
+                    if(Objects.equals(mode, EDIT)) {
                         row.getCell(1).setCellValue(item.getItemName());
                         row.getCell(2).setCellValue(item.getPrice());
                         row.getCell(3).setCellValue(item.isSpecialItem());
                         break;
-                    } else if (Objects.equals(mode, "remove")) {
+                    } else if (Objects.equals(mode, REMOVE)) {
                         row.getCell(4).setCellValue(item.isItemIsActive());
                         break;
-                    } else if(Objects.equals(mode,"special")){
+                    } else if(Objects.equals(mode,SPECIAL)){
                         row.getCell(3).setCellValue(item.isSpecialItem());
                     }
                 }
@@ -115,9 +123,9 @@ public final class ItemDataController {
 
         try (FileOutputStream outputStream = new FileOutputStream(FILE_PATH)) {
             workbook.write(outputStream);
-            System.out.println("Items data saved to the Excel successfully.");
+            System.out.println(ITEM_SUCCESS_SAVE);
         } catch (IOException e) {
-            System.err.println("Error saving items to Excel: " + e.getMessage());
+            System.err.println(ERROR_SAVING_DATA + e.getMessage());
         }
     }
 
@@ -126,7 +134,7 @@ public final class ItemDataController {
      * @author Saurav
      */
     public static void loadItemsFromExcel() {
-        try (FileInputStream inputStream = new FileInputStream("src/main/java/Items/ItemData.xlsx")) {
+        try (FileInputStream inputStream = new FileInputStream(FILE_PATH)) {
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
@@ -143,9 +151,9 @@ public final class ItemDataController {
                     itemIDCounter++;
                 }
             }
-            System.out.println("Items loaded from Excel successfully.");
+            System.out.println(ITEM_SUCCESS_LOAD);
         } catch (IOException e) {
-            System.err.println("Error loading items from Excel: " + e.getMessage());
+            System.err.println(ERROR_LOADING_DATA + e.getMessage());
         }
     }
 
@@ -158,13 +166,13 @@ public final class ItemDataController {
         Workbook workbook;
         Sheet sheet;
 
-        File file = new File("src/main/java/Items/ItemData.xlsx");
+        File file = new File(FILE_PATH);
         if (file.exists()) {
             try (FileInputStream inputStream = new FileInputStream(file)) {
                 workbook = new XSSFWorkbook(inputStream);
                 sheet = workbook.getSheetAt(0);
             } catch (IOException e) {
-                System.err.println("Error opening existing Excel file: " + e.getMessage());
+                System.err.println(ERROR_OPENING + e.getMessage());
                 return;
             }
         } else {
@@ -188,11 +196,11 @@ public final class ItemDataController {
         for (int i = 0; i < 5; i++) {
             sheet.autoSizeColumn(i);
         }
-        try (FileOutputStream outputStream = new FileOutputStream("src/main/java/Items/ItemData.xlsx")) {
+        try (FileOutputStream outputStream = new FileOutputStream(FILE_PATH)) {
             workbook.write(outputStream);
-            System.out.println("Item data saved to Excel file successfully.");
+            System.out.println(ITEM_SUCCESS_SAVE);
         } catch (IOException e) {
-            System.err.println("Error saving item data to Excel file: " + e.getMessage());
+            System.err.println(ERROR_SAVING_DATA + e.getMessage());
         } finally {
             try {
                 workbook.close();

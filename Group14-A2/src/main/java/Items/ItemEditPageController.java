@@ -11,6 +11,12 @@ import java.util.Objects;
  * @author Saurav
  */
 public class ItemEditPageController {
+    final private String ITEM_DAILY_SPECIAL = "Item is Daily Special";
+    final private String MAKE_ITEM_DAILY_SPECIAL = "Make Item Daily Special";
+    final private String EMPTY = "Empty";
+    final private String EDIT = "edit";
+    final private String REMOVE = "remove";
+    final private String ITEM_NAME = "Item Name : ";
     @FXML private Label itemNameText;
     @FXML private Label warningLabel;
     @FXML private Spinner priceSpinner;
@@ -101,13 +107,12 @@ public class ItemEditPageController {
         String itemName = itemNameTextBox.getText();
         int price = (int) priceSpinner.getValue();
         boolean toggleButtonInput = specialButton.isSelected();
-        System.out.println("status "+toggleButtonInput);
         if(!Objects.equals(itemName, "")) {
             currentItem.setItemName(itemName);
         }
         currentItem.setPrice(price);
         currentItem.setSpecialItem(toggleButtonInput);
-        ItemDataController.editExcelSheetData(currentItem, "edit");
+        ItemDataController.editExcelSheetData(currentItem, EDIT);
         if (stage != null) {
             stage.close();
         }
@@ -119,7 +124,7 @@ public class ItemEditPageController {
      */
     private void handleRemoveButton() {
         currentItem.setItemIsActive(false);
-        ItemDataController.editExcelSheetData(currentItem,"remove");
+        ItemDataController.editExcelSheetData(currentItem,REMOVE);
         if (stage != null) {
             stage.close();
         }
@@ -131,14 +136,14 @@ public class ItemEditPageController {
      */
     private void displayItemName() {
         if(currentItem!=null) {
-            itemNameText.setText("Item Name : "+currentItem.getItemName());
+            itemNameText.setText(ITEM_NAME+currentItem.getItemName());
             if (currentItem.isSpecialItem()){
-                specialButton.setText("Item is Daily Special");
+                specialButton.setText(ITEM_DAILY_SPECIAL);
             } else {
-                specialButton.setText("Make Item Daily Special");
+                specialButton.setText(MAKE_ITEM_DAILY_SPECIAL);
             }
         } else{
-            itemNameText.setText("Empty");
+            itemNameText.setText(EMPTY);
         }
     }
 }

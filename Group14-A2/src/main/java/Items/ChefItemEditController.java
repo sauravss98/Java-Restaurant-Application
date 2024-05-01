@@ -61,7 +61,8 @@ public class ChefItemEditController {
     private void handleConfirmButtonClick() {
         boolean check = specialCheckBox.isSelected();
         currentItem.setSpecialItem(check);
-        ItemDataController.editExcelSheetData(currentItem,"special");
+        String SPECIAL = "special";
+        ItemDataController.editExcelSheetData(currentItem, SPECIAL);
         if (stage!=null){
             stage.close();
         }
@@ -80,10 +81,13 @@ public class ChefItemEditController {
      * Function to render the item list
      */
     private void renderItemDetails() {
-        itemName.setText("Item Name: "+currentItem.getItemName());
-        specialItemLabel.setText("Daily Special: "+currentItem.isSpecialItem());
+        String ITEM_NAME = "Item Name: ";
+        itemName.setText(ITEM_NAME +currentItem.getItemName());
+        String DAILY_SPECIAL = "Daily Special: ";
+        specialItemLabel.setText(DAILY_SPECIAL +currentItem.isSpecialItem());
         if (currentItem.isSpecialItem()) {
-            specialCheckBox.setSelected(true);
+            boolean TRUE = true;
+            specialCheckBox.setSelected(TRUE);
         }
     }
 }
