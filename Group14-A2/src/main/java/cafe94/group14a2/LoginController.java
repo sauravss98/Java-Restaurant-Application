@@ -16,6 +16,18 @@ import java.util.Objects;
 public class LoginController {
     @FXML private TextField EmailTextField;
     @FXML private Label LoginErrorLabel;
+    final private String CUSTOMER = "Customer";
+    final private String MANAGER = "Manager";
+    final private String WAITER = "Waiter";
+    final private String DRIVER = "Driver";
+    final private String CHEF = "Chef";
+    final private String CUSTOMER_MAIN_PAGE = "customerMainPage";
+    final private String MANAGER_MAIN_PAGE = "managerMainPage";
+    final private String WAITER_MAIN_PAGE = "waiterMainPage";
+    final private String CHEF_MAIN_PAGE = "chefMainPage";
+    final private String DRIVER_MAIN_PAGE = "driverMainPage";
+    final private String ERROR_LABEL = "Not a user. Please try again or create new user";
+    final private String CREATE_USER = "createUser";
 
     /**
      * Function to check whether email is valid or not
@@ -32,27 +44,27 @@ public class LoginController {
         ArrayList<Chef> chefs = UserController.getChefs();
         for(Customer customer:customers){
             if(Objects.equals(customer.getEmail(), email)) {
-                return "Customer";
+                return CUSTOMER;
             }
         }
         for(Manager manager:managers){
             if(Objects.equals(manager.getEmail(), email)) {
-                return "Manager";
+                return MANAGER;
             }
         }
         for(Waiter waiter:waiters){
             if(Objects.equals(waiter.getEmail(), email)) {
-                return "Waiter";
+                return WAITER;
             }
         }
         for(Driver driver:drivers){
             if(Objects.equals(driver.getEmail(), email)) {
-                return "Driver";
+                return DRIVER;
             }
         }
         for(Chef chef:chefs){
             if(Objects.equals(chef.getEmail(), email)) {
-                return "Chef";
+                return CHEF;
             }
         }
         return type;
@@ -71,27 +83,27 @@ public class LoginController {
             String userType = "";
             userType = checkValidEmail(email);
             System.out.println(userType);
-            if (userType.equals("Customer")){
+            if (userType.equals(CUSTOMER)){
                 try {
                     new CustomerPageController(email);
-                    Main.setRoot("customerMainPage");
+                    Main.setRoot(CUSTOMER_MAIN_PAGE);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            } else if(userType.equals("Manager")) {
+            } else if(userType.equals(MANAGER)) {
                 new ManagerMainPageController(email);
-                Main.setRoot("managerMainPage");
-            } else if (userType.equals("Waiter")) {
+                Main.setRoot(MANAGER_MAIN_PAGE);
+            } else if (userType.equals(WAITER)) {
                 new WaiterMainPageController(email);
-                Main.setRoot("waiterMainPage");
-            }else if(userType.equals("Chef")){
+                Main.setRoot(WAITER_MAIN_PAGE);
+            }else if(userType.equals(CHEF)){
                 new ChefMainPageController(email);
-                Main.setRoot("chefMainPage");
-            }else if(userType.equals("Driver")){
+                Main.setRoot(CHEF_MAIN_PAGE);
+            }else if(userType.equals(DRIVER)){
                 new DriverMainPageController(email);
-                Main.setRoot("driverMainPage");
+                Main.setRoot(DRIVER_MAIN_PAGE);
             }else {
-                    LoginErrorLabel.setText("Not a user. Please try again or create new user");
+                    LoginErrorLabel.setText(ERROR_LABEL);
             }
         }
     }
@@ -104,6 +116,6 @@ public class LoginController {
      */
     @FXML
     protected void onSignUpClick() throws IOException {
-        Main.setRoot("createUser");
+        Main.setRoot(CREATE_USER);
     }
 }

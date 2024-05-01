@@ -19,6 +19,9 @@ import java.io.IOException;
  * @author Saurav
  */
 public class Main extends Application {
+    final static private String FXML = ".fxml";
+    final private String LOGIN = "login";
+    final private String CAFE_JAVA = "Cafe Java";
     private static Scene scene;
 
     /**
@@ -29,7 +32,7 @@ public class Main extends Application {
      * @author Saurav
      */
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + FXML));
         return fxmlLoader.load();
     }
 
@@ -41,9 +44,9 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), 720, 480);
+        scene = new Scene(loadFXML(LOGIN), 720, 480);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-        stage.setTitle("Cafe 94");
+        stage.setTitle(CAFE_JAVA);
         stage.setScene(scene);
         stage.show();
     }
