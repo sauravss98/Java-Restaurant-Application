@@ -22,7 +22,7 @@ public class OrderController {
     @FXML private ListView OrderListView;
     @FXML private Button orderNavButton;
     @FXML private Button reservationButton;
-    private static ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private static final ArrayList<Order> orders = OrderDataHandler.getOrders();
 
     /**
      * Constructor

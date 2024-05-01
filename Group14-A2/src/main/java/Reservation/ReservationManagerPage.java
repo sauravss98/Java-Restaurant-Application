@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ReservationManagerPage {
-    private ArrayList<Reservation> reservations = ReservationDataController.getReservations();
+    private final ArrayList<Reservation> reservations = ReservationDataController.getReservations();
     private Stage stage;
 
     @FXML

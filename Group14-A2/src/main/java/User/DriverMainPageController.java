@@ -1,6 +1,5 @@
 package User;
 
-import Orders.CardController;
 import Orders.DriverCardController;
 import Orders.Order;
 import Orders.OrderDataHandler;
@@ -25,9 +24,8 @@ import java.util.Objects;
  */
 public class DriverMainPageController {
     private static Driver activeDriver;
-    private ArrayList<Driver> drivers = UserController.getDrivers();
-    private ArrayList<Order> orders = OrderDataHandler.getOrders();
-    private ArrayList<Customer> customers = UserController.getCustomers();
+    private final ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private final ArrayList<Customer> customers = UserController.getCustomers();
     @FXML private HBox containerBox;
     @FXML private Button logoutButton;
     @FXML private Button logTimeChangeButton;
@@ -43,6 +41,7 @@ public class DriverMainPageController {
      * @param email The email of user is passed as string
      */
     public DriverMainPageController(String email){
+        ArrayList<Driver> drivers = UserController.getDrivers();
         for (Driver driver: drivers){
             if(driver.getEmail().equals(email)){
                 this.activeDriver = driver;

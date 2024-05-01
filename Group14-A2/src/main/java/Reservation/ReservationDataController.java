@@ -1,7 +1,5 @@
 package Reservation;
 
-import Items.Item;
-import Orders.Order;
 import User.Customer;
 import User.UserController;
 import org.apache.poi.ss.usermodel.*;
@@ -13,15 +11,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Class to handle the reservation data
  * @author Saurav
  */
 public class ReservationDataController {
-    private static ArrayList<Reservation> reservations = new ArrayList<>();
-    private static ArrayList<Customer> customers = UserController.getCustomers();
+    private static final ArrayList<Reservation> reservations = new ArrayList<>();
+    private static final ArrayList<Customer> customers = UserController.getCustomers();
     private static Customer customer;
 
     /**

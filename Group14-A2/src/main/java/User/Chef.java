@@ -9,7 +9,7 @@ public class Chef extends Staff{
 
     /**
      * Function to check if staff is chef
-     * @return
+     * @return Return the chef status
      */
     public boolean getIsChef() {
         return isChef;

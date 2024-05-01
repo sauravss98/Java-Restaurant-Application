@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class WaiterMainPageController {
     private static String activeEmail;
     private static Waiter activeWaiter;
-    private static ArrayList<Waiter> waiters = UserController.getWaiters();
+    private static final ArrayList<Waiter> waiters = UserController.getWaiters();
 
     @FXML private Button makeOrderButton;
     @FXML private Button checkOrderButton;

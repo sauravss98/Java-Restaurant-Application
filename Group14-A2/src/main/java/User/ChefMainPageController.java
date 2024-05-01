@@ -22,8 +22,7 @@ import java.util.Objects;
  * Class to control the chef main page
  */
 public class ChefMainPageController {
-    private ArrayList<Chef> chefs = UserController.getChefs();
-    private ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private final ArrayList<Order> orders = OrderDataHandler.getOrders();
     private static Chef activeChef;
     @FXML private HBox containerBox;
     @FXML private Button logoutButton;
@@ -40,6 +39,7 @@ public class ChefMainPageController {
      * @param email The email is passed
      */
     public ChefMainPageController(String email){
+        ArrayList<Chef> chefs = UserController.getChefs();
         for (Chef chef: chefs){
             if(chef.getEmail().equals(email)){
                 this.activeChef = chef;

@@ -6,24 +6,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.io.FileOutputStream;
+
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 import java.util.regex.*;
 
 public class  UserController {
     private static final String REGEX_PATTERN = "^(.+)@([\\S]+)$";
-    private static ArrayList<Customer> customers = new ArrayList<>();
-    private static ArrayList<Manager> managers = new ArrayList<>();
-    private static ArrayList<Waiter> waiters = new ArrayList<>();
-    private static ArrayList<Driver> drivers = new ArrayList<>();
-    private static ArrayList<Chef> chefs = new ArrayList<>();
+    private static final ArrayList<Customer> customers = new ArrayList<>();
+    private static final ArrayList<Manager> managers = new ArrayList<>();
+    private static final ArrayList<Waiter> waiters = new ArrayList<>();
+    private static final ArrayList<Driver> drivers = new ArrayList<>();
+    private static final ArrayList<Chef> chefs = new ArrayList<>();
     private static int userCount = 0;
     private static int staffCount = 0;
     @FXML private Button backButton;

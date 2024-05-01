@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ItemCreatePageController {
-    private ArrayList<Item> items = ItemDataController.getItems();
+    private final ArrayList<Item> items = ItemDataController.getItems();
     @FXML private Button cancelButton;
     @FXML private Button addItemButton;
     @FXML private TextField itemNameField;

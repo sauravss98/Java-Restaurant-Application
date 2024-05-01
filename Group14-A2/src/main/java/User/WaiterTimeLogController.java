@@ -37,7 +37,7 @@ public class WaiterTimeLogController {
 
     /**
      * Function to set the old hours worked value to compare if there is change in the value
-     * @param oldHoursWorked
+     * @param oldHoursWorked The time is passed as integer
      */
     public void setOldHoursWorked(int oldHoursWorked) {
         this.oldHoursWorked = oldHoursWorked;

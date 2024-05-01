@@ -12,7 +12,6 @@ import javafx.stage.Stage;
  * @author Saurav
  */
 public class DriverDeliveryPageController {
-    private static Driver currentDriver;
     private Stage stage;
     private static Customer customer;
     private Order currentOrder;
@@ -32,7 +31,6 @@ public class DriverDeliveryPageController {
      * @param driver Driver object is passed
      */
     public void setCurrentDriver(Driver driver){
-        this.currentDriver = driver;
     }
 
     /**

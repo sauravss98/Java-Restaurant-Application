@@ -17,11 +17,11 @@ import java.util.Objects;
  * @author Saurav
  */
 public class StaffCreateController {
-    private ArrayList<Customer> customers = UserController.getCustomers();
-    private ArrayList<Waiter> waiters = UserController.getWaiters();
-    private ArrayList<Manager> managers = UserController.getManagers();
-    private ArrayList<Chef> chefs = UserController.getChefs();
-    private ArrayList<Driver> drivers = UserController.getDrivers();
+    private final ArrayList<Customer> customers = UserController.getCustomers();
+    private final ArrayList<Waiter> waiters = UserController.getWaiters();
+    private final ArrayList<Manager> managers = UserController.getManagers();
+    private final ArrayList<Chef> chefs = UserController.getChefs();
+    private final ArrayList<Driver> drivers = UserController.getDrivers();
     @FXML private TextField emailField;
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
@@ -29,7 +29,7 @@ public class StaffCreateController {
     @FXML private Button createUserButton;
     @FXML private Button cancelButton;
     @FXML private Label warningLabel;
-    private ObservableList<String> options = FXCollections.observableArrayList();
+    private final ObservableList<String> options = FXCollections.observableArrayList();
     private Stage stage;
 
     /**

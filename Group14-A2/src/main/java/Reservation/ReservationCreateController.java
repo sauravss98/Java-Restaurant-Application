@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -16,7 +15,7 @@ import java.util.Objects;
  * @author Saurav
  */
 public class ReservationCreateController {
-    private static ArrayList<Reservation> reservations = ReservationDataController.getReservations();
+    private static final ArrayList<Reservation> reservations = ReservationDataController.getReservations();
     private Customer customer;
     private Stage stage;
     @FXML private Spinner guestSpinner;
@@ -25,10 +24,8 @@ public class ReservationCreateController {
     @FXML private ChoiceBox tableChoiceBox;
     @FXML private ChoiceBox timeChoiceBox;
     @FXML private Label warningLabel;
-    private ObservableList<String> options = FXCollections.observableArrayList();
-    private ObservableList<String> timeOptions = FXCollections.observableArrayList();
-
-    private Reservation reservation;
+    private final ObservableList<String> options = FXCollections.observableArrayList();
+    private final ObservableList<String> timeOptions = FXCollections.observableArrayList();
 
     /**
      * Default constructor for the class
@@ -95,7 +92,7 @@ public class ReservationCreateController {
             System.out.println("table is "+ tablesRequired);
             LocalDate reservationDate = datePickerElement.getValue();
             if ((!reservationDate.isBefore(LocalDate.now()))|| reservationDate == null) {
-                reservation = new Reservation(reservationId, numberOfGuests, reservationDate, customer, tableType, tablesRequired,time,status);
+                Reservation reservation = new Reservation(reservationId, numberOfGuests, reservationDate, customer, tableType, tablesRequired, time, status);
                 ReservationDataController.addReservation(reservation);
                 ReservationDataController.saveReservationDataToExcel(reservation);
             } else {

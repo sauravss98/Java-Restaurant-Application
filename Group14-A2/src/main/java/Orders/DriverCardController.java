@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class DriverCardController {
     private Order currentOrder;
     private static Driver currentDriver;
-    private ArrayList<Customer> customers = UserController.getCustomers();
+    private final ArrayList<Customer> customers = UserController.getCustomers();
     @FXML private Label orderIdLabel;
     @FXML private Label customerNameLabel;
     @FXML private Label addressLabel;
@@ -108,8 +108,8 @@ public class DriverCardController {
 
     /**
      * Function to get the customer data
-     * @param order
-     * @return
+     * @param order Order object
+     * @return Return the customer data
      */
     private Customer getCustomerData(Order order) {
         for(Customer customer : customers)

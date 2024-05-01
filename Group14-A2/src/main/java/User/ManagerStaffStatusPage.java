@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ManagerStaffStatusPage {
-    private ArrayList<Manager> managers = UserController.getManagers();
-    private ArrayList<Waiter> waiters = UserController.getWaiters();
-    private ArrayList<Chef> chefs = UserController.getChefs();
-    private ArrayList<Driver> drivers = UserController.getDrivers();
-    private ArrayList<Staff> staffs = new ArrayList<>();
+    private final ArrayList<Manager> managers = UserController.getManagers();
+    private final ArrayList<Waiter> waiters = UserController.getWaiters();
+    private final ArrayList<Chef> chefs = UserController.getChefs();
+    private final ArrayList<Driver> drivers = UserController.getDrivers();
+    private final ArrayList<Staff> staffs = new ArrayList<>();
     private Stage stage;
 
     @FXML

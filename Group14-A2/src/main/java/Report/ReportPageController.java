@@ -1,6 +1,5 @@
 package Report;
 
-import Orders.Order;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +16,7 @@ public class ReportPageController {
     @FXML private Button backButton;
     @FXML private Button generateReportButton;
     @FXML private ListView reportListView;
-    private ArrayList<Report> reports = ReportGenerator.getReports();
+    private final ArrayList<Report> reports = ReportGenerator.getReports();
 
     /**
      * Default constructor for the class

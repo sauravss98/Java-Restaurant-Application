@@ -27,7 +27,7 @@
         private Timestamp orderCreatedTime;
         private Timestamp orderCompletedTime;
 
-        private ArrayList<OrderItem> orderItems = new ArrayList<>();
+        private final ArrayList<OrderItem> orderItems = new ArrayList<>();
 
 
         /**

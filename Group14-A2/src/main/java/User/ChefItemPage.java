@@ -3,7 +3,6 @@ package User;
 import Items.ChefItemEditController;
 import Items.Item;
 import Items.ItemDataController;
-import Items.ItemEditPageController;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +22,7 @@ import java.util.Objects;
  * @author Saurav
  */
 public class ChefItemPage {
-    private Chef activeChef;
-    private ArrayList<Chef> chefs = UserController.getChefs();
-    private ArrayList<Item> items = ItemDataController.getItems();
+    private final ArrayList<Item> items = ItemDataController.getItems();
     @FXML private ListView itemsList;
     @FXML private Button backbutton;
 
@@ -39,9 +36,9 @@ public class ChefItemPage {
      * @param activeEmail The email is passed as string
      */
     public ChefItemPage(String activeEmail){
-        for(Chef chef:chefs){
+        ArrayList<Chef> chefs = UserController.getChefs();
+        for(Chef chef: chefs){
             if(Objects.equals(chef.getEmail(), activeEmail)){
-                activeChef = chef;
             }
         }
     }

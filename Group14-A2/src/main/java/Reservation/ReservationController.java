@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ReservationController {
-    private static ArrayList<Reservation> reservations = ReservationDataController.getReservations();
+    private static final ArrayList<Reservation> reservations = ReservationDataController.getReservations();
     @FXML private Label reservationText;
     @FXML private Button createReservationButton;
     @FXML private ListView reservationList;

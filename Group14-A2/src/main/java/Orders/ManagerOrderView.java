@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ManagerOrderView {
-    private ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private final ArrayList<Order> orders = OrderDataHandler.getOrders();
     private Stage stage;
 
     @FXML private Button goBackButton;

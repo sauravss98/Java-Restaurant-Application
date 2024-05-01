@@ -8,7 +8,6 @@ public class Staff extends User{
     private int staffID;
     private int hoursWorked;
     private int totalHours;
-    private boolean isStaff = true;
     private boolean isActive = true;
 
 
@@ -31,7 +30,6 @@ public class Staff extends User{
         this.staffID = staffID;
         this.hoursWorked = hoursWorked;
         this.totalHours = totalHours;
-        this.isStaff = isStaff;
         this.isActive = isActive;
     }
 

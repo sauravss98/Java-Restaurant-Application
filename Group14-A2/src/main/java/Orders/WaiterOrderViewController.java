@@ -20,7 +20,7 @@ import java.util.Objects;
 public class WaiterOrderViewController {
     private Stage stage;
     private static Waiter activeWaiter;
-    private static ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private static final ArrayList<Order> orders = OrderDataHandler.getOrders();
     @FXML private Button backButton;
     @FXML private ListView ordersListView;
 
@@ -90,7 +90,7 @@ public class WaiterOrderViewController {
 
     /**
      * A function to return the item corresponding to the id passed through
-     * @param idString
+     * @param idString The id is passed as string
      * @return item
      * @author Saurav Suresh
      */
@@ -106,7 +106,7 @@ public class WaiterOrderViewController {
 
     /**
      * A function to get the id from the String recieved based on the user input
-     * @param data
+     * @param data The data is passed
      * @return id
      * @author Saurav Suresh
      */

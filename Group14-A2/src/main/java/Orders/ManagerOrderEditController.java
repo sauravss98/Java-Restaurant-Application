@@ -23,7 +23,7 @@ public class ManagerOrderEditController {
     @FXML private Label warningLabel;
     private Order currentOrder;
     private Stage stage;
-    private ObservableList<String> options = FXCollections.observableArrayList();
+    private final ObservableList<String> options = FXCollections.observableArrayList();
 
     /**
      * Default constructor for the class

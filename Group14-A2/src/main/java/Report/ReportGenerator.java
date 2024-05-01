@@ -1,10 +1,8 @@
 package Report;
 
-import Items.Item;
 import Orders.Order;
 import Orders.OrderDataHandler;
 import Orders.OrderItem;
-import Reservation.Reservation;
 import User.Staff;
 import User.UserController;
 import org.apache.poi.ss.usermodel.*;
@@ -24,9 +22,9 @@ import java.util.Map;
  * @author Saurav
  */
 public class ReportGenerator {
-    private static int reportGenerationCounter = 0;
+    private static final int reportGenerationCounter = 0;
     private static int reportCounter = 0;
-    private static ArrayList<Report> reports = new ArrayList<>();
+    private static final ArrayList<Report> reports = new ArrayList<>();
 
     /**
      * Function to get the arrayList of reports

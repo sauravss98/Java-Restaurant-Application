@@ -25,7 +25,7 @@ public class Customer extends User{
 
     /**
      * Function to display details of customers where required
-     * @return
+     * @return String value to display
      */
     @Override
     public String toString() {

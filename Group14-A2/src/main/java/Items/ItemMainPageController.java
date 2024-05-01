@@ -1,6 +1,5 @@
 package Items;
 
-import Orders.*;
 import User.Manager;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ItemMainPageController {
-    private ArrayList<Item> items = ItemDataController.getItems();
+    private final ArrayList<Item> items = ItemDataController.getItems();
     private static Manager activeManager;
     @FXML private Button addItemButton;
     @FXML private Button backButton;
@@ -28,7 +27,7 @@ public class ItemMainPageController {
 
     /**
      * Constructor to instantiate the class
-     * @param manager
+     * @param manager Manager object is passed
      * @author Saurav
      */
     public ItemMainPageController(Manager manager){

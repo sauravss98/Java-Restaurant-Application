@@ -1,7 +1,6 @@
 package Orders;
 import Items.Item;
 import Items.ItemDataController;
-import User.Customer;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -18,9 +17,9 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class OrderDataHandler {
-    private static ArrayList<Integer> itemlist = new ArrayList<>();
-    private static ArrayList<Order> orders = new ArrayList<>();
-    private static ArrayList<Item> allItems = ItemDataController.getItems();
+    private static final ArrayList<Integer> itemlist = new ArrayList<>();
+    private static final ArrayList<Order> orders = new ArrayList<>();
+    private static final ArrayList<Item> allItems = ItemDataController.getItems();
     private static final String FILE_PATH = "src/main/java/Orders/OrderData.xlsx";
 
     /**

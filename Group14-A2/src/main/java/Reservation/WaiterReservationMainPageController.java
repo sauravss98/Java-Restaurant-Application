@@ -21,9 +21,7 @@ import java.util.Objects;
  * @author Saurav
  */
 public class WaiterReservationMainPageController {
-    private ArrayList<Waiter> waiters = UserController.getWaiters();
-    private ArrayList<Reservation> reservations = ReservationDataController.getReservations();
-    private Waiter activeWaiter;
+    private final ArrayList<Reservation> reservations = ReservationDataController.getReservations();
     @FXML private Button backButton;
     @FXML private ListView incompleteList;
     @FXML private ListView completedList;
@@ -38,9 +36,9 @@ public class WaiterReservationMainPageController {
      * @param email The email is passed as a parameter
      */
     public WaiterReservationMainPageController(String email){
-        for (Waiter waiter:waiters){
+        ArrayList<Waiter> waiters = UserController.getWaiters();
+        for (Waiter waiter: waiters){
             if(Objects.equals(waiter.getEmail(), email)){
-                activeWaiter = waiter;
             }
         }
     }

@@ -7,7 +7,7 @@ import Items.Item;
  * @author Saurav
  */
 public class OrderItem {
-    private Item item;
+    private final Item item;
     private int quantity;
 
     /**

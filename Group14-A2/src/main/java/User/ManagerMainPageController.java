@@ -31,8 +31,7 @@ public class ManagerMainPageController {
     @FXML private ListView activeOrdersList;
     private static Manager manager;
     private static String activeEmail;
-    private ArrayList<Manager> managersList = UserController.getManagers();
-    private ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private final ArrayList<Order> orders = OrderDataHandler.getOrders();
 
     /**
      * Constructor for the controller
@@ -45,6 +44,7 @@ public class ManagerMainPageController {
      */
     public ManagerMainPageController(String email){
         this.activeEmail = email;
+        ArrayList<Manager> managersList = UserController.getManagers();
         for (Manager requiredManager: managersList){
             if(activeEmail.equals(requiredManager.getEmail())){
                 this.manager = requiredManager;

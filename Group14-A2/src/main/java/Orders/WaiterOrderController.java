@@ -4,7 +4,6 @@ import Items.Item;
 import Items.ItemDataController;
 import User.UserController;
 import User.Waiter;
-import User.WaiterMainPageController;
 import cafe94.group14a2.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +26,7 @@ import java.util.Objects;
 public class WaiterOrderController {
     private String activeEmail;
     private static Waiter currentWaiter;
-    private ArrayList<Item> items = ItemDataController.getItems();
+    private final ArrayList<Item> items = ItemDataController.getItems();
     @FXML private ListView ItemsList;
     @FXML private ListView specialsItemList;
     @FXML private ListView OrdersList;
@@ -36,8 +35,8 @@ public class WaiterOrderController {
     @FXML private Button CompleteOrder;
     @FXML private Text PriceText;
     private Order currentOrder;
-    private ArrayList<Order> orders = OrderDataHandler.getOrders();
-    private ArrayList<Waiter> waiters = UserController.getWaiters();
+    private final ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private final ArrayList<Waiter> waiters = UserController.getWaiters();
 
     /**
      * Default constructor for the class

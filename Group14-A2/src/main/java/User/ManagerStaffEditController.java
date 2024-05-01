@@ -14,11 +14,10 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ManagerStaffEditController {
-    private ArrayList<Manager> managers = UserController.getManagers();
-    private ArrayList<Waiter> waiters = UserController.getWaiters();
-    private ArrayList<Chef> chefs = UserController.getChefs();
-    private ArrayList<Driver> drivers = UserController.getDrivers();
-    private ArrayList<Staff> staffs;
+    private final ArrayList<Manager> managers = UserController.getManagers();
+    private final ArrayList<Waiter> waiters = UserController.getWaiters();
+    private final ArrayList<Chef> chefs = UserController.getChefs();
+    private final ArrayList<Driver> drivers = UserController.getDrivers();
     private Stage stage;
     private Staff activeStaff;
     private Chef activeChef;
@@ -42,7 +41,7 @@ public class ManagerStaffEditController {
 
     /**
      * Function to set the stage object to the class instance
-     * @param stage
+     * @param stage Stage object is passed
      */
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -53,7 +52,6 @@ public class ManagerStaffEditController {
      * @param staffs Pass the staffs arraylist
      */
     public void setStaffArrayList(ArrayList<Staff> staffs){
-        this.staffs = staffs;
     }
 
     /**

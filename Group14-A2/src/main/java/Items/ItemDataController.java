@@ -1,14 +1,5 @@
 package Items;
 
-import User.Customer;
-import User.Manager;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -24,7 +15,7 @@ import java.util.Objects;
  */
 public final class ItemDataController {
     private static int itemIDCounter=0;
-    private static ArrayList<Item> items = new ArrayList<>();
+    private static final ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Function to get the array list of items

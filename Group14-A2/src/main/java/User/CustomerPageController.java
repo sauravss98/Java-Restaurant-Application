@@ -28,9 +28,9 @@ import java.util.ResourceBundle;
  */
 public class CustomerPageController implements Initializable {
     private static String activeUserEmail;
-    private static ArrayList<Customer> customers = UserController.getCustomers();
-    private ArrayList<Item> items = ItemDataController.getItems();
-    private static ArrayList<Order> orders = OrderDataHandler.getOrders();
+    private static final ArrayList<Customer> customers = UserController.getCustomers();
+    private final ArrayList<Item> items = ItemDataController.getItems();
+    private static final ArrayList<Order> orders = OrderDataHandler.getOrders();
     @FXML private Label NameDisplayLabel;
     @FXML private ListView ItemsList;
     @FXML private ListView SpecialsList;
