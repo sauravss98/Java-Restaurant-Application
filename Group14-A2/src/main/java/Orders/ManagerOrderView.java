@@ -17,6 +17,8 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class ManagerOrderView {
+    final private String FXML_FILE= "/cafe94/group14a2/managerOrderEditPage.fxml";
+    final private String EDIT_ORDER_DETAIL= "Edit Order Detail";
     private final ArrayList<Order> orders = OrderDataHandler.getOrders();
     private Stage stage;
 
@@ -68,7 +70,7 @@ public class ManagerOrderView {
         String id = extractID(selectedItem);
         Order requiredOrder = getOrderData(id);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/managerOrderEditPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_FILE));
         Parent root = loader.load();
 
         ManagerOrderEditController controller = loader.getController();
@@ -76,7 +78,7 @@ public class ManagerOrderView {
 
         Stage orderEditStage = new Stage();
         controller.setStage(orderEditStage);
-        orderEditStage.setTitle("Edit Order Detail");
+        orderEditStage.setTitle(EDIT_ORDER_DETAIL);
         orderEditStage.setScene(new Scene(root, 600, 600));
         orderEditStage.initModality(Modality.APPLICATION_MODAL);
         orderEditStage.showAndWait();

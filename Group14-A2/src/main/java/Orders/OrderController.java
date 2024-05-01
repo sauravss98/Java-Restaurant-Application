@@ -18,6 +18,10 @@ import java.util.ArrayList;
  * Class to control the order
  */
 public class OrderController {
+    final private String FXML_FILE = "/cafe94/group14a2/orderDetailsPage.fxml";
+    final private String HI = "Hi ";
+    final private String CUSTOMER_MAIN_PAGE = "customerMainPage";
+    final private String RESERVATION_MAIN_PAGE = "reservationMainPage";
     private static Customer activeCustomer;
     @FXML private ListView OrderListView;
     @FXML private Button orderNavButton;
@@ -44,10 +48,10 @@ public class OrderController {
      */
     public void initialize()
     {
-        System.out.println("Hi "+activeCustomer.getFirstName());
+        System.out.println(HI+activeCustomer.getFirstName());
         refreshItemList();
         orderNavButton.setOnAction(e -> {
-            handleNavButtonAction("customerMainPage");
+            handleNavButtonAction(CUSTOMER_MAIN_PAGE);
         });
         OrderListView.setOnMouseClicked(event -> {
             String selectedItemDescription = (String) OrderListView.getSelectionModel().getSelectedItem();
@@ -63,7 +67,7 @@ public class OrderController {
             ReservationController orderController = new ReservationController();
             orderController.setActiveCustomer(activeCustomer);
             try {
-                Main.setRoot("reservationMainPage");
+                Main.setRoot(RESERVATION_MAIN_PAGE);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -76,7 +80,7 @@ public class OrderController {
      * @throws IOException Exception to handle file missing issue
      * */
     private void launchListPage(Order requiredOrder) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/orderDetailsPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_FILE));
         Parent root = loader.load();
         OrderDetailsPageController controller = loader.getController();
         controller.setOrderData(requiredOrder);

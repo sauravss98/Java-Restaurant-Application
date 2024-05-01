@@ -12,6 +12,11 @@ import javafx.scene.control.ListView;
  * @author Saurav
  */
 public class CardController {
+    private final String QUANTITY_STRING = " Quantity: ";
+    private final String NO_ITEMS_ORDERS = "No items Ordered";
+    private final String FOOD_PREPARED = "Food Prepared";
+    private final String ORDER_ID = "Order Id ";
+    private final boolean TRUE = true;
     private Order currentOrder;
     private static Chef currentChef;
     @FXML private Label orderIdLabel;
@@ -78,10 +83,10 @@ public class CardController {
         if (currentOrder != null && currentOrder.getOrderItems() != null) {
             itemsList.getItems().clear();
             for (OrderItem orderItem : currentOrder.getOrderItems()) {
-                itemsList.getItems().add(orderItem.getItem().getDescriptionForList() + " Quantity: " + orderItem.getQuantity());
+                itemsList.getItems().add(orderItem.getItem().getDescriptionForList() + QUANTITY_STRING + orderItem.getQuantity());
             }
         } else {
-            itemsList.getItems().add("No items Ordered");
+            itemsList.getItems().add(NO_ITEMS_ORDERS);
         }
     }
 
@@ -89,8 +94,8 @@ public class CardController {
      * Function to handle complete button click and save the data
      */
     private void handleCompleteButton() {
-        currentOrder.setOrderStatus("Food Prepared");
-        currentOrder.setCompleted(true);
+        currentOrder.setOrderStatus(FOOD_PREPARED);
+        currentOrder.setCompleted(TRUE);
         currentOrder.setChefId(currentChef.getUserId());
         OrderDataHandler.saveChefExcelChange(currentOrder);
         chefMainPageController.refreshCardDisplay();
@@ -100,6 +105,6 @@ public class CardController {
      * Function to refresh the UI card element
      */
     private void refreshCard() {
-        orderIdLabel.setText("Order Id "+currentOrder.getOrderId());
+        orderIdLabel.setText(ORDER_ID+currentOrder.getOrderId());
     }
 }

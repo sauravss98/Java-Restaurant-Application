@@ -18,6 +18,13 @@ import java.util.ArrayList;
  * @author Saurav
  */
 public class DriverCardController {
+    final private String PREDELIVERY = "predelivery";
+    final private String DELIVERY = "Delivery";
+    final private String FXMLFILE = "/cafe94/group14a2/driverDeliveryPage.fxml";
+    final private String COMPLETE_DELIVERY = "Complete Delivery";
+    final private String DELIVERY_ADDRESS = "Delivery Address :";
+    final private String CUSTOMER_NAME = "Customer Name: ";
+    final private String ORDER_ID = "Order Id: ";
     private Order currentOrder;
     private static Driver currentDriver;
     private final ArrayList<Customer> customers = UserController.getCustomers();
@@ -77,10 +84,10 @@ public class DriverCardController {
      * @throws IOException Exception to catch the files
      */
     private void handleCompleteButton() throws IOException {
-        currentOrder.setOrderStatus("Delivery");
+        currentOrder.setOrderStatus(DELIVERY);
         currentOrder.setDriverId(currentDriver.getUserId());
-        OrderDataHandler.editDriverExcelData(currentOrder,"predelivery");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/cafe94/group14a2/driverDeliveryPage.fxml"));
+        OrderDataHandler.editDriverExcelData(currentOrder,PREDELIVERY);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLFILE));
         Parent root = loader.load();
         DriverDeliveryPageController controller = loader.getController();
         controller.setCurrentDriver(currentDriver);
@@ -101,9 +108,9 @@ public class DriverCardController {
      */
     private void refreshCard() {
         Customer orderCustomer = getCustomerData(currentOrder);
-        orderIdLabel.setText("Order Id: "+currentOrder.getOrderId());
-        customerNameLabel.setText("Customer Name: "+orderCustomer.getFirstName());
-        addressLabel.setText("Delivery Address :"+orderCustomer.getAddress());
+        orderIdLabel.setText(ORDER_ID+currentOrder.getOrderId());
+        customerNameLabel.setText(CUSTOMER_NAME+orderCustomer.getFirstName());
+        addressLabel.setText(DELIVERY_ADDRESS+orderCustomer.getAddress());
     }
 
     /**

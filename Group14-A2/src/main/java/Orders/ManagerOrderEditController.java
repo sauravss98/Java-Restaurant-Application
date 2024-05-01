@@ -14,6 +14,12 @@ import javafx.stage.Stage;
  * @author Saurav
  */
 public class ManagerOrderEditController {
+    final private String CANCELLED = "Cancelled";
+    final private String IN_PROGRESS = "In Progress";
+    final private String COMPLETED = "Completed";
+    final private String FOOD_PREPARED = "Food Prepared";
+    final private String DELIVERED = "Delivered";
+    final private String ENTER_ALL_VALUES = "Enter all values";
     @FXML private Label orderIdLabel;
     @FXML private Label orderTypeLabel;
     @FXML private Label orderStatusLabel;
@@ -58,8 +64,8 @@ public class ManagerOrderEditController {
         renderPage();
         warningLabel.setVisible(false);
         statusChoiceBox.setItems(options);
-        options.addAll("Cancelled","In Progress","Completed","Food Prepared","Delivered");
-        statusChoiceBox.getSelectionModel().select("In Progress");
+        options.addAll(CANCELLED,IN_PROGRESS,COMPLETED,FOOD_PREPARED,DELIVERED);
+        statusChoiceBox.getSelectionModel().select(IN_PROGRESS);
         cancelButton.setOnAction(e->{
             handleCancelClick();
         });
@@ -83,7 +89,7 @@ public class ManagerOrderEditController {
             }
         } catch (NullPointerException exception){
             warningLabel.setVisible(true);
-            warningLabel.setText("Enter all values");
+            warningLabel.setText(ENTER_ALL_VALUES);
         }
     }
 
@@ -99,7 +105,7 @@ public class ManagerOrderEditController {
         }
         else {
             warningLabel.setVisible(true);
-            warningLabel.setText("Enter all values");
+            warningLabel.setText(ENTER_ALL_VALUES);
             orderIdLabel.setText("");
             orderTypeLabel.setText("");
             orderStatusLabel.setText("");

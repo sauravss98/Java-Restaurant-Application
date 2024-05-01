@@ -9,6 +9,11 @@ import javafx.scene.text.Text;
  * @author Saurav
  */
 public class OrderDetailsPageController {
+    final private String ORDER_MESSAGE= "Order is ";
+    final private String ORDER_ID= "Order Id: ";
+    final private String ORDER_ID_EMPTY= "Order Id: N/A";
+    final private String NO_ITEM_ORDERED= "No items Ordered";
+    final private String QUANTITY_MESSAGE= " Quantity: ";
     @FXML private Text orderIdText;
     @FXML private ListView OrderItemsList;
     private Order order;
@@ -28,7 +33,7 @@ public class OrderDetailsPageController {
      */
     public void setOrderData(Order order){
         this.order = order;
-        System.out.println("Order is "+order.toString());
+        System.out.println(ORDER_MESSAGE+order.toString());
         initialize();
     }
 
@@ -45,10 +50,10 @@ public class OrderDetailsPageController {
      */
     public void refreshOrderIDText(){
         if (order != null) {
-            orderIdText.setText("Order Id: " + order.getOrderId());
+            orderIdText.setText(ORDER_ID + order.getOrderId());
         } else {
             // Handle the case where order is null
-            orderIdText.setText("Order Id: N/A");
+            orderIdText.setText(ORDER_ID_EMPTY);
         }
     }
 
@@ -59,10 +64,10 @@ public class OrderDetailsPageController {
         if (order != null && order.getOrderItems() != null) {
             OrderItemsList.getItems().clear();
             for (OrderItem orderItem : order.getOrderItems()) {
-                OrderItemsList.getItems().add(orderItem.getItem().getDescriptionForList() + " Quantity: " + orderItem.getQuantity());
+                OrderItemsList.getItems().add(orderItem.getItem().getDescriptionForList() + QUANTITY_MESSAGE + orderItem.getQuantity());
             }
         } else {
-            OrderItemsList.getItems().add("No items Ordered");
+            OrderItemsList.getItems().add(NO_ITEM_ORDERED);
         }
     }
 }

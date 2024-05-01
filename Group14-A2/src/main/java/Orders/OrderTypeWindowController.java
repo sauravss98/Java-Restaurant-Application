@@ -9,6 +9,10 @@ import javafx.stage.Stage;
  * Class to control the Order Type Edit Window
  */
 public class OrderTypeWindowController {
+    final private String DINE_IN = "dineIn";
+    final private String DELIVERY = "delivery";
+    final private String TAKEOUT = "takeout";
+    final private String IN_PROGRESS = "InProgress";
     @FXML private Button dineInButton;
     @FXML private Button deliveryButton;
     @FXML private Button takeOutButton;
@@ -26,13 +30,13 @@ public class OrderTypeWindowController {
     public void initialize() {
         OrderDoneBox.setVisible(false);
         dineInButton.setOnAction(e -> {
-            handleConfirmButtonAction("dineIn");
+            handleConfirmButtonAction(DINE_IN);
         });
         deliveryButton.setOnAction(e -> {
-            handleConfirmButtonAction("delivery");
+            handleConfirmButtonAction(DELIVERY);
         });
         takeOutButton.setOnAction(e -> {
-            handleConfirmButtonAction("takeout");
+            handleConfirmButtonAction(TAKEOUT);
         });
         cancelButton.setOnAction(e -> {
             handleCancelButtonAction();
@@ -64,7 +68,7 @@ public class OrderTypeWindowController {
      */
     private void handleConfirmButtonAction(String type){
         currentOrder.setOrderType(type);
-        currentOrder.setOrderStatus("InProgress");
+        currentOrder.setOrderStatus(IN_PROGRESS);
         OrderTypeBox.setVisible(false);
         OrderDoneBox.setVisible(true);
         OrderDataHandler.saveOrderDataToExcel(currentOrder);
